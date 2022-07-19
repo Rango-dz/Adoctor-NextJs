@@ -1,0 +1,72 @@
+{
+  "name": "adoctor",
+  "version": "1.0.2",
+  "private": true,
+  "dependencies": {
+    "@algolia/autocomplete-js": "^1.7.1",
+    "@algolia/autocomplete-theme-classic": "^1.7.1",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@material-tailwind/react": "^1.0.4",
+    "@mui/material": "^5.8.5",
+    "@portabletext/react": "^1.0.6",
+    "@react-google-maps/api": "^2.12.0",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/client": "^3.3.2",
+    "@sanity/image-url": "^1.0.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "algoliasearch": "^4.13.1",
+    "aos": "^2.3.4",
+    "classnames": "^2.3.1",
+    "cross-fetch": "^3.1.5",
+    "emailjs-com": "^3.2.0",
+    "formik": "^2.2.9",
+    "next": "^12.2.2",
+    "next-sanity": "^0.6.0",
+    "react": "^18.1.0",
+    "react-awesome-stars-rating": "^0.11.0",
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.4.0",
+    "react-inlinesvg": "^3.0.0",
+    "react-instantsearch-hooks-web": "^6.29.0",
+    "react-loading-skeleton": "^3.1.0",
+    "react-toggle-dark-mode": "^1.1.0",
+    "speakingurl": "^14.0.1",
+    "swiper": "^8.2.4",
+    "unslugify": "^1.0.2",
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.2",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "postcss-import": "^14.1.0",
+    "tailwindcss": "^3.1.2"
+  }
+}

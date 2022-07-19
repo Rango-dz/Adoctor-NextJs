@@ -1,0 +1,44 @@
+.App {
+  font-family: sans-serif;
+}
+
+article {
+  max-width: 65%;
+}
+
+.toc {
+  position: fixed;
+  top: 3em;
+  right: 1em;
+  max-width: 30%;
+}
+
+.toc h2 {
+  font-size: 1.25em;
+}
+
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc li {
+  margin: 0;
+  padding: 0;
+}
+
+.toc a {
+  display: block;
+  padding: 0.1em 0.2em;
+  margin-bottom: 0.1em;
+  border-radius: 4px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+.toc a:hover,
+toc a:focus-visible {
+  background-color: #eee;
+}

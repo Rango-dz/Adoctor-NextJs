@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.moroi-gardian-black {
+  background: linear-gradient(135deg, #3f3f3f, #2d2d2d);
+}
