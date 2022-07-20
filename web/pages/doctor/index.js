@@ -123,7 +123,7 @@ export default function AllPosts(props) {
 
                         <div className="flex text-sm gap-2 mt-2 leading-4"><FaPhoneAlt className="self-center text-iconcolor dark:text-white" /> {post.phoneNumber && formatPhoneNumber(post.phoneNumber)} </div>
 
-                        <div className="px-5 text-sm uppercase tracking-wide font-meduim absolute -bottom-10 left-0 right-0 bg-colorSix dark:bg-moroi-stack rounded-br rounded-bl p-2 flex gap-2 justify-center align-middle text-colorOne dark:text-colorRed dark:text-colorEight prose"><FaMedkit className="text-xl" />{post.Speicialties && post.Speicialties}</div>
+                        <div className="px-5 text-sm uppercase tracking-wide font-meduim absolute -bottom-10 left-0 right-0 bg-colorSix dark:bg-moroi-stack rounded-br rounded-bl p-2 flex gap-2 justify-center align-middle text-colorOne dark:text-colorEight prose"><FaMedkit className="text-xl" />{post.Speicialties && post.Speicialties}</div>
 
                       </div>
                     </div>
