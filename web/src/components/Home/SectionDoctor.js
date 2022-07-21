@@ -30,7 +30,7 @@ export default function SectionDoctor(props) {
   return (
     <div className="md:my-[15%] my-[45%] mx-[5%] md:mx-[10%] grid grid-cols-1 lg:grid-cols-2 justify-center align-middle md:flex-row gap-10 transition-all ease-in-out delay-500 overflow-hidden">
       <div className=' h-auto md:self-center bg-slate-200 dark:bg-moroi-dark rounded-lg p-5'>
-        <h1 className="text-4xl font-bold tracking-tight text-heading lg:text-5xl mb-5 md:text-center">Bring Care With One Click</h1>
+        <h2 className="text-4xl font-bold tracking-tight text-heading lg:text-5xl mb-5 md:text-center">Bring Care With One Click</h2>
         <h3 className='my-5 text-lg tracking-tight text-heading lg:text-xl font-semibold text-colorOne dark:text-colorRed antialiased md:text-center'>Improving The Quality Of Your Life Through Better Health.</h3>
         <p className=" mb-10"> {doctor.text[0].children[0].text} </p>
 
