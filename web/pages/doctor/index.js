@@ -14,7 +14,7 @@ import { useAppContext } from "../../src/components/Layout";
 let PageSize = 10;
 
 
-export default function AllPosts(props) {
+export default function AllPosts() {
 
   const context = useAppContext();
   const siteSettings = context[0];
@@ -22,23 +22,6 @@ export default function AllPosts(props) {
   const [allDoctorsData, setAllDoctors] = useState();
   const [slicedData, setSlicedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [heroHeading, setheroHeading] = useState();
-
-  const mainHeroHeading = async () => {
-    const response = sanityClient.fetch(
-      `* [_type == "HeroHeading"]{
-        'docImage': DoctorImage{ asset->{ url } },
-        'homeImage': HomeImage{ asset->{ url } },
-        DoctorsHeading,
-        DoctorsSubtitle,
-        HomeHeading,
-        HomeSubtitle,
-        Hometext,
-  }`
-    );
-    const data = await response;
-    setheroHeading(data);
-  }
 
 
   const allposts = async () => {
@@ -63,12 +46,11 @@ export default function AllPosts(props) {
 
   useEffect(() => {
     allposts();
-    mainHeroHeading();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
 
-  if (!allDoctorsData || !slicedData || !heroHeading) {
+  if (!allDoctorsData || !slicedData) {
     return (
       <div className="my-20 m-[10%] flex flex-col mx-auto w-1/4">
         <div><Skeleton circle={true} className='dark:bg-moroi-dark' /></div>
@@ -99,7 +81,7 @@ export default function AllPosts(props) {
         <meta property="twitter:description" content={siteSettings.description} />
         <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
       </Head>
-      <Hero heroHeading={heroHeading} />
+      <Hero />
       <div>
 
         <div>

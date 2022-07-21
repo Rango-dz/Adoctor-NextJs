@@ -74,7 +74,7 @@ export default function Layout({ children }) {
   }
 
   return (
-    <AppContext.Provider value={[siteSettings, theme, setTheme]}>
+    <AppContext.Provider value={[siteSettings, theme, setTheme, doctorSettings]}>
       <Header doctorSettings={doctorSettings} siteSettings={siteSettings} />
       <main>{children}</main>
       <ScrollToTop />

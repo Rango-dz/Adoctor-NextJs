@@ -1,13 +1,33 @@
 import Image from 'next/image';
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import sanityClient from "../../client";
 
 
-export default function Hero(props) {
-  const heading = props.heroHeading[0]
-  console.log(heading)
+export default function Hero() {
 
-  if (!props) {
+  const [heading, setheroHeading] = useState();
+
+  const mainHeroHeading = async () => {
+    const response = sanityClient.fetch(
+      `* [_type == "HeroHeading"]{
+        'docImage': DoctorImage{ asset->{ url } },
+        DoctorsHeading,
+        DoctorsSubtitle,
+  }`
+    );
+    const data = await response;
+    setheroHeading(data[0]);
+  }
+
+  useEffect(() => {
+    mainHeroHeading();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!heading) {
 
     return (
       <div className='dark:bg-moroi-dark w-1/4'>

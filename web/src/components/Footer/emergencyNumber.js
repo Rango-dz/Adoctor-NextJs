@@ -1,9 +1,12 @@
 import React from 'react'
 import { GiMailbox, GiRotaryPhone } from 'react-icons/gi'
 import { formatPhoneNumber } from '../helpers/helpers'
+import { useAppContext } from "../Layout";
 
 export default function emergencyNumber(props) {
-  const emergency = props.props.doctorSettings
+  // fetching site seettings
+  const context = useAppContext();
+  const emergency = context[3];
 
   return (
     <div

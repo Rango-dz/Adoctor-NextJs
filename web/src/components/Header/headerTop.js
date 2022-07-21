@@ -2,12 +2,15 @@ import React from 'react'
 import Social from './social'
 import { Skeleton } from '@mui/material';
 import { formatPhoneNumber } from '../helpers/helpers';
+import { useAppContext } from "../Layout";
 
-export default function HeaderTop(props) {
-  const emergency = props.props.doctorSettings
+export default function HeaderTop() {
+  // fetching site seettings
+  const context = useAppContext();
+  const emergency = context[3];
 
 
-  if (!props) {
+  if (!context) {
     return (<Skeleton count={1} />)
   }
 
@@ -19,7 +22,7 @@ export default function HeaderTop(props) {
           Emergency <span className='text-colorOne dark:text-colorRed'> {emergency && formatPhoneNumber(emergency.phoneNumber)}</span>
         </div>
         <div className="">
-          <Social props={props} />
+          <Social />
         </div>
       </div>
     </>

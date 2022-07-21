@@ -1,11 +1,15 @@
 import React from 'react'
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from 'react-icons/fa'
 import Skeleton from '@mui/material/Skeleton'
+import { useAppContext } from "../Layout";
 
-export default function social(props) {
-  const social = props.props.props.doctorSettings
+export default function social() {
 
-  if (!props || !social) {
+  // fetching site seettings
+  const context = useAppContext();
+  const social = context[3];
+
+  if (!social) {
     return (<Skeleton count={1} />)
   }
   return (

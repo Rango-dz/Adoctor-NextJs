@@ -11,48 +11,19 @@ import Skeleton from 'react-loading-skeleton'
 import { formatPhoneNumber } from '../src/components/helpers/helpers';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useAppContext } from "../src/components/Layout";
+
+export default function Contact() {
 
 
-export default function Contact(props) {
-
-
-  const [siteSettings, setSiteSettings] = useState();
-  const allSettings = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "siteSettings"]{
-  "logoimage":logo{asset->{url}},
-  "logoDarkimage":logoDark{asset->{url}},
-  "socialimage":image{asset->{url}},
-...
-}`
-    );
-    const data = await response;
-    setSiteSettings(data[0]);
-  }
+  const context = useAppContext();
+  const siteSettings = context[0];
+  const doctorSettings = context[3];
 
 
 
   const router = useRouter()
   const { slug } = router.query
-
-  // main doctor data
-  const [doctorSettings, setDoctorSiteSettings] = useState();
-
-  const mainDoctorSettings = async () => {
-    const response = sanityClient.fetch(
-      `  * [_type == "TheDoctor"]{
-    "image":mainImage{ asset -> { url } },
-...
-  }`
-    );
-    const data = await response;
-    setDoctorSiteSettings(data[0]);
-  }
-
-  useEffect(() => {
-    mainDoctorSettings();
-    allSettings();
-  }, []);
 
   //googlemap
   const { isLoaded } = useLoadScript({

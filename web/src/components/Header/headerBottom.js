@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GiHeartBeats } from 'react-icons/gi'
 import { FaSyringe, FaCalendarAlt } from 'react-icons/fa';
 import { GiHealthNormal, GiMedicinePills } from 'react-icons/gi';
 import Skeleton from 'react-loading-skeleton';
 import { useEffect } from 'react';
 import Image from 'next/image';
+import sanityClient from "../../client";
 
 
 export default function HeaderBottom(props) {
-  const [heading, setHeading] = React.useState();
+
+  const [heading, setHeading] = useState();
+
+  const mainHeroHeading = async () => {
+    const response = sanityClient.fetch(
+      `* [_type == "HeroHeading"]{
+        'homeImage': HomeImage{ asset->{ url } },
+        HomeHeading,
+        HomeSubtitle,
+        Hometext,
+  }`
+    );
+    const data = await response;
+    setHeading(data[0]);
+  }
+
 
   useEffect(() => {
-    setHeading(props.heroHeading);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    mainHeroHeading();
+  }, []);
 
-  if (!props || !heading) {
+  if (!heading) {
 
     return (
       <Skeleton count={1} height={50} width={200} />
@@ -61,10 +76,12 @@ export default function HeaderBottom(props) {
             <GiMedicinePills className='text-6xl text-violet-500 border-1 p-2 rounded bg-slate-50 bg-opacity-[.2] shadow-md opacity-30 backdrop-blur-md backdrop-saturate-100 border-[rgba(255,255,255,0.3)] self-star animate-pulse absolute -bottom-36 right-5 md:left-1/4 md:top-1/4' />
           </div>
 
+
           <Image
             data-aos="fade-left"
             data-aos-duration="500"
-            src={heading.homeImage.asset.url} alt="hero" layout='responsive' width={600} height={600} className="object-contain" />
+            src={heading.homeImage.asset.url} alt="hero" layout='responsive' width={600} height={600} className="object-contain" priority="true" />
+
 
         </div>
       </div>

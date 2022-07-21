@@ -1,10 +1,7 @@
-import Header from "../src/components/Header/header";
-import Footer from "../src/components/Footer/footer";
 import React, { useState, useEffect } from 'react'
 import HeaderBottom from "../src/components/Header/headerBottom";
 import Head from 'next/head'
 import Appointments from "../src/components/Home/Appointments";
-import ScrollToTop from '../src/components/ScrollToTop';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import SectionDoctor from "../src/components/Home/SectionDoctor";
@@ -12,8 +9,8 @@ import SectionServices from "../src/components/Home/SectionServices";
 import SectionServicesOne from "../src/components/Home/SectionServicesOne";
 import SectionReview from "../src/components/Home/SectionReview";
 import SectionArticles from "../src/components/Home/SectionArticles";
-import sanityClient from "../src/client";
 import Skeleton from 'react-loading-skeleton'
+import { useAppContext } from "../src/components/Layout";
 
 
 export default function Home() {
@@ -40,58 +37,12 @@ export default function Home() {
 
 
   // fetching site seettings
-  const [siteSettings, setSiteSettings] = useState();
-  const [doctorSettings, setDoctorSiteSettings] = useState();
-  const [heroHeading, setheroHeading] = useState();
-
-  const mainHeroHeading = async () => {
-    const response = sanityClient.fetch(
-      `* [_type == "HeroHeading"]{
-        'docImage': DoctorImage{ asset->{ url } },
-        'homeImage': HomeImage{ asset->{ url } },
-        DoctorsHeading,
-        DoctorsSubtitle,
-        HomeHeading,
-        HomeSubtitle,
-        Hometext,
-  }`
-    );
-    const data = await response;
-    setheroHeading(data[0]);
-  }
-
-  const mainDoctorSettings = async () => {
-    const response = sanityClient.fetch(
-      `  * [_type == "TheDoctor"]{
-    "image":mainImage{ asset -> { url } },
-...
-  }`
-    );
-    const data = await response;
-    setDoctorSiteSettings(data[0]);
-  }
-
-  const allSettings = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "siteSettings"]{
-  "logoimage":logo{asset->{url}},
-  "logoDarkimage":logoDark{asset->{url}},
-  "socialimage":image{asset->{url}},
-...
-}`
-    );
-    const data = await response;
-    setSiteSettings(data[0]);
-  }
+  const context = useAppContext();
+  const siteSettings = context[0];
+  const doctorSettings = context[3];
 
 
-  useEffect(() => {
-    allSettings();
-    mainDoctorSettings();
-    mainHeroHeading();
-  }, []);
-
-  if (!siteSettings || !doctorSettings || !heroHeading) {
+  if (!siteSettings || !doctorSettings) {
     return (
       <div className="my-20 m-[10%] flex flex-col mx-auto">
         <div><Skeleton circle={true} className='dark:bg-moroi-dark' /></div>
@@ -155,7 +106,7 @@ export default function Home() {
       </Head>
       <div id="main" className="dark:bg-moroi-back main-container" >
 
-        <HeaderBottom heroHeading={heroHeading} handleOpen={handleOpen} />
+        <HeaderBottom handleOpen={handleOpen} />
 
         <SectionServicesOne />
         <Appointments open={open} handleOpen={handleOpen} />

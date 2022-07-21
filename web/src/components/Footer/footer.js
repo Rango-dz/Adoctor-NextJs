@@ -2,9 +2,13 @@ import React from 'react'
 import Link from 'next/link';
 import EmergencyNumber from './emergencyNumber'
 import Image from 'next/image'
+import { useAppContext } from "../Layout";
 
 export default function Footer(props) {
-  const footer = props.siteSettings;
+
+  // fetching site seettings
+  const context = useAppContext();
+  const footer = context[0];
 
   return (
     <>

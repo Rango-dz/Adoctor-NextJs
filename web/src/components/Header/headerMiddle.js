@@ -6,12 +6,15 @@ import UseDarkMode from '../DarkMode/useDarkSide';
 import { useEffect } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
+import { useAppContext } from "../Layout";
 
 export default function HeaderMiddle(props) {
 
   const router = useRouter();
 
-  const logo = props.props.siteSettings
+  // fetching site seettings
+  const context = useAppContext();
+  const logo = context[0];
 
   const [darkLogo, setDarkLogo] = React.useState(logo.logoimage.asset.url);
 
