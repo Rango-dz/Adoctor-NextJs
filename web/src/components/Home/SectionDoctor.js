@@ -82,8 +82,8 @@ export default function SectionDoctor(props) {
           <Link href="/Contact" className='bg-colorOne dark:bg-colorRed m-1 p-2 md:p-4 md:m-5 hover:dark:shadow-md rounded-lg align-middle self-center hover:shadow shadow-md  dark:hover:bg-colorRed text-white  dark:shadow-none' ><a>Contact us</a></Link>
         </div>
       </div>
-      <div className='relative self-center mx-auto w-auto h-auto'>
-        <Image src={doctor.image.asset.url} layout='intrinsic' width={390} height={500} alt="" className=" h-auto rounded-xl border m-5 z-0 relative" />
+      <div className='relative self-center w-[390px] h-auto mx-auto'>
+        <Image src={doctor.image.asset.url} layout='responsive' width={390} height={500} alt={doctor.name} className="rounded-xl z-0" />
         <div
           data-aos="fade-up"
           data-aos-duration="500"
