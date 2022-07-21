@@ -6,12 +6,8 @@ import UseDarkMode from '../DarkMode/useDarkSide';
 import { useEffect } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { useAppContext } from "../../components/Layout";
 
 export default function HeaderMiddle(props) {
-
-  // const context = useAppContext();
-  // const useDarkMode = context[1];
 
   const router = useRouter();
 
@@ -53,7 +49,7 @@ export default function HeaderMiddle(props) {
             <div className="w-full flex justify-around">
               <div className="md:w-full md:flex md:justify-around">
                 <div>
-                  <Link href="#" className="flex items-start py-2 px-2 relative"><a><source srcSet={logo.logoDarkimage.asset.url} layout="fixed" width={200} height={29} priority='true' media="(prefers-color-scheme: dark)"></source><Image src={darkLogo} layout="fixed" width={200} height={29} priority='true' alt={logo.title} className="relative w-auto mr-2 h-5 md:h-7 lg:h-8 align-middle self-start" /></a>
+                  <Link href="#" className="flex items-start py-2 px-2 relative"><a><source srcSet={logo.logoDarkimage.asset.url} layout="fixed" width={300} height={29} priority='true' media="(prefers-color-scheme: dark)"></source><Image src={darkLogo} layout="fixed" width={200} height={29} priority='true' alt={logo.title} className="w-auto mr-2 h-5 md:h-7 lg:h-8 align-middle self-start" /></a>
                   </Link>
                 </div>
 

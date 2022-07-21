@@ -118,7 +118,8 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+body,
+#__next {
   overflow-wrap: break-word;
   text-rendering: optimizeLegibility;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='739' height='738' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='369.481' cy='368.639' r='168.639' transform='rotate(-180 369.481 368.639)' fill='%2343A9E1' fill-opacity='.2' filter='url(%23a)'/%3E%3Cdefs%3E%3Cfilter id='a' x='.843' y='0' width='737.277' height='737.277' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='100' result='effect1_foregroundBlur'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E"), url("data:image/svg+xml;charset=utf-8,%3Csvg width='739' height='738' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='369.481' cy='368.639' r='168.639' transform='rotate(-180 369.481 368.639)' fill='%2343A9E1' fill-opacity='.2' filter='url(%23a)'/%3E%3Cdefs%3E%3Cfilter id='a' x='.843' y='0' width='737.277' height='737.277' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='100' result='effect1_foregroundBlur'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E"), url("data:image/svg+xml;charset=utf-8,%3Csvg width='739' height='738' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='369.481' cy='368.639' r='168.639' transform='rotate(-180 369.481 368.639)' fill='%2343A9E1' fill-opacity='.2' filter='url(%23a)'/%3E%3Cdefs%3E%3Cfilter id='a' x='.843' y='0' width='737.277' height='737.277' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeGaussianBlur stdDeviation='100' result='effect1_foregroundBlur'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
@@ -130,23 +131,13 @@ body {
   font-size: var(--fontSize);
 }
 
-html.dark body {
-  color: var(--colorRed);
+#__next {
+  background: var(--colorEight);
 }
 
 html.dark #__next {
-  background-color: var(--stack);
+  background: var(--stack);
 }
-
-#__next {
-  background-color: var(--colorEight);
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-}
-
-
-
-
 
 a {
   outline: 0;
@@ -156,7 +147,9 @@ a {
 
 
 @media (min-width: 600px) {
-  body {
+
+  body,
+  #__next {
     width: 98.5vw !important;
     margin: 0.7rem auto !important;
     border-radius: 15px;
@@ -168,7 +161,9 @@ a {
 
 
 @media (max-width: 599px) {
-  body {
+
+  body,
+  #__next {
     width: 99vw !important;
     margin: 0.2rem auto !important;
     border-radius: 15px;
@@ -179,7 +174,9 @@ a {
 }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-  body {
+
+  body,
+  #__next {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background-color: #f5f6f7;
@@ -441,22 +438,30 @@ html.dark .selected {
   box-shadow: 0 0 5px -2px var(--colorThree);
 }
 
+.aa-InputWrapper .aa-Input:focus-within {
+  border: none;
+}
+
 .aa-Input {
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px !important;
   background-color: var(--colorSeven);
 }
 
 .aa-Form {
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: none;
   background-color: rgba(255, 255, 255, 0.808);
   backdrop-filter: saturate(100%) blur(20px);
   border-radius: 10px !important;
 }
 
+.aa-InputWrapperPrefix {
+  order: 5 !important;
+}
+
 .aa-Form:focus-within {
   outline: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: none;
   box-shadow: none !important;
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
   box-shadow: 0 0 5px 1px var(--colorFive);
@@ -474,27 +479,34 @@ html.dark .selected {
 
 /*  dark mode */
 
-html.dark body {
+html.dark body,
+html.dark #__next {
   background-color: var(--stack);
   color: var(--colorEight)
 }
 
 @media (min-width: 600px) {
-  html.dark body {
+
+  html.dark body,
+  html.dark #__next {
     background-color: var(--stack);
     box-shadow: 0 0 1rem 0 #232323;
   }
 }
 
 @media (max-width: 599px) {
-  html.dark body {
+
+  html.dark body,
+  html.dark #__next {
     background-color: var(--stack);
     box-shadow: 0 0 1rem 0 #232323;
   }
 }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-  html.dark body {
+
+  html.dark body,
+  html.dark #__next {
     background-color: var(--stack);
   }
 }
@@ -599,6 +611,7 @@ html.dark .moroi-gardian-black {
 html.dark .aa-Input {
   background-color: var(--colorSix);
   border: var(--colorFive);
+  padding: 10px !important;
 }
 
 html.dark .aa-Input:focus-within {
@@ -621,7 +634,7 @@ html.dark .aa-Autocomplete:focus-within {
 html.dark .aa-Form:focus-within {
   /* background-color: var(--stack); */
   box-shadow: #232323 0 0 5px 1px;
-  /* border: var(--back); */
+  border: none;
 }
 
 html.dark .aa-Autocomplete {

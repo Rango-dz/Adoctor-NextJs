@@ -27,8 +27,14 @@ export default function AllPosts(props) {
   const mainHeroHeading = async () => {
     const response = sanityClient.fetch(
       `* [_type == "HeroHeading"]{
-          ...
-        }`
+        'docImage': DoctorImage{ asset->{ url } },
+        'homeImage': HomeImage{ asset->{ url } },
+        DoctorsHeading,
+        DoctorsSubtitle,
+        HomeHeading,
+        HomeSubtitle,
+        Hometext,
+  }`
     );
     const data = await response;
     setheroHeading(data);

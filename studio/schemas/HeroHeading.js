@@ -42,6 +42,13 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'HomeImage',
+      title: 'Home Image (required)',
+      type: 'image',
+      group: ['HomePage'],
+      validation: Rule => Rule.required()
+    },
+    {
       name: 'DoctorsHeading',
       title: 'Doctors Title (required)',
       type: 'text',
@@ -54,7 +61,14 @@ export default {
       type: 'text',
       group: ['DoctorsPage'],
       validation: Rule => Rule.required()
-    }
+    },
+    {
+      name: 'DoctorImage',
+      title: 'Doctors Image (required)',
+      type: 'image',
+      group: ['DoctorsPage'],
+      validation: Rule => Rule.required()
+    },
   ]
 }
 

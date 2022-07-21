@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 
 export default function Hero(props) {
   const heading = props.heroHeading[0]
+  console.log(heading)
 
   if (!props) {
 
@@ -15,7 +17,7 @@ export default function Hero(props) {
   }
   return (
     <>
-      <div data-row-header="bottom" className='header block'>
+      <div data-row-header="bottom" className='header block h-[80vh]'>
         <div className="relative  grid justify-between py-[5%] px-[5%] md:px-[10%] pb-0 grid-cols-1 md:grid-cols-5 align-middle gap-5 md:gap-10 lg:gap-20 ">
           <div className='lg:mx-[5%] w-full max-w-7xl col-span-3'>
             <h2
@@ -34,11 +36,13 @@ export default function Hero(props) {
 
         </div>
         <div
-          id="doctorhero"
-          className="h-80 w-full mb-0 bg-cover m-[5%]"
-          data-aos="fade-up"
-          data-aos-duration="500"
-        >
+          className="text-center mx-auto w-2/3 hidden md:block">
+
+          <Image
+            data-aos="fade-up"
+            data-aos-duration="500"
+            src={heading.docImage.asset.url} alt="" layout='responsive' width={600} height={220} className="object-contain" priority="true" />
+
         </div>
       </div>
     </>

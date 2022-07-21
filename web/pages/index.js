@@ -46,8 +46,14 @@ export default function Home() {
 
   const mainHeroHeading = async () => {
     const response = sanityClient.fetch(
-      `  * [_type == "HeroHeading"]{
-...
+      `* [_type == "HeroHeading"]{
+        'docImage': DoctorImage{ asset->{ url } },
+        'homeImage': HomeImage{ asset->{ url } },
+        DoctorsHeading,
+        DoctorsSubtitle,
+        HomeHeading,
+        HomeSubtitle,
+        Hometext,
   }`
     );
     const data = await response;
