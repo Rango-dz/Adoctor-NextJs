@@ -9,6 +9,7 @@ import Image from 'next/image'
 
 export default function SectionDoctor(props) {
 
+
   const doctor = props.doctorSettings;
 
   const [today, setToday] = React.useState(new Date());
@@ -82,7 +83,7 @@ export default function SectionDoctor(props) {
         </div>
       </div>
       <div className='relative self-center mx-auto w-auto h-auto'>
-        <Image src={Doctor05} layout='intrinsic' width={390} height={500} alt="" className=" h-auto  rounded-xl border m-5 z-0 relative" />
+        <Image src={doctor.image.asset.url} layout='intrinsic' width={390} height={500} alt="" className=" h-auto rounded-xl border m-5 z-0 relative" />
         <div
           data-aos="fade-up"
           data-aos-duration="500"
@@ -94,6 +95,6 @@ export default function SectionDoctor(props) {
         </div>
 
       </div>
-    </div >
+    </div>
   )
 }
