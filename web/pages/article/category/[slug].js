@@ -71,9 +71,7 @@ export default function Category() {
 
   if (!allPostsData) {
     return (
-      <div className="my-20 mx-[5%]">
-        <Skeleton count={10} />
-      </div>
+      <div><Skeleton count={1} className='dark:bg-moroi-dark' /></div>
     )
   }
 

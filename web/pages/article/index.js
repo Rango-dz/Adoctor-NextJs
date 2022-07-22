@@ -11,6 +11,7 @@ import FeaturedPosts from "../../src/components/Blog/Sidebar/featuredPosts.js";
 import Skeleton from 'react-loading-skeleton'
 import { slugify } from '../../lib/helpers';
 import { getAlldata } from '../../lib/api';
+import sanityClient from "../../lib/client";
 
 let PageSize = 6;
 
@@ -40,10 +41,7 @@ export default function AllPosts({ data }) {
 
   if (!allPostsData) {
     return (
-      <div className="my-20 m-[10%] flex flex-col w-1/4">
-        <div><Skeleton circle={true} className='dark:bg-moroi-dark' /></div>
-        <div><Skeleton count={3} className='dark:bg-moroi-dark' /></div>
-      </div>
+      <div><Skeleton count={3} className='dark:bg-moroi-dark' /></div>
     )
   }
 

@@ -60,10 +60,7 @@ export default function Layout({ children }) {
 
   if (!siteSettings || !doctorSettings) {
     return (
-      <div className="my-20 m-[10%] flex flex-col mx-auto">
-        <div><Skeleton circle={true} className='dark:bg-moroi-dark' /></div>
-        <div><Skeleton count={3} className='dark:bg-moroi-dark' /></div>
-      </div>
+      <div><Skeleton count={1} className='dark:bg-moroi-dark' /></div>
 
     )
   }

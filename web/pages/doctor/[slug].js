@@ -61,7 +61,7 @@ export default function OnePost() {
 
 
   if (!docData) return (
-    <Skeleton count={1} />
+    <div><Skeleton count={1} className='dark:bg-moroi-dark' /></div>
   )
 
 
