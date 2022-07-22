@@ -1,31 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import sanityClient from "../../client.js";
+import sanityClient from "../../../lib/client.js";
 import Skeleton from 'react-loading-skeleton'
 import SVG from 'react-inlinesvg';
 
-export default function SectionServicesOne() {
+export default function SectionServicesOne(props) {
 
-  const [allfeaturesData, setAllfeatures] = useState();
+  const allfeaturesData = props.serviceOne;
 
-  const allfeatures = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "HomeFeatures"]{
-        name,
-        image{
-          asset->{
-          url
-          }
-        }
-}`
-    );
-    const data = await response;
-    setAllfeatures(data);
-  }
-
-
-  useEffect(() => {
-    allfeatures();
-  }, []);
 
   if (!allfeaturesData) {
     return (

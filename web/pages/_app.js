@@ -4,8 +4,6 @@ import Layout from '../src/components/Layout';
 
 
 export default function MyApp({ Component, pageProps }) {
-  // initialize aos animation
-
 
   return (
     <Layout>

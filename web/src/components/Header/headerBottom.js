@@ -1,34 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GiHeartBeats } from 'react-icons/gi'
 import { FaSyringe, FaCalendarAlt } from 'react-icons/fa';
 import { GiHealthNormal, GiMedicinePills } from 'react-icons/gi';
 import Skeleton from 'react-loading-skeleton';
-import { useEffect } from 'react';
 import Image from 'next/image';
-import sanityClient from "../../client";
 
 
 export default function HeaderBottom(props) {
 
-  const [heading, setHeading] = useState();
+  const heading = props.herohome[0];
 
-  const mainHeroHeading = async () => {
-    const response = sanityClient.fetch(
-      `* [_type == "HeroHeading"]{
-        'homeImage': HomeImage{ asset->{ url } },
-        HomeHeading,
-        HomeSubtitle,
-        Hometext,
-  }`
-    );
-    const data = await response;
-    setHeading(data[0]);
-  }
-
-
-  useEffect(() => {
-    mainHeroHeading();
-  }, []);
 
   if (!heading) {
 

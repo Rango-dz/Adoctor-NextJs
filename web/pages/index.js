@@ -11,9 +11,9 @@ import SectionReview from "../src/components/Home/SectionReview";
 import SectionArticles from "../src/components/Home/SectionArticles";
 import Skeleton from 'react-loading-skeleton'
 import { useAppContext } from "../src/components/Layout";
+import sanityClient from "../lib/client";
 
-
-export default function Home() {
+export default function Home({ data }) {
 
 
   // initialize aos animation
@@ -38,7 +38,7 @@ export default function Home() {
 
   // fetching site seettings
   const context = useAppContext();
-  const siteSettings = context[0];
+  const siteSettings = data.siteSettings[0];
   const doctorSettings = context[3];
 
 
@@ -106,17 +106,95 @@ export default function Home() {
       </Head>
       <div id="main" className="dark:bg-moroi-back main-container" >
 
-        <HeaderBottom handleOpen={handleOpen} />
+        <HeaderBottom herohome={data.herohome} handleOpen={handleOpen} />
 
-        <SectionServicesOne />
+        <SectionServicesOne serviceOne={data.serviceOne} />
         <Appointments open={open} handleOpen={handleOpen} />
         <SectionDoctor doctorSettings={doctorSettings} />
-        <SectionServices />
-        <SectionReview />
-        <SectionArticles />
+        <SectionServices sectionService={data.sectionService} />
+        <SectionReview sectionReview={data.sectionReview} />
+        <SectionArticles posts={data.allPostsData} />
 
 
       </div>
     </>
   )
+}
+
+
+export async function getStaticProps() {
+  const response = sanityClient.fetch(
+    `{
+     "siteSettings": *[_type == "siteSettings"]{
+  "logoimage":logo{asset->{url}},
+  "logoDarkimage":logoDark{asset->{url}},
+  "socialimage":image{asset->{url}},
+  ...
+     },
+  "allPostsData":*[_type == "post"]{
+        title,
+        slug,
+        mainImage{
+          asset->{
+          _id,
+          url
+        }
+      },
+      "categories": categories[]->{
+      title,
+      slug,
+       },
+       "tag":Tags[]{value},
+      body[0],
+      "numberOfCharacters": length(pt::text(body)),
+      "estimatedWordCount": round(length(pt::text(body)) / 5),
+      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
+      
+    },
+    "sectionReview":*[_type == "Reviews"]{
+   name,
+   rating,
+   review,
+   image{
+   asset->{
+   url
+ }
+ },
+_id},
+"sectionService": *[_type == "departments"]{
+        title,
+  "image": image{
+    asset->{
+    url
+  }
+  },
+"doc":doctor->{
+  name
+}  , 
+"text":text[]{
+  children[]{
+    text,
+  }
+}
+},
+"serviceOne": *[_type == "HomeFeatures"]{
+        name,
+        image{
+          asset->{
+          url
+          }
+        }
+},
+"herohome":* [_type == "HeroHeading"]{
+        'homeImage': HomeImage{ asset->{ url } },
+        HomeHeading,
+        HomeSubtitle,
+        Hometext,
+  },
+}`
+  );
+  const data = await response;
+  return {
+    props: { data },
+  }
 }

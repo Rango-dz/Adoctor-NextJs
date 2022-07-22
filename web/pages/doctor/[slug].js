@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Link from 'next/link'
-import sanityClient from "../../src/client";
+import sanityClient from "../../lib/client";
 import { PortableText } from '@portabletext/react'
 import imageUrlBuilder from "@sanity/image-url";
 import { formatPhoneNumber, slugify } from '../../src/components/helpers/helpers';

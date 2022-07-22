@@ -3,10 +3,11 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import sanityClient from "../../client";
+import sanityClient from "../../../lib/client";
 
 
-export default function Hero() {
+function Hero() {
+
 
   const [heading, setheroHeading] = useState();
 
@@ -68,3 +69,5 @@ export default function Hero() {
     </>
   )
 }
+
+export default Hero;

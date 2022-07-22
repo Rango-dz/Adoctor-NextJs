@@ -3,38 +3,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay } from "swiper";
 import Rating from '@mui/material/Rating';
-import sanityClient from "../../client.js";
+import sanityClient from "../../../lib/client.js";
 import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
 
-export default function SectionReview() {
+export default function SectionReview(props) {
 
-  const [allreviewsData, setallreviews] = useState();
+  const allreviewsData = props.sectionReview;
 
-  const allreviews = async () => {
-    const response = sanityClient.fetch(
-      `
-       *[_type == "Reviews"]{
-   name,
-   rating,
-   review,
-   image{
-   asset->{
-   url
- }
- },
-_id,
-      }
-      
-      `
-    );
-    const data = await response;
-    setallreviews(data);
-  }
-
-  useEffect(() => {
-    allreviews();
-  }, []);
 
   if (!allreviewsData) {
     return (

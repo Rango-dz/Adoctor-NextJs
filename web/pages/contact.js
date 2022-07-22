@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import emailjs from 'emailjs-com';
 import { useFormik } from 'formik';
 import { Button, Typography } from '@material-tailwind/react'
@@ -6,7 +6,6 @@ import { ContactSchema } from '../src/components/validations/ContactValidation';
 import { useLoadScript } from "@react-google-maps/api";
 import Googlemap from '../src/components/Contact/GoogleMap';
 import { GiRotaryPhone, GiMailbox, GiPostOffice } from 'react-icons/gi';
-import sanityClient from "../src/client";
 import Skeleton from 'react-loading-skeleton'
 import { formatPhoneNumber } from '../src/components/helpers/helpers';
 import Head from 'next/head'

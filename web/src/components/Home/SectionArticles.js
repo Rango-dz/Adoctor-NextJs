@@ -4,46 +4,16 @@ import 'swiper/css';
 import Link from 'next/link';
 import { GiFiles } from 'react-icons/gi';
 import { BsChevronRight } from 'react-icons/bs';
-import sanityClient from "../../client.js";
+import sanityClient from "../../../lib/client.js";
 import BlockContent from "@sanity/block-content-to-react";
 import Image from 'next/image'
 
 export default function SectionArticles(props) {
-  const [allPostsData, setAllPosts] = useState();
 
+  const allPostsData = props.posts;
   const Title_LENGTH = 80;
 
-  const allposts = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "post"]{
-        title,
-        slug,
-        mainImage{
-          asset->{
-          _id,
-          url
-        }
-      },
-      "categories": categories[]->{
-      title,
-      slug,
-       },
-       "tag":Tags[]{value},
-      body[0],
-      "numberOfCharacters": length(pt::text(body)),
-      "estimatedWordCount": round(length(pt::text(body)) / 5),
-      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
-      
-    }`
-    );
-    const data = await response;
-    setAllPosts(data);
-  }
 
-
-  useEffect(() => {
-    allposts();
-  }, []);
 
   return (
     <section className='mx-[5%] md:mx-[10%] md:my-[15%] my-[45%]'>

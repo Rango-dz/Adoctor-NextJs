@@ -5,7 +5,7 @@ import ScrollToTop from './ScrollToTop';
 import Skeleton from 'react-loading-skeleton'
 import AOS from 'aos';
 import "aos/dist/aos.css";
-import sanityClient from "../client";
+import sanityClient from "../../lib/client";
 import { createContext, useContext } from 'react';
 
 const AppContext = createContext();

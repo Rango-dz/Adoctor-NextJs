@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from 'next/link'
-import sanityClient from "../../src/client";
+import sanityClient from "../../lib/client";
 import Pagination from '../../src/components/Pagination/Pagination';
 import { FaPhoneAlt, FaTransgender, FaDirections, FaStethoscope, FaMedkit } from "react-icons/fa";
 import { formatPhoneNumber } from '../../src/components/helpers/helpers';

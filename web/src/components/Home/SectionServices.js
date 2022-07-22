@@ -1,38 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import sanityClient from "../../client.js";
+import sanityClient from "../../../lib/client.js";
 import Skeleton from 'react-loading-skeleton'
 import SVG from 'react-inlinesvg';
 
-export default function SectionServices() {
-  const [allPostsData, setAllPosts] = useState();
-
-  const allposts = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "departments"]{
-        title,
-  "image": image{
-    asset->{
-    url
-  }
-  },
-"doc":doctor->{
-  name
-}  , 
-"text":text[]{
-  children[]{
-    text,
-  }
-}
-}`
-    );
-    const data = await response;
-    setAllPosts(data);
-  }
+export default function SectionServices(props) {
 
 
-  useEffect(() => {
-    allposts();
-  }, []);
+  const allPostsData = props.sectionService;
 
   if (!allPostsData) {
     return (

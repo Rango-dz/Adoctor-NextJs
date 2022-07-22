@@ -1,6 +1,5 @@
 import React from 'react'
 import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@material-tailwind/react';
-import Doctor05 from "../../../public/assets/images/home/HomeDoctor.jpeg";
 import Link from 'next/link';
 import { GiClockwork, GiFirstAidKit } from 'react-icons/gi';
 import { useCallback } from 'react';
