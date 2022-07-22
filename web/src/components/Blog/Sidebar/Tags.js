@@ -2,7 +2,7 @@ import React from "react";
 import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { slugify } from "../../helpers/helpers";
+import { slugify } from "../../../../lib/helpers";
 
 export default function Tags(props) {
 

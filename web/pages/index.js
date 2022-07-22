@@ -14,7 +14,7 @@ import { getAlldata } from '../lib/api';
 
 export default function Home({ data }) {
 
-  console.log(data);
+
   // initialize aos animation
   useEffect(() => {
     AOS.init();

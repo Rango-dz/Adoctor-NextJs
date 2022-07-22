@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Link from 'next/link';
-import sanityClient from "../../../src/client.js";
+import sanityClient from "../../../lib/client";
 import Pagination from '../../../src/components/Pagination/Pagination';
 import { PortableText } from '@portabletext/react'
 import HeroBlog from "../../../src/components/Blog/HeroBlog";
 import Skeleton from 'react-loading-skeleton'
 import Categories from "../../../src/components/Blog/Sidebar/categories";
 import FeaturedPosts from "../../../src/components/Blog/Sidebar/featuredPosts.js";
-import { unslugify } from "../../../src/components/helpers/helpers";
-import { slugify } from '../../../src/components/helpers/helpers'
+import { unslugify } from "../../../lib/helpers";
+import { slugify } from '../../../lib/helpers'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useAppContext } from "../../../src/components/Layout";

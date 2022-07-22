@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import sanityClient from "../../client.js";
+import sanityClient from "../../../lib/client";
 import { getAlgoliaResults } from '@algolia/autocomplete-js';
 import '@algolia/autocomplete-theme-classic'
 import algoliasearch from 'algoliasearch';

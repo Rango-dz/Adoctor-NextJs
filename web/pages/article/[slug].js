@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Link from 'next/link'
-import sanityClient from "../../src/client";
-import { PortableText } from '@portabletext/react'
+import Link from 'next/link';
+import sanityClient from "../../lib/client";
+import { PortableText } from '@portabletext/react';
 import imageUrlBuilder from "@sanity/image-url";
 import HeroBlog from "../../src/components/Blog/HeroBlog";
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton';
 import Categories from "../../src/components/Blog/Sidebar/categories";
 import FeaturedPosts from "../../src/components/Blog/Sidebar/featuredPosts.js";
-import TableOfContents, { parseOutline } from '../../src/components/Blog/Sidebar/TableOfContent'
-import { slugify } from '../../src/components/helpers/helpers'
+import TableOfContents, { parseOutline } from '../../src/components/Blog/Sidebar/TableOfContent';
+import { slugify } from '../../lib/helpers';
 import { GiAlarmClock, GiCheckboxTree, GiOpenBook, GiPriceTag } from "react-icons/gi";
 import { useAppContext } from "../../src/components/Layout";
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {

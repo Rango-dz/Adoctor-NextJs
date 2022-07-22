@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
-import sanityClient from "../../src/client";
 import Pagination from '../../src/components/Pagination/Pagination';
 import { PortableText } from '@portabletext/react'
 import HeroBlog from "../../src/components/Blog/HeroBlog";
@@ -10,19 +9,21 @@ import Categories from "../../src/components/Blog/Sidebar/categories";
 import Tags from "../../src/components/Blog/Sidebar/Tags";
 import FeaturedPosts from "../../src/components/Blog/Sidebar/featuredPosts.js";
 import Skeleton from 'react-loading-skeleton'
-import { slugify } from '../../src/components/helpers/helpers'
-import { useAppContext } from "../../src/components/Layout";
+import { slugify } from '../../lib/helpers';
+import { getAlldata } from '../../lib/api';
+import sanityClient from '../../lib/client';
 
 let PageSize = 6;
 
 
-export default function AllPosts() {
+export default function AllPosts({ data }) {
 
   // site settings for seo
-  const context = useAppContext();
-  const siteSettings = context[0];
+  const siteSettings = data.siteSettings[0];
+
   // all posts
-  const [allPostsData, setAllPosts] = useState();
+  const allPostsData = data.allPostsData;
+
   // slice post for paggination
   const [slicedData, setSlicedData] = useState([]);
   // list of posts after slicing theme
@@ -30,39 +31,10 @@ export default function AllPosts() {
 
 
 
-  const allposts = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "post"]{
-        title,
-        slug,
-        mainImage{
-          asset->{
-          _id,
-          url
-        }
-      },
-      "categories": categories[]->{
-      title,
-      slug,
-       },
-       publishedAt,
-       "tag":Tags[]{value},
-      body[0],
-      "numberOfCharacters": length(pt::text(body)),
-      "estimatedWordCount": round(length(pt::text(body)) / 5),
-      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
-      
-    }`
-    );
-    const data = await response;
-    setAllPosts(data);
+  useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    setSlicedData(data.slice(firstPageIndex, lastPageIndex));
-  }
-
-  useEffect(() => {
-    allposts();
+    setSlicedData(allPostsData.slice(firstPageIndex, lastPageIndex));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
@@ -196,4 +168,14 @@ export default function AllPosts() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const data = await getAlldata();
+  return {
+    props: {
+      data
+    },
+    revalidate: 1
+  }
 }

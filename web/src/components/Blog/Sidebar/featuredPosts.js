@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import sanityClient from "../../../client";
+import sanityClient from "../../../../lib/client";
 import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from 'next/link'
-import sanityClient from "../../../src/client.js";
+import sanityClient from "../../../lib/client";
 import Pagination from '../../../src/components/Pagination/Pagination';
 import { PortableText } from '@portabletext/react'
 import HeroBlog from "../../../src/components/Blog/HeroBlog";
@@ -9,7 +9,7 @@ import Categories from "../../../src/components/Blog/Sidebar/categories";
 import Tags from "../../../src/components/Blog/Sidebar/Tags";
 import FeaturedPosts from "../../../src/components/Blog/Sidebar/featuredPosts.js";
 import { unslugify } from "unslugify";
-import { slugify } from '../../../src/components/helpers/helpers'
+import { slugify } from '../../../lib/helpers'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useAppContext } from "../../../src/components/Layout";
