@@ -12,8 +12,8 @@ import { slugify } from '../../lib/helpers';
 import { GiAlarmClock, GiCheckboxTree, GiOpenBook, GiPriceTag } from "react-icons/gi";
 import { useAppContext } from "../../src/components/Layout";
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {

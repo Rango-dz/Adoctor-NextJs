@@ -11,7 +11,6 @@ import FeaturedPosts from "../../src/components/Blog/Sidebar/featuredPosts.js";
 import Skeleton from 'react-loading-skeleton'
 import { slugify } from '../../lib/helpers';
 import { getAlldata } from '../../lib/api';
-import sanityClient from '../../lib/client';
 
 let PageSize = 6;
 

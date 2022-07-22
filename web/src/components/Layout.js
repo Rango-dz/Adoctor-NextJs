@@ -31,34 +31,29 @@ export default function Layout({ children }) {
   const [siteSettings, setSiteSettings] = useState();
   const [doctorSettings, setDoctorSiteSettings] = useState();
 
-  const mainDoctorSettings = async () => {
+  const mainSettings = async () => {
     const response = sanityClient.fetch(
-      `  * [_type == "TheDoctor"]{
+      ` {
+        "doctorSettings": * [_type == "TheDoctor"]{
     "image":mainImage{ asset -> { url } },
 ...
-  }`
-    );
-    const data = await response;
-    setDoctorSiteSettings(data[0]);
-  }
-
-  const allSettings = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "siteSettings"]{
+  },
+  "siteSettings":*[_type == "siteSettings"]{
   "logoimage":logo{asset->{url}},
   "logoDarkimage":logoDark{asset->{url}},
   "socialimage":image{asset->{url}},
 ...
-}`
+}
+      }`
     );
     const data = await response;
-    setSiteSettings(data[0]);
+
+    setSiteSettings(data.siteSettings[0]);
+    setDoctorSiteSettings(data.doctorSettings[0]);
   }
 
-
   useEffect(() => {
-    allSettings();
-    mainDoctorSettings();
+    mainSettings();
   }, []);
 
 
@@ -75,10 +70,10 @@ export default function Layout({ children }) {
 
   return (
     <AppContext.Provider value={[siteSettings, theme, setTheme, doctorSettings]}>
-      <Header doctorSettings={doctorSettings} siteSettings={siteSettings} />
+      <Header />
       <main>{children}</main>
       <ScrollToTop />
-      <Footer doctorSettings={doctorSettings} siteSettings={siteSettings} />
+      <Footer />
     </AppContext.Provider>
   )
 }
