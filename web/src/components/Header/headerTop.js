@@ -1,7 +1,7 @@
 import React from 'react'
 import Social from './social'
 import { Skeleton } from '@mui/material';
-import { formatPhoneNumber } from '../helpers/helpers';
+import { formatPhoneNumber } from '../../../lib/helpers';
 import { useAppContext } from "../Layout";
 
 export default function HeaderTop() {

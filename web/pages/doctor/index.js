@@ -1,51 +1,34 @@
 import React, { useEffect, useState } from "react";
 import Link from 'next/link'
-import sanityClient from "../../lib/client";
 import Pagination from '../../src/components/Pagination/Pagination';
 import { FaPhoneAlt, FaTransgender, FaDirections, FaStethoscope, FaMedkit } from "react-icons/fa";
-import { formatPhoneNumber } from '../../src/components/helpers/helpers';
+import { formatPhoneNumber } from '../../lib/helpers';
 import Skeleton from 'react-loading-skeleton'
 import Hero from "../../src/components/Doctors/Hero";
 import Head from 'next/head'
 import Image from 'next/image'
-import { useAppContext } from "../../src/components/Layout";
+import { getAlldata } from '../../lib/api';
 
 
-let PageSize = 10;
+let PageSize = 5;
 
 
-export default function AllPosts() {
+export default function AllPosts({ data }) {
 
-  const context = useAppContext();
-  const siteSettings = context[0];
+  const siteSettings = data.siteSettings[0];
+  const allDoctorsData = data.doctors;
 
-  const [allDoctorsData, setAllDoctors] = useState();
   const [slicedData, setSlicedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
 
-  const allposts = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "doctor"]{
-        "image":mainImage{
-          asset->{
-          url
-        }
-      },
-        ...
-        
-    }`
-    );
-    const data = await response;
-    setAllDoctors(data);
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    setSlicedData(data.slice(firstPageIndex, lastPageIndex));
-  }
+
 
 
   useEffect(() => {
-    allposts();
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    setSlicedData(allDoctorsData.slice(firstPageIndex, lastPageIndex));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
@@ -137,4 +120,14 @@ export default function AllPosts() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const data = await getAlldata();
+  return {
+    props: {
+      data
+    },
+    revalidate: 1
+  }
 }

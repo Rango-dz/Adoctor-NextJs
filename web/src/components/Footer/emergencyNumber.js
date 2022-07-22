@@ -1,6 +1,6 @@
 import React from 'react'
 import { GiMailbox, GiRotaryPhone } from 'react-icons/gi'
-import { formatPhoneNumber } from '../helpers/helpers'
+import { formatPhoneNumber } from '../../../lib/helpers'
 import { useAppContext } from "../Layout";
 
 export default function emergencyNumber(props) {

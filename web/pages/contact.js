@@ -7,17 +7,17 @@ import { useLoadScript } from "@react-google-maps/api";
 import Googlemap from '../src/components/Contact/GoogleMap';
 import { GiRotaryPhone, GiMailbox, GiPostOffice } from 'react-icons/gi';
 import Skeleton from 'react-loading-skeleton'
-import { formatPhoneNumber } from '../src/components/helpers/helpers';
+import { formatPhoneNumber } from '../lib/helpers';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useAppContext } from "../src/components/Layout";
+import { getAlldata } from '../lib/api';
 
-export default function Contact() {
+export default function Contact({ data }) {
 
 
-  const context = useAppContext();
-  const siteSettings = context[0];
-  const doctorSettings = context[3];
+  // fetching site seettings
+  const siteSettings = data.siteSettings[0];
+  const doctorSettings = data.doctorSettings[0];
 
 
 
@@ -181,4 +181,14 @@ export default function Contact() {
       </section>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const data = await getAlldata();
+  return {
+    props: {
+      data
+    },
+    revalidate: 1
+  }
 }

@@ -2,8 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import Link from 'next/link'
 import sanityClient from "../../lib/client";
 import { PortableText } from '@portabletext/react'
-import imageUrlBuilder from "@sanity/image-url";
-import { formatPhoneNumber, slugify } from '../../src/components/helpers/helpers';
+import { formatPhoneNumber, slugify } from '../../lib/helpers';
 import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@material-tailwind/react';
 import { GiClockwork, GiFirstAidKit, GiMale, GiModernCity, GiPhone, GiPositionMarker, GiPostOffice } from "react-icons/gi";
 import { useLoadScript } from "@react-google-maps/api";
@@ -14,27 +13,23 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 
-const builder = imageUrlBuilder(sanityClient);
-// eslint-disable-next-line no-unused-vars
-function urlFor(source) {
-  return builder.image(source);
-}
+
 
 export default function OnePost() {
+
+
+  const router = useRouter()
+  const { slug } = router.query
 
   //googlemap
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY // Add your API key
   });
 
-
   const [docData, setDocData] = useState(null);
 
-  const router = useRouter()
-  const { slug } = router.query
 
-
-  const [today, setToday] = React.useState(new Date());
+  const [today, setToday] = useState(new Date());
   const getTodayName = useCallback(() => {
     const options = { weekday: 'long' };
     const openDay = new Date().toLocaleDateString(undefined, options)
@@ -278,3 +273,4 @@ export default function OnePost() {
     </>
   );
 }
+
