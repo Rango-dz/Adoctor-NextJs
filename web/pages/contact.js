@@ -4,13 +4,16 @@ import { useFormik } from 'formik';
 import { Button, Typography } from '@material-tailwind/react'
 import { ContactSchema } from '../src/components/validations/ContactValidation';
 import { useLoadScript } from "@react-google-maps/api";
-import Googlemap from '../src/components/Contact/GoogleMap';
 import { GiRotaryPhone, GiMailbox, GiPostOffice } from 'react-icons/gi';
 import Skeleton from 'react-loading-skeleton'
 import { formatPhoneNumber } from '../lib/helpers';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { getAlldata } from '../lib/api';
+
+const Googlemap = dynamic(() => import('../src/components/Contact/GoogleMap'), {
+  suspense: true,
+})
 
 export default function Contact({ data }) {
 
