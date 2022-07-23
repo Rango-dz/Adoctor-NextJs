@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import HeaderBottom from "../src/components/Header/headerBottom";
 import Head from 'next/head'
-import Appointments from "../src/components/Home/Appointments";
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import SectionDoctor from "../src/components/Home/SectionDoctor";
