@@ -10,6 +10,7 @@ import { formatPhoneNumber } from '../lib/helpers';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { getAlldata } from '../lib/api';
+import dynamic from 'next/dynamic'
 
 const Googlemap = dynamic(() => import('../src/components/Contact/GoogleMap'), {
   suspense: true,
