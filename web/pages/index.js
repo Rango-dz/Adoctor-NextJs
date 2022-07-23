@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import HeaderBottom from "../src/components/Header/headerBottom";
 import Head from 'next/head'
+import Appointments from "../src/components/Home/Appointments";
 import AOS from 'aos';
 import "aos/dist/aos.css";
+import SectionDoctor from "../src/components/Home/SectionDoctor";
+import SectionServices from "../src/components/Home/SectionServices";
+import SectionServicesOne from "../src/components/Home/SectionServicesOne";
+import SectionReview from "../src/components/Home/SectionReview";
+import SectionArticles from "../src/components/Home/SectionArticles";
 import Skeleton from 'react-loading-skeleton'
 import { getAlldata } from '../lib/api';
 import dynamic from 'next/dynamic'
 
-const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), {
-  suspense: true,
-})
 const Appointments = dynamic(() => import('../src/components/Home/Appointments'), {
   suspense: true,
 })
-const SectionDoctor = dynamic(() => import('../src/components/Home/SectionDoctor'), {
-  suspense: true,
-})
-const SectionServices = dynamic(() => import('../src/components/Home/SectionServices'), {
-  suspense: true,
-})
-const SectionServicesOne = dynamic(() => import('../src/components/Home/SectionServicesOne'), {
-  suspense: true,
-})
-const SectionReview = dynamic(() => import('../src/components/Home/SectionReview'), {
-  suspense: true,
-})
-const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), {
-  suspense: true,
-})
+
 
 export default function Home({ data }) {
 
