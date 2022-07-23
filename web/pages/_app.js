@@ -1,9 +1,8 @@
 import '../index.css';
 import '../global.css';
 import dynamic from 'next/dynamic'
-import Layout from '../src/components/Layout';
 
-const DynamicHeader = dynamic(() => import('../components/header'), {
+const DynamicHeader = dynamic(() => import('../src/components/Layout'), {
   suspense: true,
 })
 
