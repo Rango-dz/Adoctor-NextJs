@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import sanityClient from "../../../lib/client.js";
+import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import SVG from 'react-inlinesvg';
 

@@ -4,6 +4,7 @@ import sanityClient from "../../lib/client";
 import { PortableText } from '@portabletext/react';
 import Skeleton from 'react-loading-skeleton';
 import { slugify } from '../../lib/helpers';
+import TableOfContents, { parseOutline } from '../../src/components/Blog/Sidebar/TableOfContent';
 import { GiAlarmClock, GiCheckboxTree, GiOpenBook, GiPriceTag } from "react-icons/gi";
 import { useAppContext } from "../../src/components/Layout";
 import Head from 'next/head';
@@ -14,7 +15,6 @@ import dynamic from "next/dynamic";
 const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), { ssr: false });
 const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), { ssr: false });
 const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
-const TableOfContents = dynamic(() => import('../../src/components/Blog/Sidebar/TableOfContent'), { ssr: false });
 
 
 export default function OnePost() {
@@ -185,9 +185,10 @@ export default function OnePost() {
             </div>
             <div className="flex flex-row mx-auto md:mx-0 gap-5 my-5 border rounded-full max-w-fit bg-colorSix dark:bg-moroi-dark dark:border-moroi-gray dark:shadow-[#232323] shadow-md dark:hover:bg-moroi-gray relative">
               <Image
-                src={urlFor(postData.authorImage.mainImage.asset.url).width(100).url()}
+                src={postData.authorImage.mainImage.asset.url}
                 alt={postData.name}
                 className="rounded-full mr-2 relative"
+                layout="responsive"
                 width={100} height={100}
               />
               <h4 className="self-center items-center font-bold underline pr-5">
@@ -201,7 +202,10 @@ export default function OnePost() {
         {/* sidebar */}
         <div className="p-5">
           <h3 className="prose font-semibold dark:text-colorFive">Table of content</h3>
-          <div className='prose-sm prose-li:font-semibold prose-li:list-decimal p-2 my-5'><TableOfContents outline={outline || <Skeleton count={5} />} /></div>
+          <div className='prose-sm prose-li:font-semibold prose-li:list-decimal p-2 my-5'>
+
+            <TableOfContents outline={outline || <Skeleton count={5} />} />
+          </div>
           <Categories />
           <FeaturedPosts />
         </div>

@@ -4,14 +4,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Pagination from '../../src/components/Pagination/Pagination';
 import { PortableText } from '@portabletext/react'
-import HeroBlog from "../../src/components/Blog/HeroBlog";
-import Categories from "../../src/components/Blog/Sidebar/categories";
-import Tags from "../../src/components/Blog/Sidebar/Tags";
-import FeaturedPosts from "../../src/components/Blog/Sidebar/featuredPosts.js";
 import Skeleton from 'react-loading-skeleton'
 import { slugify } from '../../lib/helpers';
 import { getAlldata } from '../../lib/api';
 import sanityClient from "../../lib/client";
+import dynamic from "next/dynamic";
+
+const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), { ssr: false });
+const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), { ssr: false });
+const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
+const Tags = dynamic(() => import('../../src/components/Blog/Sidebar/Tags'), { ssr: false });
 
 let PageSize = 6;
 
@@ -49,7 +51,7 @@ export default function AllPosts({ data }) {
     <>
       <Head>
         <meta charSet="utf-8" Lang='en' />
-        <title>{siteSettings.title}</title>
+        <title>Articles - {siteSettings.title}</title>
         <meta name="title" content={siteSettings.title} />
         <meta name="description" content={siteSettings.description} />
         <meta name="KEYWORDS" content={siteSettings.keywords} />
@@ -82,7 +84,7 @@ export default function AllPosts({ data }) {
                       return (
                         <ul key={index} className="p-0 m-0">
                           <li className="list-none">
-                            <Link className="no-underline mr-2 uppercase" key={index} href={`/categories/${cat.slug.current}`}><a>{cat.title} / </a></Link>
+                            <Link className="hover:underline mr-2 uppercase cursor-pointer" key={index} href={`/categories/${cat.slug.current}`}><a>{cat.title} / </a></Link>
                           </li>
                         </ul>
                       )
@@ -94,7 +96,7 @@ export default function AllPosts({ data }) {
 
 
                   {/* title */}
-                  <Link href={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold">
+                  <Link href={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold ">
                     <h2 className="my-5 capitalize"><a>{post.title}</a></h2>
                   </Link>
                 </div>
