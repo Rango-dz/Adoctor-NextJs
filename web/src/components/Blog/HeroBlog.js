@@ -9,8 +9,8 @@ import Skeleton from 'react-loading-skeleton';
 
 
 export default function HeroBlog() {
-  const searchClient = algoliasearch('RRK9LR9GYE', '5b3951f389d0dcfc7a447359e184d833');
-  const index = searchClient.initIndex('blogdata');
+  const searchClient = algoliasearch(process.env.NEXT_PUBLIC_ALGOLIA_ID, process.env.NEXT_PUBLIC_ALGOLIA_API_KEY);
+  const index = searchClient.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX);
 
   const [postData, setPostData] = useState(null);
   const [datalength, setDatalength] = useState(0);

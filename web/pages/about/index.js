@@ -61,7 +61,7 @@ export default function AllPosts({ data }) {
         <meta property="twitter:description" content={siteSettings.description} />
         <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
       </Head>
-      <Hero />
+      <Hero aboutHero={data.aboutHero} />
       <div>
 
         <div>

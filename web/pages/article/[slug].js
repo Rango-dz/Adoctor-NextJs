@@ -2,23 +2,20 @@ import React, { useEffect, useState } from "react";
 import Link from 'next/link';
 import sanityClient from "../../lib/client";
 import { PortableText } from '@portabletext/react';
-import imageUrlBuilder from "@sanity/image-url";
-import HeroBlog from "../../src/components/Blog/HeroBlog";
 import Skeleton from 'react-loading-skeleton';
-import Categories from "../../src/components/Blog/Sidebar/categories";
-import FeaturedPosts from "../../src/components/Blog/Sidebar/featuredPosts.js";
-import TableOfContents, { parseOutline } from '../../src/components/Blog/Sidebar/TableOfContent';
 import { slugify } from '../../lib/helpers';
 import { GiAlarmClock, GiCheckboxTree, GiOpenBook, GiPriceTag } from "react-icons/gi";
 import { useAppContext } from "../../src/components/Layout";
 import Head from 'next/head';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import dynamic from "next/dynamic";
 
-const builder = imageUrlBuilder(sanityClient);
-function urlFor(source) {
-  return builder.image(source);
-}
+const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), { ssr: false });
+const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), { ssr: false });
+const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
+const TableOfContents = dynamic(() => import('../../src/components/Blog/Sidebar/TableOfContent'), { ssr: false });
+
 
 export default function OnePost() {
   // site settings for seo
@@ -126,7 +123,7 @@ export default function OnePost() {
         <div className="w-full grid grid-cols-1 gap-10 col-span-4 justify-center overflow-hidden p-0 md:p-5 lg:p-10 bg-white dark:bg-moroi-dark shadow-md rounded ">
 
           <div className="relative rouned">
-            <div className="rounded mb-10 object-cover w-full relative"><Image src={urlFor(postData.mainImage.asset.url).width(800).url()} alt="" layout="responsive" width={800} height={500} className="" /></div>
+            <div className="rounded mb-10 object-cover w-full relative"><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={500} className="" /></div>
 
             <h1 className="font-semibold text-3xl mb-8 px-5 md:px-10">{postData.title}</h1>
             <div className="flex gap-5 font-semibold text-sm px-5 md:px-10">

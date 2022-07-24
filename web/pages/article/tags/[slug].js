@@ -3,16 +3,19 @@ import Link from 'next/link';
 import sanityClient from "../../../lib/client";
 import Pagination from '../../../src/components/Pagination/Pagination';
 import { PortableText } from '@portabletext/react'
-import HeroBlog from "../../../src/components/Blog/HeroBlog";
 import Skeleton from 'react-loading-skeleton'
-import Categories from "../../../src/components/Blog/Sidebar/categories";
-import FeaturedPosts from "../../../src/components/Blog/Sidebar/featuredPosts.js";
 import { unslugify } from "../../../lib/helpers";
 import { slugify } from '../../../lib/helpers'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useAppContext } from "../../../src/components/Layout";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import dynamic from "next/dynamic";
+
+const HeroBlog = dynamic(() => import('../../../src/components/Blog/HeroBlog'), { ssr: false });
+const Categories = dynamic(() => import('../../../src/components/Blog/Sidebar/categories'), { ssr: false });
+const FeaturedPosts = dynamic(() => import('../../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
+
 
 let PageSize = 6;
 

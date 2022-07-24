@@ -82,6 +82,11 @@ _id},
         ...
         
     },
+    "aboutHero":* [_type == "HeroHeading"]{
+        'docImage': DoctorImage{ asset->{ url } },
+        DoctorsHeading,
+        DoctorsSubtitle,
+  },
 }`
   );
   return response;

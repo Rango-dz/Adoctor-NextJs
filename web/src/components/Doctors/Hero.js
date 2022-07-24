@@ -6,27 +6,9 @@ import Skeleton from 'react-loading-skeleton';
 import sanityClient from "../../../lib/client";
 
 
-function Hero() {
+function Hero(props) {
 
-
-  const [heading, setheroHeading] = useState();
-
-  const mainHeroHeading = async () => {
-    const response = sanityClient.fetch(
-      `* [_type == "HeroHeading"]{
-        'docImage': DoctorImage{ asset->{ url } },
-        DoctorsHeading,
-        DoctorsSubtitle,
-  }`
-    );
-    const data = await response;
-    setheroHeading(data[0]);
-  }
-
-  useEffect(() => {
-    mainHeroHeading();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const heading = props.aboutHero[0]
 
   if (!heading) {
 
