@@ -8,7 +8,10 @@ const STUDIO_REWRITE = {
 
 module.exports = {
   images: {
-    domains: ['cdn.sanity.io']
+    domains: ['cdn.sanity.io'],
+    formats: ['image/avif', 'image/webp'],
   },
   rewrites: () => [STUDIO_REWRITE],
+  swcMinify: true,
 };
+
