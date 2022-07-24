@@ -77,8 +77,8 @@ export default function SectionDoctor(props) {
 
 
         <div className='flex justify-center'>
-          <Link href="/About" className='bg-colorEight text-colorOne dark:text-colorRed border-colorSix m-2 p-2 md:p-4 border  rounded-lg md:m-5  dark:shadow-none hover:dark:shadow-md hover:shadow  shadow-md'><a>About us</a></Link>
-          <Link href="/Contact" className='bg-colorOne dark:bg-colorRed m-1 p-2 md:p-4 md:m-5 hover:dark:shadow-md rounded-lg align-middle self-center hover:shadow shadow-md  dark:hover:bg-colorRed text-white  dark:shadow-none' ><a>Contact us</a></Link>
+          <Link href="/about" ><a className='bg-colorEight text-colorOne dark:text-colorRed border-colorSix m-2 p-2 md:p-4 border  rounded-lg md:m-5  dark:shadow-none hover:dark:shadow-md hover:shadow  shadow-md'>About us</a></Link>
+          <Link href="/Contact" ><a className='bg-colorOne dark:bg-colorRed m-1 p-2 md:p-4 md:m-5 hover:dark:shadow-md rounded-lg align-middle self-center hover:shadow shadow-md  dark:hover:bg-colorRed text-white  dark:shadow-none'>Contact us</a></Link>
         </div>
       </div>
       <div className='relative self-center w-[390px] h-auto mx-auto'>

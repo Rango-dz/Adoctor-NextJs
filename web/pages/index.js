@@ -108,7 +108,7 @@ export default function Home({ data }) {
 
         <HeaderBottom herohome={data.herohome} handleOpen={handleOpen} />
 
-        {/* <SectionServicesOne serviceOne={data.serviceOne} /> */}
+        <SectionServicesOne serviceOne={data.serviceOne} />
         <Appointments open={open} handleOpen={handleOpen} />
         <SectionDoctor doctorSettings={doctorSettings} />
         <SectionServices sectionService={data.sectionService} />
