@@ -97,7 +97,7 @@ export default function AllPosts({ data }) {
 
                   {/* title */}
                   <Link href={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold ">
-                    <h2 className="my-5 capitalize"><a>{post.title}</a></h2>
+                    <h2 className="my-5 capitalize underline cursor-pointer"><a>{post.title}</a></h2>
                   </Link>
                 </div>
 

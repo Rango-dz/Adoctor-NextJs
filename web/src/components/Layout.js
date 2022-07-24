@@ -3,8 +3,6 @@ import Footer from "./Footer/footer";
 import React, { useState, useEffect } from 'react'
 import ScrollToTop from './ScrollToTop';
 import Skeleton from 'react-loading-skeleton'
-import AOS from 'aos';
-import "aos/dist/aos.css";
 import sanityClient from "../../lib/client";
 import { createContext, useContext } from 'react';
 
@@ -20,10 +18,6 @@ export default function Layout({ children }) {
     } else {
       setTheme('light');
     }
-  }, []);
-
-  useEffect(() => {
-    AOS.init();
   }, []);
 
 

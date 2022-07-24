@@ -125,7 +125,7 @@ export default function OnePost() {
           <div className="relative rouned">
             <div className="rounded mb-10 object-cover w-full relative"><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={500} className="" /></div>
 
-            <h1 className="font-semibold text-3xl mb-8 px-5 md:px-10">{postData.title}</h1>
+            <h1 className="font-semibold text-3xl mb-8 px-5 md:px-10 underline cursor-pointer">{postData.title}</h1>
             <div className="flex gap-5 font-semibold text-sm px-5 md:px-10">
               <span className="flex justify-center align-middle gap-1"> <GiAlarmClock className="slef-center" /> {new Date(postData.publishedAt).toDateString()}</span>
               <Link href={`/article/category/${slugify(postData.categories.title)}`}><a><h3 className="flex justify-center align-middle gap-1"><GiCheckboxTree className="slef-center" />{postData.categories.title}</h3></a></Link>
