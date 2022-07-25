@@ -43,30 +43,14 @@ export default function AllPosts({ data }) {
 
   if (!allPostsData) {
     return (
-      <div><Skeleton count={3} className='dark:bg-moroi-dark' /></div>
+      null
     )
   }
 
   return (
     <>
       <Head>
-        <meta charSet="utf-8" Lang='en' />
         <title>Articles - {siteSettings.title}</title>
-        <meta name="title" content={siteSettings.title} />
-        <meta name="description" content={siteSettings.description} />
-        <meta name="KEYWORDS" content={siteSettings.keywords} />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteSettings.website} />
-        <meta property="og:title" content={siteSettings.title} />
-        <meta property="og:description" content={siteSettings.description} />
-        <meta property="og:image" content={siteSettings.socialimage.asset.url} />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={siteSettings.website} />
-        <meta property="twitter:title" content={siteSettings.title} />
-        <meta property="twitter:description" content={siteSettings.description} />
-        <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
       </Head>
       <HeroBlog />
       <div className="my-[5%] mx-[0%] md:mx-[10%] grid grid-cols-1 md:grid-cols-5 gap-5">

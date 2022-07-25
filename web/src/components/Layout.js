@@ -2,7 +2,6 @@ import Header from "./Header/header";
 import Footer from "./Footer/footer";
 import React, { useState, useEffect } from 'react'
 import ScrollToTop from './ScrollToTop';
-import Skeleton from 'react-loading-skeleton'
 import sanityClient from "../../lib/client";
 import { createContext, useContext } from 'react';
 
@@ -54,7 +53,7 @@ export default function Layout({ children }) {
 
   if (!siteSettings || !doctorSettings) {
     return (
-      <div><Skeleton count={1} className='dark:bg-moroi-dark' /></div>
+      null
 
     )
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import { GiHeartBeats } from 'react-icons/gi'
 import { FaSyringe, FaCalendarAlt } from 'react-icons/fa';
 import { GiHealthNormal, GiMedicinePills } from 'react-icons/gi';
-import Skeleton from 'react-loading-skeleton';
 import Image from 'next/image';
 
 
@@ -11,12 +10,6 @@ export default function HeaderBottom(props) {
   const heading = props.herohome[0];
 
 
-  if (!heading) {
-
-    return (
-      <Skeleton count={1} height={50} width={200} />
-    )
-  }
   return (
     <>
       <div data-row-header="bottom" className="relative header grid justify-between py-[5%] px-[2%] md:px-[10%] pb-0 grid-cols-1 md:grid-cols-2 align-middle gap-10">

@@ -37,11 +37,7 @@ export default function HeaderMiddle(props) {
     menu.classList.toggle("hidden");
   }
 
-  if (!props) {
-    return (
-      <Skeleton count={1} className="w-1/4" />
-    )
-  }
+
 
   return (
     <>

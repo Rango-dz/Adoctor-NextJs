@@ -43,23 +43,7 @@ export default function AllPosts({ data }) {
   return (
     <>
       <Head>
-        <meta charSet="utf-8" Lang='en' />
-        <title>{siteSettings.title}</title>
-        <meta name="title" content={siteSettings.title} />
-        <meta name="description" content={siteSettings.description} />
-        <meta name="KEYWORDS" content={siteSettings.keywords} />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteSettings.website} />
-        <meta property="og:title" content={siteSettings.title} />
-        <meta property="og:description" content={siteSettings.description} />
-        <meta property="og:image" content={siteSettings.socialimage.asset.url} />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={siteSettings.website} />
-        <meta property="twitter:title" content={siteSettings.title} />
-        <meta property="twitter:description" content={siteSettings.description} />
-        <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
+        <title>About us - {siteSettings.title}</title>
       </Head>
       <Hero aboutHero={data.aboutHero} />
       <div>

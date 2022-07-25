@@ -10,10 +10,6 @@ export default function HeaderTop() {
   const emergency = context[3];
 
 
-  if (!context) {
-    return (<Skeleton count={1} />)
-  }
-
   return (
     < >
       <div data-row="top" className="flex flex-col md:flex-row justify-around md:py-3 py-8">

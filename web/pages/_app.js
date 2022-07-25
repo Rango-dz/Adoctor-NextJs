@@ -1,16 +1,12 @@
 import '../index.css';
 import '../global.css';
-import dynamic from 'next/dynamic'
-
-const DynamicHeader = dynamic(() => import('../src/components/Layout'), {
-  suspense: true,
-})
+import Layout from '../src/components/Layout';
 
 export default function MyApp({ Component, pageProps }) {
 
   return (
-    <DynamicHeader>
+    <Layout>
       <Component {...pageProps} />
-    </DynamicHeader>
+    </Layout>
   );
 }

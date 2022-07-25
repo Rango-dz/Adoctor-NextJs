@@ -103,20 +103,7 @@ export default function OnePost() {
         }
           `}
         </script>
-
         <title>{postData.name}</title>
-        <meta name="title" content={postData.name} />
-
-        <meta property="og:type" content="person" />
-        <meta property="og:url" content={`${siteSettings.website}/article/${slug}`} />
-        <meta property="og:title" content={postData.name} />
-
-        <meta property="og:image" content={postData.mainImage.asset.url} />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={`${siteSettings.website}/article/${slug}`} />
-        <meta property="twitter:title" content={postData.name} />
-        <meta property="twitter:image" content={postData.mainImage.asset.url} />
       </Head>
       <HeroBlog />
       <div className="my-[5%] mx-[5%] md:mx-[10%] grid grid-cols-1 md:grid-cols-5 gap-5">
