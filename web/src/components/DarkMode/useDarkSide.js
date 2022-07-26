@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { useAppContext } from "../../components/Layout";
 
@@ -8,14 +7,6 @@ export default function UseDarkMode(props) {
   const context = useAppContext();
   const setTheme = context[2];
   const theme = context[1];
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  }, []);
 
   const handleThemeSwitch = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');

@@ -1,12 +1,12 @@
 import React from 'react'
 import Link from 'next/link';
 import { FaHome, FaFileSignature, FaEnvelopeOpen, FaAlignJustify, FaMedkit } from 'react-icons/fa'
-import { Skeleton } from '@mui/material';
 import UseDarkMode from '../DarkMode/useDarkSide';
 import { useEffect } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { useAppContext } from "../Layout";
+import { useLocalStorage } from '../../useLocalStorage';
 
 export default function HeaderMiddle(props) {
 
@@ -16,10 +16,11 @@ export default function HeaderMiddle(props) {
   const context = useAppContext();
   const logo = context[0];
 
-  const [darkLogo, setDarkLogo] = React.useState(logo.logoimage.asset.url);
+  const [darkLogo, setDarkLogo] = useLocalStorage("logo", logo.logoimage.asset.url);
 
   const modeState = (useDarkMode) => {
-    if (useDarkMode === 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+
+    if (useDarkMode === 'dark' || useDarkMode === undefined) {
       setDarkLogo(logo.logoimage.asset.url);
     } else {
       setDarkLogo(logo.logoDarkimage.asset.url);

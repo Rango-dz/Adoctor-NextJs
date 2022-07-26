@@ -4,20 +4,13 @@ import React, { useState, useEffect } from 'react'
 import ScrollToTop from './ScrollToTop';
 import sanityClient from "../../lib/client";
 import { createContext, useContext } from 'react';
+import { useLocalStorage } from "../useLocalStorage";
 
 const AppContext = createContext();
 
 export default function Layout({ children }) {
 
-  const [theme, setTheme] = useState(null);
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  }, []);
+  const [theme, setTheme] = useLocalStorage("theme", "light");
 
 
   // fetching site seettings
@@ -60,6 +53,24 @@ export default function Layout({ children }) {
 
   return (
     <AppContext.Provider value={[siteSettings, theme, setTheme, doctorSettings]}>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="dns-prefetch" href="cdn.sanity.io" />
+      <meta name="title" content={siteSettings.title} />
+      <meta name="description" content={siteSettings.description} />
+      <meta name="keywords" content={siteSettings.keywords} />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={siteSettings.website} />
+      <meta property="og:title" content={siteSettings.title} />
+      <meta property="og:description" content={siteSettings.description} />
+      <meta property="og:image" content={siteSettings.socialimage.asset.url} />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={siteSettings.website} />
+      <meta property="twitter:title" content={siteSettings.title} />
+      <meta property="twitter:description" content={siteSettings.description} />
+      <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
       <Header />
       <main>{children}</main>
       <ScrollToTop />
