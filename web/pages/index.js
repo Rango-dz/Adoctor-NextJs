@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic'
 
 import AOS from 'aos';
 import "aos/dist/aos.css";
-import HeaderTop from '../src/components/Header/headerTop';
-import HeaderMiddle from '../src/components/Header/headerMiddle';
+// import HeaderTop from '../src/components/Header/headerTop';
+// import HeaderMiddle from '../src/components/Header/headerMiddle';
 // import HeaderBottom from "../src/components/Header/headerBottom";
 // import SectionServicesOne from "../src/components/Home/SectionServicesOne";
 // import SectionDoctor from "../src/components/Home/SectionDoctor";
@@ -16,6 +16,7 @@ import HeaderMiddle from '../src/components/Header/headerMiddle';
 import Skeleton from 'react-loading-skeleton'
 import { getAlldata } from '../lib/api';
 
+
 const Appointments = dynamic(() => import('../src/components/Home/Appointments'), { suspense: true, ssr: false });
 const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), { suspense: true, ssr: false });
 const SectionServicesOne = dynamic(() => import('../src/components/Home/SectionServicesOne'), { suspense: true, ssr: false });
@@ -23,6 +24,8 @@ const SectionDoctor = dynamic(() => import('../src/components/Home/SectionDoctor
 const SectionServices = dynamic(() => import('../src/components/Home/SectionServices'), { suspense: true, ssr: false });
 const SectionReview = dynamic(() => import('../src/components/Home/SectionReview'), { suspense: true, ssr: false });
 const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), { suspense: true, ssr: false });
+const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), { suspense: true, ssr: false })
+const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), { suspense: true, ssr: false })
 
 
 export default function Home({ data }) {
