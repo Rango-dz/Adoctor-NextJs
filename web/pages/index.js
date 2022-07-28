@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import HeaderBottom from "../src/components/Header/headerBottom";
 import Head from 'next/head'
-import AOS from 'aos';
-import "aos/dist/aos.css";
-import SectionDoctor from "../src/components/Home/SectionDoctor";
-import SectionServices from "../src/components/Home/SectionServices";
-import SectionServicesOne from "../src/components/Home/SectionServicesOne";
-import SectionReview from "../src/components/Home/SectionReview";
-import SectionArticles from "../src/components/Home/SectionArticles";
-import Skeleton from 'react-loading-skeleton'
-import { getAlldata } from '../lib/api';
 import dynamic from 'next/dynamic'
 
-const Appointments = dynamic(() => import('../src/components/Home/Appointments'), {
-  suspense: true,
-})
+import AOS from 'aos';
+import "aos/dist/aos.css";
+import HeaderTop from '../src/components/Header/headerTop';
+import HeaderMiddle from '../src/components/Header/headerMiddle';
+// import HeaderBottom from "../src/components/Header/headerBottom";
+// import SectionServicesOne from "../src/components/Home/SectionServicesOne";
+// import SectionDoctor from "../src/components/Home/SectionDoctor";
+// import SectionServices from "../src/components/Home/SectionServices";
+// import SectionReview from "../src/components/Home/SectionReview";
+// import SectionArticles from "../src/components/Home/SectionArticles";
+
+import Skeleton from 'react-loading-skeleton'
+import { getAlldata } from '../lib/api';
+
+const Appointments = dynamic(() => import('../src/components/Home/Appointments'), { suspense: true, ssr: false });
+const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), { suspense: true, ssr: false });
+const SectionServicesOne = dynamic(() => import('../src/components/Home/SectionServicesOne'), { suspense: true, ssr: false });
+const SectionDoctor = dynamic(() => import('../src/components/Home/SectionDoctor'), { suspense: true, ssr: false });
+const SectionServices = dynamic(() => import('../src/components/Home/SectionServices'), { suspense: true, ssr: false });
+const SectionReview = dynamic(() => import('../src/components/Home/SectionReview'), { suspense: true, ssr: false });
+const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), { suspense: true, ssr: false });
 
 
 export default function Home({ data }) {
@@ -43,8 +51,6 @@ export default function Home({ data }) {
   // fetching site seettings
   const siteSettings = data.siteSettings[0];
   const doctorSettings = data.doctorSettings[0];
-
-
 
 
   return (
@@ -82,9 +88,9 @@ export default function Home({ data }) {
         </script>
       </Head>
       <div id="main" className="dark:bg-moroi-back main-container" >
-
+        <HeaderTop />
+        <HeaderMiddle />
         <HeaderBottom herohome={data.herohome} handleOpen={handleOpen} />
-
         <SectionServicesOne serviceOne={data.serviceOne} />
         <Appointments open={open} handleOpen={handleOpen} />
         <SectionDoctor doctorSettings={doctorSettings} />

@@ -91,3 +91,12 @@ _id},
   );
   return response;
 }
+
+export async function getabout() {
+  const response = await sanityClient.fetch(
+    `{
+      
+    }`
+  );
+  return response;
+}
