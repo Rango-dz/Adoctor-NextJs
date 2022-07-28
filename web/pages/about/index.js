@@ -14,6 +14,7 @@ let PageSize = 5;
 
 
 export default function AllPosts({ data }) {
+  console.log(data)
 
   const siteSettings = data.siteSettings[0];
   const allDoctorsData = data.doctors;
@@ -89,9 +90,6 @@ export default function AllPosts({ data }) {
         </div>
         <div className="mx-[5%]">
           <Pagination
-            key={crypto.randomUUID()}
-            data-link={crypto.randomUUID()}
-            className=""
             currentPage={currentPage}
             totalCount={allDoctorsData.length}
             pageSize={PageSize}

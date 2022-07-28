@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import sanityClient from "../../../lib/client";
 
 
 function Hero(props) {

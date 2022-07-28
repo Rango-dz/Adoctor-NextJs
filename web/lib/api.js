@@ -73,6 +73,20 @@ _id},
     "image":mainImage{ asset -> { url } },
 ...
   },
+  "doctors":*[_type == "doctor"]{
+        "image":mainImage{
+          asset->{
+          url
+        }
+      },
+        ...
+        
+    },
+    "aboutHero":* [_type == "HeroHeading"]{
+        'docImage': DoctorImage{ asset->{ url } },
+        DoctorsHeading,
+        DoctorsSubtitle,
+  },
 }`
   );
   return response;
