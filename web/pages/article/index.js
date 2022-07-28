@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Pagination from '../../src/components/Pagination/Pagination';
 import { PortableText } from '@portabletext/react'
-import Skeleton from 'react-loading-skeleton'
 import { slugify } from '../../lib/helpers';
 import { getAlldata } from '../../lib/api';
 import sanityClient from "../../lib/client";
@@ -140,9 +139,6 @@ export default function AllPosts({ data }) {
       {/* pagination */}
       <div className="mx-[5%]">
         <Pagination
-          key={crypto.randomUUID()}
-          data-link={crypto.randomUUID()}
-          className=""
           currentPage={currentPage}
           totalCount={allPostsData.length}
           pageSize={6}
