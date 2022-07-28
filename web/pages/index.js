@@ -15,7 +15,6 @@ import "aos/dist/aos.css";
 // import SectionArticles from "../src/components/Home/SectionArticles";
 // import Footer from "../src/components/Footer/footer";
 
-// import Skeleton from 'react-loading-skeleton'
 import { getAlldata } from '../lib/api';
 
 
