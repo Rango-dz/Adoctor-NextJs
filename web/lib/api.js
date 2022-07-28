@@ -69,6 +69,10 @@ _id},
         HomeSubtitle,
         Hometext,
   },
+  "doctorSettings":* [_type == "TheDoctor"]{
+    "image":mainImage{ asset -> { url } },
+...
+  },
 }`
   );
   return response;
