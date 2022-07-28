@@ -1,13 +1,10 @@
 import React from 'react'
 import Social from './social'
-import { Skeleton } from '@mui/material';
 import { formatPhoneNumber } from '../../../lib/helpers';
-import { useAppContext } from "../Layout";
 
-export default function HeaderTop() {
+export default function HeaderTop(props) {
   // fetching site seettings
-  const context = useAppContext();
-  const emergency = context[3];
+  const emergency = props.headertop
 
 
   return (
@@ -18,7 +15,7 @@ export default function HeaderTop() {
           Emergency <span className='text-colorOne dark:text-colorRed'> {emergency && formatPhoneNumber(emergency.phoneNumber)}</span>
         </div>
         <div className="">
-          <Social />
+          <Social social={emergency} />
         </div>
       </div>
     </>

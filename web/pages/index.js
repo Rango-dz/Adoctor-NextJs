@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
+// import ScrollToTop from '../src/components/ScrollToTop';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 // import HeaderTop from '../src/components/Header/headerTop';
@@ -12,8 +13,9 @@ import "aos/dist/aos.css";
 // import SectionServices from "../src/components/Home/SectionServices";
 // import SectionReview from "../src/components/Home/SectionReview";
 // import SectionArticles from "../src/components/Home/SectionArticles";
+// import Footer from "../src/components/Footer/footer";
 
-import Skeleton from 'react-loading-skeleton'
+// import Skeleton from 'react-loading-skeleton'
 import { getAlldata } from '../lib/api';
 
 
@@ -26,10 +28,11 @@ const SectionReview = dynamic(() => import('../src/components/Home/SectionReview
 const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), { suspense: true, ssr: false });
 const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), { suspense: true, ssr: false })
 const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), { suspense: true, ssr: false })
+const Footer = dynamic(() => import('../src/components/Footer/footer'), { suspense: true, ssr: false })
+const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), { suspense: true, ssr: false })
 
 
 export default function Home({ data }) {
-
 
   // initialize aos animation
   useEffect(() => {
@@ -89,10 +92,30 @@ export default function Home({ data }) {
         )}
           `}
         </script>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="dns-prefetch" href="cdn.sanity.io" />
+        <meta name="title" content={siteSettings.title} />
+        <meta name="description" content={siteSettings.description} />
+        <meta name="keywords" content={siteSettings.keywords} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={siteSettings.website} />
+        <meta property="og:title" content={siteSettings.title} />
+        <meta property="og:description" content={siteSettings.description} />
+        <meta property="og:image" content={siteSettings.socialimage.asset.url} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={siteSettings.website} />
+        <meta property="twitter:title" content={siteSettings.title} />
+        <meta property="twitter:description" content={siteSettings.description} />
+        <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
       </Head>
       <div id="main" className="dark:bg-moroi-back main-container" >
-        <HeaderTop />
-        <HeaderMiddle />
+        <header id="header" className="ct-header">
+          <HeaderTop headertop={doctorSettings} />
+          <HeaderMiddle headermiddle={siteSettings} />
+        </header>
         <HeaderBottom herohome={data.herohome} handleOpen={handleOpen} />
         <SectionServicesOne serviceOne={data.serviceOne} />
         <Appointments open={open} handleOpen={handleOpen} />
@@ -101,7 +124,8 @@ export default function Home({ data }) {
         <SectionReview sectionReview={data.sectionReview} />
         <SectionArticles posts={data.allPostsData} />
 
-
+        <ScrollToTop />
+        <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
       </div>
     </>
   )

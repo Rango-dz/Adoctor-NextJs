@@ -58,10 +58,10 @@ export default function SectionReview(props) {
         className="my-14"
       >
         {allreviewsData &&
-          allreviewsData.map((review) => {
+          allreviewsData.map((review, key) => {
             return (
               <SwiperSlide
-                key={crypto.randomUUID()}
+                key={key}
                 className='dark:bg-moroi-dark w-1/3 dark:border-moroi-gray dark:shadow border rounded transition-custom h-full p-4 shadow-[0_5px_20px_0_rgba(63,171,243,0.2)] custom-glass my-2 mr-1'>
                 <div className='flex flex-col md:flex-row gap-3 relative'>
                   <div className='h-16 w-16 rounded relative'>

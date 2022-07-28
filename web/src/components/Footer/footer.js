@@ -2,18 +2,16 @@ import React from 'react'
 import Link from 'next/link';
 import EmergencyNumber from './emergencyNumber'
 import Image from 'next/image'
-import { useAppContext } from "../Layout";
 
 export default function Footer(props) {
 
   // fetching site seettings
-  const context = useAppContext();
-  const footer = context[0];
+  const footer = props.footerSettings;
 
   return (
     <>
       <footer className='ct-footer h-auto relative'>
-        <EmergencyNumber props={props} />
+        <EmergencyNumber props={props.doctorSettings} />
 
         <div data-row="middle" className=" grid justify-items-start md:justify-items-center h-auto my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-[5%] md:mx-[10%] pt-[35%] md:pt-[5%]">
 

@@ -59,7 +59,7 @@ export default function SectionArticles(props) {
           allPostsData.map((item, index) => {
             return (
               <SwiperSlide
-                key={crypto.randomUUID()}
+                key={index}
                 className='my-5'>
                 <div className=" max-w-md md:mx-auto bg-white dark:bg-moroi-dark dark:border-moroi-gray dark:shadow rounded-xl shadow-[0_5px_20px_0_rgba(63,171,243,0.2)] overflow-hidden   border custom-glass ">
                   <div className="">

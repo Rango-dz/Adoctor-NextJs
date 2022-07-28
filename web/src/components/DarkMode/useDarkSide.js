@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
-import { useAppContext } from "../../components/Layout";
+import { useLocalStorage } from '../../useLocalStorage';
 
 export default function UseDarkMode(props) {
 
-  const context = useAppContext();
-  const setTheme = context[2];
-  const theme = context[1];
+  const [theme, setTheme] = useLocalStorage("theme", "light");
 
   const handleThemeSwitch = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === 'light' || theme === null ? 'dark' : 'light');
   };
 
   useEffect(() => {
