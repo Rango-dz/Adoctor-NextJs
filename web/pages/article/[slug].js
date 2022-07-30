@@ -166,18 +166,18 @@ export default function OnePost({ post, Settings }) {
   );
 }
 
-export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(
-    `*[_type == "post" && defined(slug.current)][].slug.current`
-  )
+// export async function getStaticPaths() {
+//   const paths = await sanityClient.fetch(
+//     `*[_type == "post" && defined(slug.current)][].slug.current`
+//   )
 
-  return {
-    paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
-  }
-}
+//   return {
+//     paths: paths.map((slug) => ({ params: { slug } })),
+//     fallback: true,
+//   }
+// }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params
   const Settings = await siteSettings()
