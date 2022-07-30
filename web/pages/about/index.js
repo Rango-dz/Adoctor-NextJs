@@ -8,15 +8,21 @@ import Hero from "../../src/components/Doctors/Hero";
 import Head from 'next/head'
 import Image from 'next/image'
 import { getAlldata } from '../../lib/api';
+import dynamic from "next/dynamic";
+
+const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {})
+const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
+const Footer = dynamic(() => import('../../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../../src/components/ScrollToTop'), {})
 
 
 let PageSize = 5;
 
 
 export default function AllPosts({ data }) {
-  console.log(data)
 
   const siteSettings = data.siteSettings[0];
+  const doctorSettings = data.doctorSettings[0];
   const allDoctorsData = data.doctors;
 
   const [slicedData, setSlicedData] = useState([]);
@@ -46,6 +52,10 @@ export default function AllPosts({ data }) {
       <Head>
         <title>About us - {siteSettings.title}</title>
       </Head>
+      <header id="header" className="ct-header">
+        <HeaderTop headertop={siteSettings} />
+        <HeaderMiddle headermiddle={siteSettings} />
+      </header>
       <Hero aboutHero={data.aboutHero} />
       <div>
 
@@ -97,6 +107,8 @@ export default function AllPosts({ data }) {
           />
         </div>
       </div>
+      <ScrollToTop />
+      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
     </>
   );
 }
@@ -107,6 +119,5 @@ export async function getStaticProps() {
     props: {
       data
     },
-    revalidate: 1
   }
 }

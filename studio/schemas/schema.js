@@ -14,7 +14,7 @@ import faq from './faq'
 import helpArticle from './helpArticle'
 import departments from './departments'
 import reviews from './reviews'
-import social from './social'
+import menu from './menu'
 import HomeFeatures from './HomeFeatures'
 import siteSettings from './siteSettings'
 import TheDoctor from './TheDoctor'
@@ -35,7 +35,7 @@ export default createSchema({
     dayAndTime,
     faq,
     helpArticle,
-    social,
+    menu,
     departments,
     reviews,
     HomeFeatures,

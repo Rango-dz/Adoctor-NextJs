@@ -15,6 +15,10 @@ import dynamic from 'next/dynamic'
 const Googlemap = dynamic(() => import('../src/components/Contact/GoogleMap'), {
   suspense: true,
 })
+const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), {})
+const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), {})
+const Footer = dynamic(() => import('../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), {})
 
 export default function Contact({ data }) {
 
@@ -88,7 +92,10 @@ export default function Contact({ data }) {
         <meta property="twitter:description" content={siteSettings.description} />
         <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
       </Head>
-
+      <header id="header" className="ct-header">
+        <HeaderTop headertop={siteSettings} />
+        <HeaderMiddle headermiddle={siteSettings} />
+      </header>
       <section id="main" className='mx-[5%] md:mx-[10%] grid grid-cols-1 w-auto relative my-[10%]'>
         <div className='flex flex-col gap-20 items-center mx-auto'>
           <div className='flex flex-col justify-center align-middle self-center w-full '>
@@ -180,6 +187,8 @@ export default function Contact({ data }) {
           {isLoaded ? <Googlemap doctorSettings={doctorSettings} /> : null}
         </div>
       </section>
+      <ScrollToTop />
+      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
     </>
   )
 }
@@ -190,6 +199,5 @@ export async function getStaticProps() {
     props: {
       data
     },
-    revalidate: 1
   }
 }

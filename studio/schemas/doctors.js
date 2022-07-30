@@ -252,6 +252,12 @@ export default {
       group: 'Social',
     },
     {
+      name: 'Pinterest',
+      title: 'Pinterest',
+      type: 'url',
+      group: 'Social',
+    },
+    {
       name: 'Youtube',
       title: 'Youtube',
       type: 'url',

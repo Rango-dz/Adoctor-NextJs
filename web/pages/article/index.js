@@ -8,19 +8,29 @@ import { slugify } from '../../lib/helpers';
 import { getAlldata } from '../../lib/api';
 import sanityClient from "../../lib/client";
 import dynamic from "next/dynamic";
+import { siteSettings } from "../../lib/api";
 
-const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), { ssr: false });
-const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), { ssr: false });
-const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
-const Tags = dynamic(() => import('../../src/components/Blog/Sidebar/Tags'), { ssr: false });
+
+const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {});
+const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
+const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), {});
+const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), {});
+const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), {});
+const Tags = dynamic(() => import('../../src/components/Blog/Sidebar/Tags'), {});
+const Footer = dynamic(() => import('../../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../../src/components/ScrollToTop'), {})
 
 let PageSize = 6;
 
 
-export default function AllPosts({ data }) {
+export default function AllPosts({ data, settings }) {
+
 
   // site settings for seo
-  const siteSettings = data.siteSettings[0];
+  const siteSettings = settings[0];
+
+  // doctorsettings for seo
+  const doctorSettings = data.doctorSettings[0];
 
   // all posts
   const allPostsData = data.allPostsData;
@@ -51,6 +61,10 @@ export default function AllPosts({ data }) {
       <Head>
         <title>Articles - {siteSettings.title}</title>
       </Head>
+      <header id="header" className="ct-header">
+        <HeaderTop headertop={siteSettings} />
+        <HeaderMiddle headermiddle={siteSettings} />
+      </header>
       <HeroBlog />
       <div className="my-[5%] mx-[0%] md:mx-[10%] grid grid-cols-1 md:grid-cols-5 gap-5">
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-10 col-span-4 justify-center overflow-hidden p-5">
@@ -145,16 +159,19 @@ export default function AllPosts({ data }) {
           onPageChange={page => setCurrentPage(page)}
         />
       </div>
+      <ScrollToTop />
+      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
     </>
   );
 }
 
 export async function getStaticProps() {
+  const settings = await siteSettings();
   const data = await getAlldata();
   return {
     props: {
-      data
+      data,
+      settings
     },
-    revalidate: 1
   }
 }

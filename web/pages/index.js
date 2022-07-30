@@ -1,34 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-
-// import ScrollToTop from '../src/components/ScrollToTop';
 import AOS from 'aos';
 import "aos/dist/aos.css";
-// import HeaderTop from '../src/components/Header/headerTop';
-// import HeaderMiddle from '../src/components/Header/headerMiddle';
-// import HeaderBottom from "../src/components/Header/headerBottom";
-// import SectionServicesOne from "../src/components/Home/SectionServicesOne";
-// import SectionDoctor from "../src/components/Home/SectionDoctor";
-// import SectionServices from "../src/components/Home/SectionServices";
-// import SectionReview from "../src/components/Home/SectionReview";
-// import SectionArticles from "../src/components/Home/SectionArticles";
-// import Footer from "../src/components/Footer/footer";
+
 
 import { getAlldata } from '../lib/api';
 
 
-const Appointments = dynamic(() => import('../src/components/Home/Appointments'), { suspense: true, ssr: false });
-const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), { suspense: true, ssr: false });
-const SectionServicesOne = dynamic(() => import('../src/components/Home/SectionServicesOne'), { suspense: true, ssr: false });
-const SectionDoctor = dynamic(() => import('../src/components/Home/SectionDoctor'), { suspense: true, ssr: false });
-const SectionServices = dynamic(() => import('../src/components/Home/SectionServices'), { suspense: true, ssr: false });
-const SectionReview = dynamic(() => import('../src/components/Home/SectionReview'), { suspense: true, ssr: false });
-const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), { suspense: true, ssr: false });
-const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), { suspense: true, ssr: false })
-const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), { suspense: true, ssr: false })
-const Footer = dynamic(() => import('../src/components/Footer/footer'), { suspense: true, ssr: false })
-const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), { suspense: true, ssr: false })
+const Appointments = dynamic(() => import('../src/components/Home/Appointments'), {});
+const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), {});
+const SectionServicesOne = dynamic(() => import('../src/components/Home/SectionServicesOne'), {});
+const SectionDoctor = dynamic(() => import('../src/components/Home/SectionDoctor'), {});
+const SectionServices = dynamic(() => import('../src/components/Home/SectionServices'), {});
+const SectionReview = dynamic(() => import('../src/components/Home/SectionReview'), {});
+const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), {});
+const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), {})
+const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), {})
+const Footer = dynamic(() => import('../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), {})
 
 
 export default function Home({ data }) {
@@ -112,7 +102,7 @@ export default function Home({ data }) {
       </Head>
       <div id="main" className="dark:bg-moroi-back main-container" >
         <header id="header" className="ct-header">
-          <HeaderTop headertop={doctorSettings} />
+          <HeaderTop headertop={siteSettings} />
           <HeaderMiddle headermiddle={siteSettings} />
         </header>
         <HeaderBottom herohome={data.herohome} handleOpen={handleOpen} />
@@ -136,6 +126,6 @@ export async function getStaticProps() {
     props: {
       data
     },
-    revalidate: 1
+
   }
 }

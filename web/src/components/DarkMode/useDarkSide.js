@@ -6,6 +6,7 @@ export default function UseDarkMode(props) {
 
   const [theme, setTheme] = useLocalStorage("theme", "light");
 
+
   const handleThemeSwitch = () => {
     setTheme(theme === 'light' || theme === null ? 'dark' : 'light');
   };
@@ -13,7 +14,7 @@ export default function UseDarkMode(props) {
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
-    } else {
+    } else if (theme === 'light' || theme === null) {
       document.documentElement.classList.remove('dark');
     }
   }, [theme]);

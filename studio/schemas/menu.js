@@ -1,17 +1,12 @@
-import socialList from "./socialList";
-
 export default {
-  name: 'social',
+  name: 'menu',
   type: 'object',
-  title: 'Social Websites',
+  title: 'Main Menu',
   fields: [
     {
       name: "name",
       title: "name",
       type: "string",
-      options: {
-        list: [...socialList],
-      },
     },
     {
       name: 'Url',

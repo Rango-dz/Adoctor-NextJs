@@ -8,68 +8,43 @@ import { unslugify } from "unslugify";
 import { slugify } from '../../../lib/helpers'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useAppContext } from "../../../src/components/Layout";
+import { siteSettings } from "../../../lib/api";
 import { useRouter } from 'next/router';
 import dynamic from "next/dynamic";
 
-const HeroBlog = dynamic(() => import('../../../src/components/Blog/HeroBlog'), { ssr: false });
-const Categories = dynamic(() => import('../../../src/components/Blog/Sidebar/categories'), { ssr: false });
-const Tags = dynamic(() => import('../../../src/components/Blog/Sidebar/Tags'), { ssr: false });
-const FeaturedPosts = dynamic(() => import('../../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
+const HeroBlog = dynamic(() => import('../../../src/components/Blog/HeroBlog'), {});
+const Categories = dynamic(() => import('../../../src/components/Blog/Sidebar/categories'), {});
+const Tags = dynamic(() => import('../../../src/components/Blog/Sidebar/Tags'), {});
+const FeaturedPosts = dynamic(() => import('../../../src/components/Blog/Sidebar/featuredPosts'), {});
 
 
 let PageSize = 6;
 
-export default function Category() {
+export default function Category({ category, settings }) {
 
   const router = useRouter()
   const { slug } = router.query
   const keyword = unslugify(slug);
 
-  const context = useAppContext();
-  const siteSettings = context[0];
+  const siteSettings = settings[0];
 
-  const [allPostsData, setAllPosts] = useState();
+  const allPostsData = category;
+
   const [slicedData, setSlicedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
 
 
   const allposts = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "post" &&  $slug in categories[]->slug.current ] {
-        title,
-        slug,
-        mainImage{
-          asset->{
-          _id,
-          url
-        }
-      },
-      "categories": categories[]->{
-      title,
-      slug,
-       },
-       publishedAt,
-       "tag":Tags[]{value},
-      body[0],
-      "numberOfCharacters": length(pt::text(body)),
-      "estimatedWordCount": round(length(pt::text(body)) / 5),
-      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
-}`,
-      { slug }
-    );
-    const data = await response;
-    setAllPosts(data);
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    setSlicedData(data.slice(firstPageIndex, lastPageIndex));
+    setSlicedData(allPostsData.slice(firstPageIndex, lastPageIndex));
   }
 
   useEffect(() => {
     allposts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, slug]);
+  }, [currentPage, allPostsData]);
 
 
   if (!allPostsData) {
@@ -101,7 +76,7 @@ export default function Category() {
                     return (
                       <ul key={index} className="p-0 m-0">
                         <li className="list-none">
-                          <Link className=" no-underline mr-2" key={index} href={`/categories/${cat.slug.current}`}><a>{cat.title} / </a></Link>
+                          <Link className=" no-underline mr-2" key={index} href={`/categories/${cat.slug.current}`}><a> {cat.title} / </a></Link>
                         </li>
                       </ul>
                     )
@@ -120,7 +95,7 @@ export default function Category() {
 
               {/* image */}
               <div className="mb-10 relative">
-                <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} className="aspect-video h-auto object object-cover w-full relative" />
+                <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} className="aspect-video h-auto object object-cover w-full relative" priority='true' />
               </div>
 
               {/* short description */}
@@ -148,7 +123,7 @@ export default function Category() {
                     <div key={index} className="bg-white dark:bg-moroi-stack  rounded text-sm text-slate-600 dark:text-colorFive font-semibold  p-1 hover:shadow hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray">
                       <Link
                         key={index} className="bg-white dark:bg-moroi-stack p-1 rounded text-sm text-slate-600 dark:text-colorFive font-semibold hover:shadow hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray"
-                        href={`/tags/${tag.value}`}><a>#{tag.value}</a>
+                        href={`/article/tags/${tag.value}`}><a>#{tag.value}</a>
                       </Link>
                     </div>
                   )
@@ -171,9 +146,6 @@ export default function Category() {
       </div>
       <div className="mx-[5%]">
         <Pagination
-          key={crypto.randomUUID()}
-          data-link={crypto.randomUUID()}
-          className=""
           currentPage={currentPage}
           totalCount={allPostsData.length}
           pageSize={6}
@@ -185,3 +157,46 @@ export default function Category() {
 }
 
 
+// export async function getStaticPaths() {
+//   const paths = await sanityClient.fetch(
+//     `*[_type == "post" && defined(categories) ][].categories[]->slug.current`
+//   )
+
+//   return {
+//     paths: paths.map((slug) => ({ params: { slug } })),
+//     fallback: true,
+//   }
+// }
+
+export async function getServerSideProps(context) {
+  const { slug = "" } = context.params
+  const category = await sanityClient.fetch(`
+    *[_type == "post" &&  categories[]->slug.current match $slug ] {
+        title,
+        slug,
+        mainImage{
+          asset->{
+          _id,
+          url
+        }
+      },
+      "categories": categories[]->{
+      title,
+      slug,
+       },
+       publishedAt,
+       "tag":Tags[]{value},
+      body[0],
+      "numberOfCharacters": length(pt::text(body)),
+      "estimatedWordCount": round(length(pt::text(body)) / 5),
+      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
+}
+  `, { slug });
+  const settings = await siteSettings();
+  return {
+    props: {
+      category,
+      settings
+    },
+  }
+}

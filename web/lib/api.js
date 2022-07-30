@@ -92,11 +92,15 @@ _id},
   return response;
 }
 
-export async function getabout() {
+export async function siteSettings() {
   const response = await sanityClient.fetch(
-    `{
-      
-    }`
+    `*[_type == "siteSettings"]{
+  "logoimage":logo{asset->{url}},
+  "logoDarkimage":logoDark{asset->{url}},
+  "socialimage":image{asset->{url}},
+  ...
+    }
+    `
   );
   return response;
 }

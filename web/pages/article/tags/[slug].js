@@ -8,66 +8,42 @@ import { unslugify } from "../../../lib/helpers";
 import { slugify } from '../../../lib/helpers'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useAppContext } from "../../../src/components/Layout";
-import { useRouter } from 'next/router';
+import { siteSettings } from "../../../lib/api";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
-const HeroBlog = dynamic(() => import('../../../src/components/Blog/HeroBlog'), { ssr: false });
-const Categories = dynamic(() => import('../../../src/components/Blog/Sidebar/categories'), { ssr: false });
-const FeaturedPosts = dynamic(() => import('../../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
+const HeroBlog = dynamic(() => import('../../../src/components/Blog/HeroBlog'), {});
+const Categories = dynamic(() => import('../../../src/components/Blog/Sidebar/categories'), {});
+const FeaturedPosts = dynamic(() => import('../../../src/components/Blog/Sidebar/featuredPosts'), {});
 
 
 let PageSize = 6;
 
-export default function Category() {
+export default function Tags({ tags, settings }) {
+
   const router = useRouter()
   const { slug } = router.query
   const keyword = unslugify(slug);
 
-  const context = useAppContext();
-  const siteSettings = context[0];
+  const siteSettings = settings[0];
 
-  const [allPostsData, setAllPosts] = useState();
+  const allPostsData = tags;
+
   const [slicedData, setSlicedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
 
 
   const allposts = async () => {
-    const response = sanityClient.fetch(
-      `*[_type == "post" && Tags[].value match $keyword  ] {
-        title,
-        slug,
-        mainImage{
-          asset->{
-          _id,
-          url
-        }
-      },
-      "categories": categories[]->{
-      title,
-      slug,
-       },
-       publishedAt,
-       "tag":Tags[]{value},
-      body[0],
-      "numberOfCharacters": length(pt::text(body)),
-      "estimatedWordCount": round(length(pt::text(body)) / 5),
-      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
-}`,
-      { keyword }
-    );
-    const data = await response;
-    setAllPosts(data);
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    setSlicedData(data.slice(firstPageIndex, lastPageIndex));
+    setSlicedData(allPostsData.slice(firstPageIndex, lastPageIndex));
   }
 
   useEffect(() => {
     allposts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, slug]);
+  }, [currentPage, allPostsData]);
 
 
   if (!allPostsData) {
@@ -129,7 +105,7 @@ export default function Category() {
                   className="prose"
                   components={{
                     block: {
-                      // Customize block types with ease
+
                       h1: ({ children }) => <h1 id={slugify(children)} className="text-2xl"><a href={`#${slugify(children)}`}>{children}</a></h1>,
                       h2: ({ children }) => <h2 id={slugify(children)} className="text-2xl"><a href={`#${slugify(children)}`}>{children}</a></h2>,
                       h3: ({ children }) => <h3 id={slugify(children)} className="text-2xl"><a href={`#${slugify(children)}`}>{children}</a></h3>,
@@ -145,7 +121,7 @@ export default function Category() {
                     <div key={index} className="bg-white dark:bg-moroi-stack  rounded text-sm text-slate-600 dark:text-colorFive font-semibold  p-1 hover:shadow hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray">
                       <Link
                         key={index} className="bg-white dark:bg-moroi-stack p-1 rounded text-sm text-slate-600 dark:text-colorFive font-semibold hover:shadow hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray"
-                        href={`/tags/${tag.value}`}><a>#{tag.value}</a>
+                        href={`/article/tags/${tag.value}`}><a>#{tag.value}</a>
                       </Link>
                     </div>
                   )
@@ -165,9 +141,6 @@ export default function Category() {
       </div>
       <div className="mx-[5%]">
         <Pagination
-          key={crypto.randomUUID()}
-          data-link={crypto.randomUUID()}
-          className=""
           currentPage={currentPage}
           totalCount={allPostsData.length}
           pageSize={6}
@@ -176,4 +149,48 @@ export default function Category() {
       </div>
     </>
   );
+}
+
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(
+    `*[_type == "post" && defined(Tags) ][].Tags[].value`
+  )
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  }
+}
+
+export async function getStaticProps(context) {
+  const { slug = "" } = context.params
+  const tags = await sanityClient.fetch(`
+    *[_type == "post" && Tags[].value match $slug  ] {
+        title,
+        slug,
+        mainImage{
+          asset->{
+          _id,
+          url
+        }
+      },
+      "categories": categories[]->{
+      title,
+      slug,
+       },
+       publishedAt,
+       "tag":Tags[]{value},
+      body[0],
+      "numberOfCharacters": length(pt::text(body)),
+      "estimatedWordCount": round(length(pt::text(body)) / 5),
+      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
+  }
+  `, { slug });
+  const settings = await siteSettings();
+  return {
+    props: {
+      tags,
+      settings
+    }
+  }
 }

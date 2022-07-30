@@ -4,32 +4,38 @@ import sanityClient from "../../lib/client";
 import { PortableText } from '@portabletext/react'
 import { formatPhoneNumber, slugify } from '../../lib/helpers';
 import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@material-tailwind/react';
-import { GiClockwork, GiFirstAidKit, GiMale, GiModernCity, GiPhone, GiPositionMarker, GiPostOffice } from "react-icons/gi";
+import { GiClockwork, GiFirstAidKit, GiMale, GiModernCity, GiPhone, GiPositionMarker } from "react-icons/gi";
 import { useLoadScript } from "@react-google-maps/api";
 import Googlemap from '../../src/components/Doctors/googleMap';
 import Skeleton from 'react-loading-skeleton'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
+import dynamic from "next/dynamic";
+import { getAlldata } from "../../lib/api";
+
+const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {})
+const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
+const Footer = dynamic(() => import('../../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../../src/components/ScrollToTop'), {})
 
 
 
-
-export default function OnePost() {
-
-
-  const router = useRouter()
-  const { slug } = router.query
+export default function OnePost({ doctor, data }) {
 
   //googlemap
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY // Add your API key
   });
 
-  const [docData, setDocData] = useState(null);
+  const siteSettings = data.siteSettings[0];
+
+  // doctorsettings for seo
+  const doctorSettings = data.doctorSettings[0];
+  const docData = doctor;
 
 
   const [today, setToday] = useState(new Date());
+
   const getTodayName = useCallback(() => {
     const options = { weekday: 'long' };
     const openDay = new Date().toLocaleDateString(undefined, options)
@@ -37,30 +43,12 @@ export default function OnePost() {
   }, []);
 
   useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[slug.current == $slug]{
-          "image":mainImage{
-          asset->{
-          url
-        }
-      },
-        ...
-        
-    }`,
-        { slug }
-      )
-      .then((data) => {
-        setDocData(data[0])
-      })
-      .catch(console.error);
-
     getTodayName();
-  }, [slug, getTodayName]);
+  }, []);
 
 
 
-  if (!docData) return (
+  if (!doctor) return (
     <div><Skeleton count={1} className='dark:bg-moroi-dark' /></div>
   )
 
@@ -117,7 +105,10 @@ export default function OnePost() {
         <meta property="twitter:title" content={docData.name} />
         <meta property="twitter:image" content={docData.image.asset.url} />
       </Head>
-
+      <header id="header" className="ct-header">
+        <HeaderTop headertop={siteSettings} />
+        <HeaderMiddle headermiddle={siteSettings} />
+      </header>
       <div className="grid grid-cols-1 md:grid-cols-8 my-[5%] mx-[5%] md:mx-[10%] place-content-around gap-5">
         <div className="col-span-5">
           <div className="flex flex-col lg:flex-row my-5">
@@ -270,7 +261,41 @@ export default function OnePost() {
 
         </div>
       </div>
+      <ScrollToTop />
+      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
     </>
   );
 }
 
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(
+    `*[_type == "doctor" && defined(slug.current)][].slug.current`
+  )
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  }
+}
+
+export async function getStaticProps(context) {
+  // It's important to default the slug so that it doesn't return "undefined"
+  const { slug = "" } = context.params
+  const doctor = await sanityClient.fetch(`
+    *[_type == "doctor" && slug.current == $slug]{
+  "image":mainImage{
+          asset->{
+          url
+        }
+      },
+...
+}[0]
+  `, { slug })
+  const data = await getAlldata();
+  return {
+    props: {
+      doctor,
+      data
+    }
+  }
+}

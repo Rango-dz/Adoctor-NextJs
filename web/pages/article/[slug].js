@@ -6,69 +6,24 @@ import Skeleton from 'react-loading-skeleton';
 import { slugify } from '../../lib/helpers';
 import TableOfContents, { parseOutline } from '../../src/components/Blog/Sidebar/TableOfContent';
 import { GiAlarmClock, GiCheckboxTree, GiOpenBook, GiPriceTag } from "react-icons/gi";
-import { useAppContext } from "../../src/components/Layout";
 import Head from 'next/head';
-import { useRouter } from 'next/router'
+import { siteSettings } from "../../lib/api";
 import Image from 'next/image'
 import dynamic from "next/dynamic";
 
-const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), { ssr: false });
-const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), { ssr: false });
-const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), { ssr: false });
+const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), {});
+const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), {});
+const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), {});
 
 
-export default function OnePost() {
+export default function OnePost({ post, Settings }) {
+
   // site settings for seo
-  const context = useAppContext();
-  const siteSettings = context[0];
 
-  const [postData, setPostData] = useState(null);
 
-  const router = useRouter()
-  const { slug } = router.query
+  const postData = post
+  const siteSettings = Settings[0]
 
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[slug.current == $slug]{
-        title,
-        _id,
-        mainImage{
-        asset->{
-        url
-        }
-        },
-        body,
-        categories[0]->{
-        title,
-        slug
-        },
-        publishedAt,
-        slug,
-        "tag":Tags[]{
-        value
-        },
-        "name": author->name,
-        "authorslug": author->slug,
-        "authorImage": author->{mainImage{
-                       asset->{
-                       url
-                       }
-                       }},
-  "previousPost": *[_type == "post" && ^.publishedAt > publishedAt]|order(publishedAt desc)[0]{title,"slug": slug.current},
-  "nextPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{title,"slug": slug.current},
-  "numberOfCharacters": length(pt::text(body)),
-  "estimatedWordCount": round(length(pt::text(body)) / 5),
-  "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
-  }`,
-        { slug }
-      )
-      .then((data) => {
-        setPostData(data[0])
-      })
-      .catch(console.error);
-
-  }, [slug]);
 
   if (!postData) return (
     <div><Skeleton count={1} className='dark:bg-moroi-dark' /></div>
@@ -199,4 +154,60 @@ export default function OnePost() {
       </div>
     </>
   );
+}
+
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(
+    `*[_type == "post" && defined(slug.current)][].slug.current`
+  )
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  }
+}
+
+export async function getStaticProps(context) {
+  // It's important to default the slug so that it doesn't return "undefined"
+  const { slug = "" } = context.params
+  const Settings = await siteSettings()
+  const post = await sanityClient.fetch(`
+    *[_type == "post" && slug.current == $slug]{
+        title,
+        _id,
+        mainImage{
+        asset->{
+        url
+        }
+        },
+        body,
+        categories[0]->{
+        title,
+        slug
+        },
+        publishedAt,
+        slug,
+        "tag":Tags[]{
+        value
+        },
+        "name": author->name,
+        "authorslug": author->slug,
+        "authorImage": author->{mainImage{
+                       asset->{
+                       url
+                       }
+                       }},
+  "previousPost": *[_type == "post" && ^.publishedAt > publishedAt]|order(publishedAt desc)[0]{title,"slug": slug.current},
+  "nextPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{title,"slug": slug.current},
+  "numberOfCharacters": length(pt::text(body)),
+  "estimatedWordCount": round(length(pt::text(body)) / 5),
+  "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
+  }[0]
+  `, { slug })
+  return {
+    props: {
+      post,
+      Settings,
+    }
+  }
 }

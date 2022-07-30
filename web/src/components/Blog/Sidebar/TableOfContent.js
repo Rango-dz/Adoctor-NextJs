@@ -53,8 +53,8 @@ const TableOfContents = props => (
 
   <div>
     <ol>
-      {props.outline.map(heading => (
-        <li key={crypto.randomUUID()}>
+      {props.outline.map((heading, index) => (
+        <li key={index}>
           <a href={'#' + heading.slug}>{heading.text}</a>
           {heading.subheadings.length > 0 && (
             <TableOfContents outline={heading.subheadings} />
