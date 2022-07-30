@@ -218,7 +218,6 @@ export async function getServerSideProps(context) {
     props: {
       post,
       Settings,
-    },
-    revalidate: 1,
+    }
   }
 }
