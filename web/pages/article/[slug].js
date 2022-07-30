@@ -218,6 +218,7 @@ export async function getStaticProps(context) {
     props: {
       post,
       Settings,
-    }
+    },
+    revalidate: 1,
   }
 }

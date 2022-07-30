@@ -208,5 +208,6 @@ export async function getStaticProps(context) {
       category,
       settings
     },
+    revalidate: 1,
   }
 }
