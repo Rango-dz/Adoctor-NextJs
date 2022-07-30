@@ -22,7 +22,7 @@ export default function emergencyNumber(props) {
         <GiMailbox className='text-4xl self-center' />
         <h3 className='flex flex-col'>
           <span className='font-semibold'>24/7 Email Support</span>
-          <a href="mailto:Info@Domain.Com" className='dark:text-colorRed'> {emergency.doctoremail} </a>
+          <a href="mailto:Info@Domain.Com" className='dark:text-colorRed'> {emergency.siteemail} </a>
         </h3>
       </div>
     </div>

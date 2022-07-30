@@ -262,7 +262,7 @@ export default function OnePost({ doctor, data }) {
         </div>
       </div>
       <ScrollToTop />
-      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
+      <Footer footerSettings={siteSettings} />
     </>
   );
 }

@@ -114,7 +114,7 @@ export default function Home({ data }) {
         <SectionArticles posts={data.allPostsData} />
 
         <ScrollToTop />
-        <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
+        <Footer footerSettings={siteSettings} />
       </div>
     </>
   )

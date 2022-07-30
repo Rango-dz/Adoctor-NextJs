@@ -16,6 +16,10 @@ const HeroBlog = dynamic(() => import('../../../src/components/Blog/HeroBlog'), 
 const Categories = dynamic(() => import('../../../src/components/Blog/Sidebar/categories'), {});
 const Tags = dynamic(() => import('../../../src/components/Blog/Sidebar/Tags'), {});
 const FeaturedPosts = dynamic(() => import('../../../src/components/Blog/Sidebar/featuredPosts'), {});
+const Footer = dynamic(() => import('../../../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../../../src/components/ScrollToTop'), {})
+const HeaderTop = dynamic(() => import('../../../src/components/Header/headerTop'), {});
+const HeaderMiddle = dynamic(() => import('../../../src/components/Header/headerMiddle'), {})
 
 
 let PageSize = 6;
@@ -58,6 +62,10 @@ export default function Category({ category, settings }) {
       <Head>
         <title>{`${siteSettings.title} ${keyword}`}</title>
       </Head>
+      <header id="header" className="ct-header">
+        <HeaderTop headertop={siteSettings} />
+        <HeaderMiddle headermiddle={siteSettings} />
+      </header>
       <HeroBlog />
 
       <h1 className="mx-[5%] md:mx-[10%] mt-[5%] text-5xl font-bold capitalize flex gap-1">{keyword}</h1>
@@ -152,23 +160,25 @@ export default function Category({ category, settings }) {
           onPageChange={page => setCurrentPage(page)}
         />
       </div>
+      <ScrollToTop />
+      <Footer footerSettings={siteSettings} />
     </>
   );
 }
 
 
-// export async function getStaticPaths() {
-//   const paths = await sanityClient.fetch(
-//     `*[_type == "post" && defined(categories) ][].categories[]->slug.current`
-//   )
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(
+    `*[_type == "post" && defined(categories) ][].categories[]->slug.current`
+  )
 
-//   return {
-//     paths: paths.map((slug) => ({ params: { slug } })),
-//     fallback: true,
-//   }
-// }
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  }
+}
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { slug = "" } = context.params
   const category = await sanityClient.fetch(`
     *[_type == "post" &&  categories[]->slug.current match $slug ] {

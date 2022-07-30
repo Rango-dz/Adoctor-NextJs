@@ -160,7 +160,7 @@ export default function AllPosts({ data, settings }) {
         />
       </div>
       <ScrollToTop />
-      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
+      <Footer footerSettings={siteSettings} />
     </>
   );
 }

@@ -14,6 +14,10 @@ import dynamic from "next/dynamic";
 const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), {});
 const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), {});
 const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), {});
+const Footer = dynamic(() => import('../../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../../src/components/ScrollToTop'), {})
+const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {});
+const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
 
 
 export default function OnePost({ post, Settings }) {
@@ -60,6 +64,10 @@ export default function OnePost({ post, Settings }) {
         </script>
         <title>{postData.name}</title>
       </Head>
+      <header id="header" className="ct-header">
+        <HeaderTop headertop={siteSettings} />
+        <HeaderMiddle headermiddle={siteSettings} />
+      </header>
       <HeroBlog />
       <div className="my-[5%] mx-[5%] md:mx-[10%] grid grid-cols-1 md:grid-cols-5 gap-5">
         <div className="w-full grid grid-cols-1 gap-10 col-span-4 justify-center overflow-hidden p-0 md:p-5 lg:p-10 bg-white dark:bg-moroi-dark shadow-md rounded ">
@@ -152,6 +160,8 @@ export default function OnePost({ post, Settings }) {
           <FeaturedPosts />
         </div>
       </div>
+      <ScrollToTop />
+      <Footer footerSettings={siteSettings} />
     </>
   );
 }

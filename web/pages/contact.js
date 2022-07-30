@@ -188,7 +188,7 @@ export default function Contact({ data }) {
         </div>
       </section>
       <ScrollToTop />
-      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
+      <Footer footerSettings={siteSettings} />
     </>
   )
 }

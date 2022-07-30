@@ -15,19 +15,23 @@ import { useRouter } from "next/router";
 const HeroBlog = dynamic(() => import('../../../src/components/Blog/HeroBlog'), {});
 const Categories = dynamic(() => import('../../../src/components/Blog/Sidebar/categories'), {});
 const FeaturedPosts = dynamic(() => import('../../../src/components/Blog/Sidebar/featuredPosts'), {});
+const Footer = dynamic(() => import('../../../src/components/Footer/footer'), {})
+const ScrollToTop = dynamic(() => import('../../../src/components/ScrollToTop'), {})
+const HeaderTop = dynamic(() => import('../../../src/components/Header/headerTop'), {});
+const HeaderMiddle = dynamic(() => import('../../../src/components/Header/headerMiddle'), {})
 
 
 let PageSize = 6;
 
-export default function Tags({ tags, settings }) {
+export default function Tags({ post, settings }) {
+
 
   const router = useRouter()
   const { slug } = router.query
-  const keyword = unslugify(slug);
 
   const siteSettings = settings[0];
 
-  const allPostsData = tags;
+  const allPostsData = post;
 
   const [slicedData, setSlicedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,10 +59,14 @@ export default function Tags({ tags, settings }) {
   return (
     <>
       <Head>
-        <title>{`${siteSettings.title} ${keyword}`}</title>
+        <title>{`${siteSettings.title} ${unslugify(slug)}`}</title>
       </Head>
+      <header id="header" className="ct-header">
+        <HeaderTop headertop={siteSettings} />
+        <HeaderMiddle headermiddle={siteSettings} />
+      </header>
       <HeroBlog />
-      <h1 className="mx-[5%] md:mx-[10%] mt-[5%] text-2xl md:text-4xl font-bold capitalize flex gap-1">#{keyword}</h1>
+      <h1 className="mx-[5%] md:mx-[10%] mt-[5%] text-2xl md:text-4xl font-bold capitalize flex gap-1">#{unslugify(slug)}</h1>
 
       <div className="my-[5%] mx-[0%] md:mx-[10%] grid grid-cols-1 md:grid-cols-5 gap-5">
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-10 col-span-4 justify-center overflow-hidden p-5">
@@ -147,6 +155,8 @@ export default function Tags({ tags, settings }) {
           onPageChange={page => setCurrentPage(page)}
         />
       </div>
+      <ScrollToTop />
+      <Footer footerSettings={siteSettings} />
     </>
   );
 }
@@ -164,7 +174,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { slug = "" } = context.params
-  const tags = await sanityClient.fetch(`
+  const post = await sanityClient.fetch(`
     *[_type == "post" && Tags[].value match $slug  ] {
         title,
         slug,
@@ -189,7 +199,7 @@ export async function getStaticProps(context) {
   const settings = await siteSettings();
   return {
     props: {
-      tags,
+      post,
       settings
     }
   }
