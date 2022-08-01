@@ -101,7 +101,7 @@ export default function Tags({ post, settings }) {
 
               {/* image */}
               <div className="mb-10 relative">
-                <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} className="aspect-video h-auto object object-cover w-full relative" />
+                <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} className="aspect-video h-auto object object-cover w-full relative" priority="true" />
               </div>
 
               {/* short description */}
@@ -160,17 +160,6 @@ export default function Tags({ post, settings }) {
     </>
   );
 }
-
-// export async function getStaticPaths() {
-//   const paths = await sanityClient.fetch(
-//     `*[_type == "post" && defined(Tags) ][].Tags[].value`
-//   )
-
-//   return {
-//     paths: paths.map((slug) => ({ params: { slug } })),
-//     fallback: true,
-//   }
-// }
 
 export async function getServerSideProps(context) {
   const { slug = "" } = context.params

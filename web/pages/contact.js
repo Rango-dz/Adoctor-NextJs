@@ -9,8 +9,11 @@ import Skeleton from 'react-loading-skeleton'
 import { formatPhoneNumber } from '../lib/helpers';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { getAlldata } from '../lib/api';
+import sanityClient from '../lib/client';
+import { siteSettings } from '../lib/api';
 import dynamic from 'next/dynamic'
+// import HeaderTop from '../src/components/Header/headerTop';
+// import HeaderMiddle from '../src/components/Header/headerMiddle';
 
 const Googlemap = dynamic(() => import('../src/components/Contact/GoogleMap'), {
   suspense: true,
@@ -20,12 +23,12 @@ const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle
 const Footer = dynamic(() => import('../src/components/Footer/footer'), {})
 const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), {})
 
-export default function Contact({ data }) {
+export default function Contact({ settings, doctor }) {
 
 
   // fetching site seettings
-  const siteSettings = data.siteSettings[0];
-  const doctorSettings = data.doctorSettings[0];
+  const siteSettings = settings[0];
+  const doctorSettings = doctor[0];
 
 
 
@@ -193,11 +196,24 @@ export default function Contact({ data }) {
   )
 }
 
-export async function getStaticProps() {
-  const data = await getAlldata();
+export async function getStaticProps(context) {
+  const doctor = await sanityClient.fetch(`
+    * [_type == "TheDoctor"]{
+    Address,
+  name,
+  doctoremail,
+  location{
+  lat,
+  lng
+},
+phoneNumber
+}
+  `);
+  const settings = await siteSettings();
   return {
     props: {
-      data
-    },
+      doctor,
+      settings
+    }
   }
 }

@@ -5,7 +5,8 @@ import Skeleton from 'react-loading-skeleton';
 
 function Hero(props) {
 
-  const heading = props.aboutHero[0]
+
+  const heading = props.aboutHero
 
   if (!heading) {
 
@@ -23,7 +24,7 @@ function Hero(props) {
             <h2
               data-aos="zoom-out-right"
               data-aos-duration="500"
-              className='text-4xl font-bold tracking-tight text-heading md:text-5xl my-4'>{heading.DoctorsHeading}
+              className='text-4xl font-bold tracking-tight text-heading md:text-5xl my-4'>{heading.AboutHeading}
             </h2>
           </div>
 
@@ -31,7 +32,7 @@ function Hero(props) {
             <p
               data-aos="zoom-out-right"
               data-aos-duration="500"
-              className='text-heading lg:text-base xl:text-lg'>{heading.DoctorsSubtitle}</p>
+              className='text-heading lg:text-base xl:text-lg'>{heading.AboutSubtitle}</p>
           </div>
 
         </div>
@@ -41,7 +42,7 @@ function Hero(props) {
           <Image
             data-aos="fade-up"
             data-aos-duration="500"
-            src={heading.docImage.asset.url} alt="" layout='responsive' width={600} height={220} className="object-contain" priority="true" />
+            src={heading.aboutImage.asset.url} alt="" layout='responsive' width={600} height={220} className="object-contain" priority="true" />
 
         </div>
       </div>

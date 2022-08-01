@@ -3,25 +3,32 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import AOS from 'aos';
 import "aos/dist/aos.css";
+import HeaderBottom from '../src/components/Header/headerBottom'
+import HeaderTop from '../src/components/Header/headerTop';
+import HeaderMiddle from '../src/components/Header/headerMiddle';
+import Appointments from '../src/components/Home/Appointments'
+// import SectionServicesOne from '../src/components/Home/SectionServicesOne';
+// import SectionDoctor from '../src/components/Home/SectionDoctor';
+// import SectionServices from '../src/components/Home/SectionServices';
+// import SectionReview from '../src/components/Home/SectionReview'
+// import SectionArticles from '../src/components/Home/SectionArticles'
+import { getAlldata, siteSettings } from '../lib/api';
 
 
-import { getAlldata } from '../lib/api';
-
-
-const Appointments = dynamic(() => import('../src/components/Home/Appointments'), {});
-const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), {});
 const SectionServicesOne = dynamic(() => import('../src/components/Home/SectionServicesOne'), {});
 const SectionDoctor = dynamic(() => import('../src/components/Home/SectionDoctor'), {});
 const SectionServices = dynamic(() => import('../src/components/Home/SectionServices'), {});
 const SectionReview = dynamic(() => import('../src/components/Home/SectionReview'), {});
 const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), {});
-const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), {})
-const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), {})
+// const Appointments = dynamic(() => import('../src/components/Home/Appointments'), {});
+// const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), {});
+// const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), {})
+// const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), {})
 const Footer = dynamic(() => import('../src/components/Footer/footer'), {})
 const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), {})
 
 
-export default function Home({ data }) {
+export default function Home({ data, settings }) {
 
   // initialize aos animation
   useEffect(() => {
@@ -44,7 +51,7 @@ export default function Home({ data }) {
 
 
   // fetching site seettings
-  const siteSettings = data.siteSettings[0];
+  const siteSettings = settings[0];
   const doctorSettings = data.doctorSettings[0];
 
 
@@ -84,6 +91,8 @@ export default function Home({ data }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="dns-prefetch" href="cdn.sanity.io" />
+        <link rel="manifest" href="/manifest.json" />
+
         <meta name="title" content={siteSettings.title} />
         <meta name="description" content={siteSettings.description} />
         <meta name="keywords" content={siteSettings.keywords} />
@@ -105,7 +114,7 @@ export default function Home({ data }) {
           <HeaderTop headertop={siteSettings} />
           <HeaderMiddle headermiddle={siteSettings} />
         </header>
-        <HeaderBottom herohome={data.herohome} handleOpen={handleOpen} />
+        <HeaderBottom herohome={settings[0]} handleOpen={handleOpen} />
         <SectionServicesOne serviceOne={data.serviceOne} />
         <Appointments open={open} handleOpen={handleOpen} />
         <SectionDoctor doctorSettings={doctorSettings} />
@@ -122,9 +131,11 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   const data = await getAlldata();
+  const settings = await siteSettings();
   return {
     props: {
-      data
+      data,
+      settings
     },
 
   }

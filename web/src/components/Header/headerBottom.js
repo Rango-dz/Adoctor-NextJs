@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function HeaderBottom(props) {
 
-  const heading = props.herohome[0];
+  const heading = props.herohome;
 
 
   return (

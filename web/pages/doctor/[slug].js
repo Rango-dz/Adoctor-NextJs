@@ -11,7 +11,7 @@ import Skeleton from 'react-loading-skeleton'
 import Head from 'next/head'
 import Image from 'next/image'
 import dynamic from "next/dynamic";
-import { getAlldata } from "../../lib/api";
+import { siteSettings } from "../../lib/api";
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {})
 const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
@@ -27,10 +27,8 @@ export default function OnePost({ doctor, data }) {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY // Add your API key
   });
 
-  const siteSettings = data.siteSettings[0];
+  const siteSettings = data[0];
 
-  // doctorsettings for seo
-  const doctorSettings = data.doctorSettings[0];
   const docData = doctor;
 
 
@@ -267,17 +265,6 @@ export default function OnePost({ doctor, data }) {
   );
 }
 
-// export async function getStaticPaths() {
-//   const paths = await sanityClient.fetch(
-//     `*[_type == "doctor" && defined(slug.current)][].slug.current`
-//   )
-
-//   return {
-//     paths: paths.map((slug) => ({ params: { slug } })),
-//     fallback: true,
-//   }
-// }
-
 export async function getServerSideProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
   const { slug = "" } = context.params
@@ -291,7 +278,7 @@ export async function getServerSideProps(context) {
 ...
 }[0]
   `, { slug })
-  const data = await getAlldata();
+  const data = await siteSettings();
   return {
     props: {
       doctor,

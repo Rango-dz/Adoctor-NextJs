@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Link from 'next/link'
-import Pagination from '../../src/components/Pagination/Pagination';
 import { FaPhoneAlt, FaTransgender, FaDirections, FaStethoscope, FaMedkit } from "react-icons/fa";
 import { formatPhoneNumber } from '../../lib/helpers';
-import Skeleton from 'react-loading-skeleton'
-import Hero from "../../src/components/Doctors/Hero";
 import Head from 'next/head'
 import Image from 'next/image'
-import { getAlldata } from '../../lib/api';
+import { siteSettings } from '../../lib/api';
 import dynamic from "next/dynamic";
+import sanityClient from "../../lib/client";
+import Skeleton from 'react-loading-skeleton'
+import Hero from "../../src/components/Doctors/Hero";
+import Pagination from '../../src/components/Pagination/Pagination';
+import Footer from '../../src/components/Footer/footer';
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {})
 const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
-const Footer = dynamic(() => import('../../src/components/Footer/footer'), {})
 const ScrollToTop = dynamic(() => import('../../src/components/ScrollToTop'), {})
 
 
 let PageSize = 5;
 
 
-export default function AllPosts({ data }) {
+export default function AllPosts({ data, settings }) {
 
-  const siteSettings = data.siteSettings[0];
-  const doctorSettings = data.doctorSettings[0];
-  const allDoctorsData = data.doctors;
+  const siteSettings = settings[0];
+  const allDoctorsData = data;
 
   const [slicedData, setSlicedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,7 +56,7 @@ export default function AllPosts({ data }) {
         <HeaderTop headertop={siteSettings} />
         <HeaderMiddle headermiddle={siteSettings} />
       </header>
-      <Hero aboutHero={data.aboutHero} />
+      <Hero aboutHero={siteSettings} />
       <div>
 
         <div>
@@ -108,16 +108,28 @@ export default function AllPosts({ data }) {
         </div>
       </div>
       <ScrollToTop />
-      <Footer footerSettings={siteSettings} doctorSettings={doctorSettings} />
+      <Footer footerSettings={siteSettings} doctorSettings={siteSettings} />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const data = await getAlldata();
+  const data = await sanityClient.fetch(
+    `*[_type == "doctor"]{
+        "image":mainImage{
+          asset->{
+          url
+        }
+      },
+        ... 
+    }
+    `
+  );
+  const settings = await siteSettings();
   return {
     props: {
-      data
+      data,
+      settings
     },
   }
 }

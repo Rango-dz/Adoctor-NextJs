@@ -16,7 +16,7 @@ export default function Footer(props) {
         <div data-row="middle" className=" grid justify-items-start md:justify-items-center h-auto my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-[5%] md:mx-[10%] pt-[35%] md:pt-[5%]">
 
           <div className='m-2 p-1'><Link href="#" className="flex justify-start py-2 px-2 flex-col relative"><a>
-            <Image src={footer.logoimage.asset.url} layout="responsive" width={480} height={70} alt={footer.title} className="w-1/2 mr-2 h-10 align-middle self-center relative" priority='true' />
+            <Image src={footer.logoimage.asset.url} layout="responsive" width={200} height={29} alt={footer.title} className="w-1/2 mr-2 h-10 align-middle self-center relative" priority='true' />
             <span className="my-5 font-bold text-slate-500 self-center">{footer.subtitle}</span></a>
           </Link></div>
           <div className='m-2 p-1'>

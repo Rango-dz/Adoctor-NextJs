@@ -1,3 +1,5 @@
+const withPWA = require('next-pwa');
+
 const STUDIO_REWRITE = {
   source: "/studio/:path*",
   destination:
@@ -15,3 +17,9 @@ module.exports = {
   swcMinify: true,
 };
 
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    swSrc: 'service-worker.js',
+  },
+});

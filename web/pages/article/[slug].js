@@ -73,7 +73,7 @@ export default function OnePost({ post, Settings }) {
         <div className="w-full grid grid-cols-1 gap-10 col-span-4 justify-center overflow-hidden p-0 md:p-5 lg:p-10 bg-white dark:bg-moroi-dark shadow-md rounded ">
 
           <div className="relative rouned">
-            <div className="rounded mb-10 object-cover w-full relative"><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={500} className="" /></div>
+            <div className="rounded mb-10 object-cover w-full relative"><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={500} className="" priority="true" /></div>
 
             <h1 className="font-semibold text-3xl mb-8 px-5 md:px-10 underline cursor-pointer">{postData.title}</h1>
             <div className="flex gap-5 font-semibold text-sm px-5 md:px-10">
@@ -165,17 +165,6 @@ export default function OnePost({ post, Settings }) {
     </>
   );
 }
-
-// export async function getStaticPaths() {
-//   const paths = await sanityClient.fetch(
-//     `*[_type == "post" && defined(slug.current)][].slug.current`
-//   )
-
-//   return {
-//     paths: paths.map((slug) => ({ params: { slug } })),
-//     fallback: true,
-//   }
-// }
 
 export async function getServerSideProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"

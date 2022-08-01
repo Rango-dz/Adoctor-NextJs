@@ -5,10 +5,9 @@ import Image from 'next/image'
 import Pagination from '../../src/components/Pagination/Pagination';
 import { PortableText } from '@portabletext/react'
 import { slugify } from '../../lib/helpers';
-import { getAlldata } from '../../lib/api';
 import sanityClient from "../../lib/client";
 import dynamic from "next/dynamic";
-import { siteSettings } from "../../lib/api";
+import { siteSettings, articles } from "../../lib/api";
 
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {});
@@ -23,17 +22,13 @@ const ScrollToTop = dynamic(() => import('../../src/components/ScrollToTop'), {}
 let PageSize = 6;
 
 
-export default function AllPosts({ data, settings }) {
-
-
+export default function Articles({ data, settings }) {
   // site settings for seo
   const siteSettings = settings[0];
 
-  // doctorsettings for seo
-  const doctorSettings = data.doctorSettings[0];
-
   // all posts
-  const allPostsData = data.allPostsData;
+  const allPostsData = data;
+
 
   // slice post for paggination
   const [slicedData, setSlicedData] = useState([]);
@@ -166,8 +161,8 @@ export default function AllPosts({ data, settings }) {
 }
 
 export async function getStaticProps() {
+  const data = await articles();
   const settings = await siteSettings();
-  const data = await getAlldata();
   return {
     props: {
       data,
