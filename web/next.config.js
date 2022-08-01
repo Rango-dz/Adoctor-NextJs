@@ -1,4 +1,5 @@
 const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache')
 
 const STUDIO_REWRITE = {
   source: "/studio/:path*",
@@ -8,18 +9,16 @@ const STUDIO_REWRITE = {
       : "/studio/index.html",
 };
 
-module.exports = {
+module.exports = withPWA({
   images: {
-    domains: ['cdn.sanity.io', 'adoctor-next-js.vercel.app'],
+    domains: ["cdn.sanity.io"],
     formats: ['image/avif', 'image/webp'],
   },
   rewrites: () => [STUDIO_REWRITE],
   swcMinify: true,
-};
-
-module.exports = withPWA({
   pwa: {
     dest: 'public',
     swSrc: 'sw.js',
+    runtimeCaching,
   },
 });

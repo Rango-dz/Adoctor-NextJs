@@ -91,7 +91,6 @@ export default function Home({ data, settings }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="dns-prefetch" href="cdn.sanity.io" />
-        <link rel="manifest" href="/manifest.json" />
 
         <meta name="title" content={siteSettings.title} />
         <meta name="description" content={siteSettings.description} />
