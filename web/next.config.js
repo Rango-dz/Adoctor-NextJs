@@ -10,7 +10,7 @@ const STUDIO_REWRITE = {
 
 module.exports = {
   images: {
-    domains: ['cdn.sanity.io', 'adoctor-next-js.vercel.app', '/'],
+    domains: ['cdn.sanity.io', 'adoctor-next-js.vercel.app'],
     formats: ['image/avif', 'image/webp'],
   },
   rewrites: () => [STUDIO_REWRITE],
