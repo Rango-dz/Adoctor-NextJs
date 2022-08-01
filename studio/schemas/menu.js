@@ -10,11 +10,8 @@ export default {
     },
     {
       name: 'Url',
-      type: 'url',
-      title: 'Url',
-      validation: Rule => Rule.uri({
-        scheme: ['http', 'https', 'mailto', 'tel', '/'],
-      })
+      type: 'string',
+      title: 'Url  (Must start with /, without domain name)',
     },
 
   ]
