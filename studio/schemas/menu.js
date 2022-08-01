@@ -11,7 +11,10 @@ export default {
     {
       name: 'Url',
       type: 'url',
-      title: 'Url'
+      title: 'Url',
+      validation: Rule => Rule.uri({
+        scheme: ['http', 'https', 'mailto', 'tel', '/'],
+      })
     },
 
   ]
