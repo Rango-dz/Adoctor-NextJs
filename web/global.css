@@ -322,24 +322,6 @@ header [data-row=middle] {
   --box-shadow: 0px 0px 5px -2px var(--colorThree);
 }
 
-/* background here for home page */
-
-div#hero {
-  background-image: url('./public/assets/images/home/doctor3d.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-clip: border-box;
-}
-
-div#doctorhero {
-  background-image: url('./public/assets/images/Doctorgroup.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-clip: border-box;
-}
-
 
 
 /* Normal Articles with dropdown Seach Box  from blocksy*/
