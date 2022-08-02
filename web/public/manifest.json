@@ -6,7 +6,7 @@
     "start_url": "/",
     "name": "Adoctor",
     "short_name": "Adoctor",
-    "description": "Adoctor Nextjs template",
+    "description": "Clinic Doctor NextJs template",
     "icons": [
         {
             "src": "/icon-192x192.png",
