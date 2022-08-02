@@ -18,8 +18,5 @@ module.exports = withPWA({
   swcMinify: true,
   pwa: {
     dest: 'public',
-    swSrc: 'sw.js',
-    runtimeCaching,
-    publicExcludes: ['!robots.txt']
   },
 });
