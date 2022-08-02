@@ -4,6 +4,8 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <meta charSet="utf-8" />
+        <link rel="dns-prefetch" href="cdn.sanity.io" />
         <link rel="manifest" href="/manifest.json" />
         <meta name='application-name' content='Adoctor' />
         <meta name='apple-mobile-web-app-capable' content='yes' />
