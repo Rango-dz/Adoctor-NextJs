@@ -52,7 +52,6 @@ export default function Home({ data, settings }) {
 
   // fetching site seettings
   const siteSettings = settings[0];
-  console.log(siteSettings)
   const doctorSettings = data.doctorSettings[0];
 
 
