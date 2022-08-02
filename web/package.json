@@ -24,7 +24,7 @@
     "emailjs-com": "^3.2.0",
     "formik": "^2.2.9",
     "next": "^12.2.2",
-    "next-pwa": "^5.5.5",
+    "next-pwa": "^5.5.4",
     "next-sanity": "^0.6.0",
     "react": "^18.1.0",
     "react-awesome-stars-rating": "^0.11.0",

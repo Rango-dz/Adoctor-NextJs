@@ -20,5 +20,6 @@ module.exports = withPWA({
     dest: 'public',
     swSrc: 'sw.js',
     runtimeCaching,
+    publicExcludes: ['!robots.txt']
   },
 });
