@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { siteSettings, articles } from "../../lib/api";
 import { useRouter } from 'next/router';
 import BlogCard from "../../src/components/Blog/BlogCard";
+import Footer from "../../src/components/Footer/footer";
 
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {});
@@ -13,7 +14,6 @@ const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), {})
 const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), {});
 const FeaturedPosts = dynamic(() => import('../../src/components/Blog/Sidebar/featuredPosts'), {});
 const Tags = dynamic(() => import('../../src/components/Blog/Sidebar/Tags'), {});
-const Footer = dynamic(() => import('../../src/components/Footer/footer'), {})
 const ScrollToTop = dynamic(() => import('../../src/components/ScrollToTop'), {})
 
 let PageSize = 6;
