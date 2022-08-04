@@ -60,7 +60,7 @@ export default function HeaderMiddle(props) {
                   {
                     logo.MainMenu.map((item, index) => {
                       return (
-                        <Link href={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 text-sm" : "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1 text-sm"}><FaHome className=' text-iconcolor dark:text-colorEight hover:text-iconcolorhover m-[0.2rem] w-4 focus:text-colorTwo' />{item.name}</a>
+                        <Link href={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 text-sm" : "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1 text-sm"}>{item.name}</a>
                         </Link>
 
                       )
@@ -76,7 +76,7 @@ export default function HeaderMiddle(props) {
 
               {/* <!-- Mobile menu button --> */}
               <div className="md:hidden flex justify-between">
-                <button onClick={() => mobileMenu()} className=" mobile-menu-button">
+                <button onClick={() => mobileMenu()} className=" mobile-menu-button" name='Main Menu'>
                   <div className="space-y-1">
                     <FaAlignJustify className='hover:text-iconcolor text-iconcolorhover dark:text-colorRed w-6 h-auto' />
                   </div>
@@ -91,7 +91,7 @@ export default function HeaderMiddle(props) {
               {
                 logo.MainMenu.map((item, index) => {
                   return (
-                    <Link href={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 text-sm" : "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1 text-sm"}><FaHome className=' text-iconcolor dark:text-colorEight hover:text-iconcolorhover m-[0.2rem] w-4 focus:text-colorTwo' />{item.name}</a>
+                    <Link href={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 text-sm" : "flex self-center uppercase px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1 text-sm"}>{item.name}</a>
                     </Link>
 
                   )

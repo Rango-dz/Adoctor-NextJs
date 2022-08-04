@@ -12,11 +12,11 @@ export default function social(props) {
   }
   return (
     <div className="flex flex-row align-middle justify-center">
-      <a href={social.Facebook} alt="Facebook" name="Facebook" className="text-[#557dbc] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaFacebook className="w-5" /> </a>
-      <a href={social.Twitter} alt="Twitter" name="Twitter" className="text-[#7acdee] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaTwitter className="w-5" /> </a>
-      <a href={social.Instagram} alt="Instagram" name="Instagram" className="text-[#ed1376] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaInstagram className="w-5" /> </a>
-      <a href={social.Pinterest} alt="Pinterest" name="Pinterest" className="text-[#ea575a] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaPinterest className="w-5" /></a>
-      <a href={social.Youtube} alt="Youtube" name="Youtube" className="text-[#FF0000] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaYoutube className="w-5" /> </a>
+      <a href={social.Facebook} aria-label="Follow me on Facebook" className="text-[#557dbc] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaFacebook className="w-5" aria-hidden="true" /> </a>
+      <a href={social.Twitter} aria-label="Follow me on Twitter" className="text-[#7acdee] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaTwitter className="w-5" aria-hidden="true" /> </a>
+      <a href={social.Instagram} aria-label="Follow me on Instagram" className="text-[#ed1376] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaInstagram className="w-5" aria-hidden="true" /> </a>
+      <a href={social.Pinterest} aria-label="Follow me on Pinterest" className="text-[#ea575a] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaPinterest className="w-5" aria-hidden="true" /></a>
+      <a href={social.Youtube} aria-label="Follow me on Youtube" className="text-[#FF0000] ct-icon m-2 cursor-pointer hover:transition hover:opacity-70"> <FaYoutube className="w-5" aria-hidden="true" /> </a>
     </div>
   )
 }
