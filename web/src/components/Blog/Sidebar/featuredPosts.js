@@ -36,7 +36,7 @@ export default function FeaturedPosts() {
 
   return (
     <>
-      <h3 className="prose font-semibold dark:text-colorFive">Featured Articles</h3>
+      <h2 className="prose font-semibold dark:text-colorFive">Featured Articles</h2>
       <div className="w-full my-5">
 
         {allpostsData &&

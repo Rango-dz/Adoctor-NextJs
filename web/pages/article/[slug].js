@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from 'next/link';
 import sanityClient from "../../lib/client";
 import { PortableText } from '@portabletext/react';
 import Skeleton from 'react-loading-skeleton';
 import { slugify } from '../../lib/helpers';
 import TableOfContents, { parseOutline } from '../../src/components/Blog/Sidebar/TableOfContent';
-import { GiAlarmClock, GiCheckboxTree, GiOpenBook, GiPriceTag } from "react-icons/gi";
+import { GiAlarmClock, GiCheckboxTree, GiCheckMark, GiOpenBook } from "react-icons/gi";
 import Head from 'next/head';
 import { siteSettings } from "../../lib/api";
 import Image from 'next/image'
@@ -73,18 +73,18 @@ export default function OnePost({ post, Settings }) {
         <div className="w-full grid grid-cols-1 gap-10 col-span-4 justify-center overflow-hidden p-0 md:p-5 lg:p-10 bg-white dark:bg-moroi-dark shadow-md rounded ">
 
           <div className="relative rouned">
-            <div className="rounded mb-10 object-cover w-full relative"><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={500} className="" priority="true" /></div>
+            <div className="rounded mb-10 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" /></div>
 
-            <h1 className="font-semibold text-3xl mb-8 px-5 md:px-10 underline cursor-pointer">{postData.title}</h1>
-            <div className="flex gap-5 font-semibold text-sm px-5 md:px-10">
+            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl mb-10 px-5 md:px-10 underline cursor-pointer capitalize">{postData.title}</h1>
+            <div className="flex gap-5 prose-lg  px-5 md:px-10 ">
               <span className="flex justify-center align-middle gap-1"> <GiAlarmClock className="slef-center" /> {new Date(postData.publishedAt).toDateString()}</span>
-              <Link href={`/article/category/${slugify(postData.categories.title)}`}><a><h3 className="flex justify-center align-middle gap-1"><GiCheckboxTree className="slef-center" />{postData.categories.title}</h3></a></Link>
-              <span className="flex justify-center align-middle gap-1"> <GiOpenBook className="slef-center" />{postData.estimatedReadingTime} Min</span>
+              <Link href={`/article/category/${slugify(postData.categories.title)}`}><a><span className="flex justify-center align-middle gap-1"><GiCheckMark className="slef-center" />Published in {postData.categories.title}</span></a></Link>
+              <span className="flex justify-center align-middle gap-1"> <GiOpenBook className="slef-center" />{postData.estimatedReadingTime} Min Read</span>
             </div>
 
           </div>
-
-          <div className="prose-base prose-headings:prose-2xl prose-headings:font-semibold prose-headings:underline prose-li:list-disc px-5 md:px-10">
+          <div className="border border-colorSix mx-5 dark:border-moroi-gray"></div>
+          <div className="prose-xl prose-headings:bold prose-headings:underline prose-li:list-disc px-5 md:px-10">
             <PortableText
               value={postData.body}
               projectId={sanityClient.projectId}
@@ -92,9 +92,9 @@ export default function OnePost({ post, Settings }) {
               components={{
                 block: {
                   // Customize block types with ease
-                  h1: ({ children }) => <h1 id={slugify(children)} className="text-3xl"><a href={`#${slugify(children)}`}>{children}</a></h1>,
-                  h2: ({ children }) => <h2 id={slugify(children)} className="text-2xl"><a href={`#${slugify(children)}`}>{children}</a></h2>,
-                  h3: ({ children }) => <h3 id={slugify(children)} className="text-xl"><a href={`#${slugify(children)}`}>{children}</a></h3>,
+                  h1: ({ children }) => <h1 id={slugify(children)} className="text-5xl font-bold"><a href={`#${slugify(children)}`}>{children}</a></h1>,
+                  h2: ({ children }) => <h2 id={slugify(children)} className="text-4xl font-bold"><a href={`#${slugify(children)}`}>{children}</a></h2>,
+                  h3: ({ children }) => <h3 id={slugify(children)} className="text-3xl font-bold"><a href={`#${slugify(children)}`}>{children}</a></h3>,
                 },
                 Text: {
                   // Customize text types with ease
@@ -120,6 +120,7 @@ export default function OnePost({ post, Settings }) {
               }}
             />
           </div>
+
           <div>
             <div className="flex flex-col md:flex-row gap-5 m-5">
               {postData.tag && postData.tag.map((tag, index) => (
@@ -127,23 +128,28 @@ export default function OnePost({ post, Settings }) {
                 <Link
                   key={index}
                   className=""
-                  href={`/article/tags/${tag.value}`}><a className="flex border p-2 font-semibold hover:bg-colorSix dark:bg-moroi-stack dark:hover:bg-moroi-gray dark:border-moroi-gray hover:shadow-md cursor-pointer gap-1 rounded-lg"><GiPriceTag className="self-center" />{tag.value}</a>
+                  href={`/article/tags/${tag.value}`}><a className="flex p-2 text-base dark:bg-moroi-stack dark:hover:bg-moroi-gray cursor-pointer gap-1 rounded-lg bg-colorSix w-fit">#{tag.value}</a>
                 </Link>
 
               ))
               }
             </div>
-            <div className="flex flex-row mx-auto md:mx-0 gap-5 my-5 border rounded-full max-w-fit bg-colorSix dark:bg-moroi-dark dark:border-moroi-gray dark:shadow-[#232323] shadow-md dark:hover:bg-moroi-gray relative">
+            <div className="border border-colorSix mx-5 dark:border-moroi-gray"></div>
+            <div className="flex flex-row mx-auto md:mx-0 gap-5 mt-20 mb-5  max-w-fit dark:bg-moroi-dark dark:border-moroi-gray dark:shadow-[#232323] dark:hover:bg-moroi-gray relative">
+
               <Image
                 src={postData.authorImage.mainImage.asset.url}
                 alt={postData.name}
                 className="rounded-full mr-2 relative"
-                layout="responsive"
+                layout="fixed"
                 width={100} height={100}
               />
-              <h4 className="self-center items-center font-bold underline pr-5">
-                <Link href={`/doctor/${postData.authorslug.current}`}><a>{postData.name}</a></Link>
-              </h4>
+              <div className="self-center items-center">
+                <h2 className="self-center">Writer :</h2>
+                <h4 className="self-center items-center font-bold underline pr-5">
+                  <Link href={`/doctor/${postData.authorslug.current}`}><a>{postData.name}</a></Link>
+                </h4>
+              </div>
             </div>
           </div>
 

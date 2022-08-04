@@ -58,9 +58,7 @@ export default function Home({ data, settings }) {
   return (
     <>
       <Head>
-        <meta name="title" content={siteSettings.title} />
-        <meta name="description" content={siteSettings.description} />
-        <meta name="keywords" content={siteSettings.keywords} />
+        <title>{`${siteSettings.title} `}</title>
 
         <script type="application/ld+json">{`
           {

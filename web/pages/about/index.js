@@ -11,6 +11,7 @@ import Skeleton from 'react-loading-skeleton'
 import Hero from "../../src/components/Doctors/Hero";
 import Pagination from '../../src/components/Pagination/Pagination';
 import Footer from '../../src/components/Footer/footer';
+import { useRouter } from 'next/router';
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {})
 const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
@@ -21,6 +22,9 @@ let PageSize = 5;
 
 
 export default function AllPosts({ data, settings }) {
+
+  const router = useRouter()
+  const slug = router.pathname.split('/')[1]
 
   const siteSettings = settings[0];
   const allDoctorsData = data;
@@ -50,7 +54,7 @@ export default function AllPosts({ data, settings }) {
   return (
     <>
       <Head>
-        <title>About us - {siteSettings.title}</title>
+        <title>{`${slug} ${siteSettings.title} `}</title>
       </Head>
       <header id="header" className="ct-header">
         <HeaderTop headertop={siteSettings} />

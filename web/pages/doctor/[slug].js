@@ -88,20 +88,7 @@ export default function OnePost({ doctor, data }) {
         }
           `}
         </script>
-
-        <title>{docData.name}</title>
-        <meta name="title" content={docData.name} />
-
-        <meta property="og:type" content="person" />
-        <meta property="og:url" content={docData.website} />
-        <meta property="og:title" content={docData.name} />
-
-        <meta property="og:image" content={docData.image.asset.url} />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={docData.website} />
-        <meta property="twitter:title" content={docData.name} />
-        <meta property="twitter:image" content={docData.image.asset.url} />
+        <title>{`${slug} ${siteSettings.title} `}</title>
       </Head>
       <header id="header" className="ct-header">
         <HeaderTop headertop={siteSettings} />

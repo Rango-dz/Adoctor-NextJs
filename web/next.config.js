@@ -1,5 +1,5 @@
 const withPWA = require('next-pwa');
-const runtimeCaching = require('next-pwa/cache')
+const prod = process.env.NODE_ENV === 'production'
 
 const STUDIO_REWRITE = {
   source: "/studio/:path*",
@@ -18,5 +18,6 @@ module.exports = withPWA({
   swcMinify: true,
   pwa: {
     dest: 'public',
+    disable: prod ? false : true
   },
 });

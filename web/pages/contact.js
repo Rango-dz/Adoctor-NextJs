@@ -30,10 +30,8 @@ export default function Contact({ settings, doctor }) {
   const siteSettings = settings[0];
   const doctorSettings = doctor[0];
 
-
-
   const router = useRouter()
-  const { slug } = router.query
+  const slug = router.pathname.split('/')[1]
 
   //googlemap
   const { isLoaded } = useLoadScript({
@@ -78,22 +76,7 @@ export default function Contact({ settings, doctor }) {
   return (
     <>
       <Head>
-        <meta charSet="utf-8" Lang='en' />
-        <meta name="title" content={`${siteSettings.title} ${slug}`} />
-        <meta name="description" content={siteSettings.description} />
-        <meta name="keywords" content={siteSettings.keywords} />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteSettings.website} />
-        <meta property="og:title" content={siteSettings.title} />
-        <meta property="og:description" content={siteSettings.description} />
-        <meta property="og:image" content={siteSettings.socialimage.asset.url} />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={siteSettings.website} />
-        <meta property="twitter:title" content={siteSettings.title} />
-        <meta property="twitter:description" content={siteSettings.description} />
-        <meta property="twitter:image" content={siteSettings.socialimage.asset.url} />
+        <title>{`${slug} ${siteSettings.title} `}</title>
       </Head>
       <header id="header" className="ct-header">
         <HeaderTop headertop={siteSettings} />

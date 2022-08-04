@@ -35,7 +35,7 @@ export default function Categories() {
 
   return (
     <>
-      <h3 className="prose font-semibold dark:text-colorFive">Categories</h3>
+      <h2 className="prose font-semibold dark:text-colorFive">Categories</h2>
       <div className="w-full my-5">
 
         {allcategoriesData &&

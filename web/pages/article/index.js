@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Link from 'next/link'
 import Head from 'next/head'
-import Image from 'next/image'
 import Pagination from '../../src/components/Pagination/Pagination';
-import { PortableText } from '@portabletext/react'
-import { slugify } from '../../lib/helpers';
-import sanityClient from "../../lib/client";
 import dynamic from "next/dynamic";
 import { siteSettings, articles } from "../../lib/api";
+import { useRouter } from 'next/router';
+import BlogCard from "../../src/components/Blog/BlogCard";
 
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {});
@@ -23,6 +20,9 @@ let PageSize = 6;
 
 
 export default function Articles({ data, settings }) {
+
+  const router = useRouter()
+  const slug = router.pathname.split('/')[1]
   // site settings for seo
   const siteSettings = settings[0];
 
@@ -54,7 +54,7 @@ export default function Articles({ data, settings }) {
   return (
     <>
       <Head>
-        <title>Articles - {siteSettings.title}</title>
+        <title>{`${slug} ${siteSettings.title} `}</title>
       </Head>
       <header id="header" className="ct-header">
         <HeaderTop headertop={siteSettings} />
@@ -62,80 +62,7 @@ export default function Articles({ data, settings }) {
       </header>
       <HeroBlog />
       <div className="my-[5%] mx-[0%] md:mx-[10%] grid grid-cols-1 md:grid-cols-5 gap-5">
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-10 col-span-4 justify-center overflow-hidden p-5">
-          {slicedData &&
-            slicedData.map((post, index) => (
-
-
-              <div key={index} className="border border-white dark:border-moroi-dark bg-white dark:bg-moroi-dark shadow-md rounded gap-10 w-full overflow-hidden py-5 hover:shadow-lg h-fit">
-                <div key={index} className="px-5">
-
-                  {/* category and read time */}
-                  <div key={index} className="flex text-sm font-semibold">
-                    {post.categories && post.categories.map((cat, index) => {
-                      return (
-                        <ul key={index} className="p-0 m-0">
-                          <li className="list-none">
-                            <Link className="hover:underline mr-2 uppercase cursor-pointer" key={index} href={`/categories/${cat.slug.current}`}><a>{cat.title} / </a></Link>
-                          </li>
-                        </ul>
-                      )
-                    })}
-                    <li key={index} className="list-none">
-                      {post.estimatedReadingTime} Min
-                    </li>
-                  </div>
-
-
-                  {/* title */}
-                  <Link href={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold ">
-                    <h2 className="my-5 capitalize underline cursor-pointer"><a>{post.title}</a></h2>
-                  </Link>
-                </div>
-
-                {/* image */}
-                <div className="mb-10 relative w-auto">
-                  <div>
-                    <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} priority='true' className="aspect-video h-auto object object-cover w-full relative" />
-                  </div>
-                </div>
-
-                {/* short description */}
-                <div className="prose-colorThree px-5 my-10 leading-relaxed font-light">
-                  <PortableText
-                    value={post.body}
-                    projectId={sanityClient.projectId}
-                    dataset={sanityClient.dataset}
-                    className="prose font-light"
-                    components={{
-                      block: {
-                        // Customize block types with ease
-                        h1: ({ children }) => <h1 id={slugify(children)} className="text-2xl"><a href={`#${slugify(children)}`}>{children}</a></h1>,
-                        h2: ({ children }) => <h2 id={slugify(children)} className="text-2xl"><a href={`#${slugify(children)}`}>{children}</a></h2>,
-                        h3: ({ children }) => <h3 id={slugify(children)} className="text-2xl"><a href={`#${slugify(children)}`}>{children}</a></h3>,
-                      }
-                    }}
-                  />
-                </div>
-
-                {/* tags */}
-                <div className="flex flex-auto gap-5 mx-5 mt-10 ">
-                  {post.tag && post.tag.map((tag, index) => {
-                    return (
-                      <div key={index} className="bg-white dark:bg-moroi-stack  rounded text-sm text-slate-600 dark:text-colorFive font-semibold  p-1 hover:shadow hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray">
-                        <Link
-                          key={index}
-                          href={`/article/tags/${tag.value}`}><a>#{tag.value}</a>
-                        </Link>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-
-
-            ))}
-        </div>
+        <BlogCard slicedData={slicedData} />
 
         {/* !!sidebar */}
         <div className="p-5">
