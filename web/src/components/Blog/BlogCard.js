@@ -15,7 +15,7 @@ function BlogCard(prop) {
           slicedData.map((post, index) => (
 
 
-            <div key={index} className="border border-white dark:border-moroi-dark bg-white dark:bg-moroi-dark shadow-md rounded gap-10 w-full overflow-hidden py-5 hover:shadow-lg h-fit">
+            <div key={index} className="border dark:border-moroi-stack bg-white dark:bg-moroi-dark shadow-md rounded gap-10 w-full overflow-hidden pt-5 hover:shadow-lg h-fit">
               <div key={index} className="px-5">
 
                 {/* category and read time */}
@@ -25,7 +25,7 @@ function BlogCard(prop) {
                       <ul key={index} className="p-0 m-0">
                         <li className="list-none">
                           <Link className="cursor-pointer" key={index} href={`/categories/${cat.slug.current}`}>
-                            <a className="p-2 rounded bg-colorSix mx-1 lowercase text-[#718096] hover:bg-iconcolor hover:text-white dark:text-colorEight dark:bg-moroi-stack dark:hover:bg-moroi-gray"> {cat.title} </a></Link>
+                            <a className="p-2 rounded border mx-1 uppercase text-slate-500 dark:text-colorSix font-semibold text-base hover:bg-colorSix dark:hover:bg-moroi-gray dark:border-moroi-stack"> {cat.title} </a></Link>
                         </li>
                       </ul>
                     )
@@ -33,22 +33,26 @@ function BlogCard(prop) {
                 </div>
 
 
-                {/* title */}
-                <Link href={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold ">
-                  <h2 className="my-10 capitalize underline cursor-pointer font-bold text-2xl"><a>{post.title}</a></h2>
-                </Link>
+
               </div>
 
               {/* image */}
-              <div className="mb-10 relative w-auto">
+              <div className="mt-5 relative w-auto">
                 <div>
                   <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} priority='true' className="aspect-video h-auto object object-cover w-full relative" />
                 </div>
               </div>
 
+              {/* title */}
+              <div className='px-5'>
+                <Link href={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold ">
+                  <h2 className="my-5 capitalize cursor-pointer font-bold text-3xl"><a>{post.title}</a></h2>
+                </Link>
+              </div>
+
 
               {/* short description */}
-              <div className="prose-lg text-colorThree dark:text-colorFive px-5 my-10 leading-relaxed font-light">
+              <div className="prose-lg text-slate-400 dark:text-colorFive px-5 my-5 leading-relaxed font-light">
                 <PortableText
                   value={post.body}
                   projectId={sanityClient.projectId}
@@ -66,10 +70,11 @@ function BlogCard(prop) {
               </div>
 
               {/* tags */}
-              <div className="flex flex-auto gap-5 mx-5 mt-10 prose-lg">
+              <div className="border-t mt-10 dark:border-moroi-stack shadow"></div>
+              <div className="flex flex-auto gap-5 mx-5 my-2 prose-lg">
                 {post.tag && post.tag.map((tag, index) => {
                   return (
-                    <div key={index} className=" dark:bg-moroi-stack  rounded dark:text-colorFive  px-2 py-1 hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray">
+                    <div key={index} className="  rounded dark:text-colorFive  px-2 py-1 hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray border dark:border-moroi-stack">
                       <Link
                         key={index}
                         href={`/article/tags/${tag.value}`}><a>#{tag.value}</a>

@@ -74,18 +74,20 @@ export default function OnePost({ post, Settings }) {
         <div className="w-full grid grid-cols-1 gap-10 col-span-4 justify-center overflow-hidden p-0 md:p-5 lg:p-10 bg-white dark:bg-moroi-dark shadow-md rounded ">
 
           <div className="relative rouned">
-            <div className="rounded mb-10 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" /></div>
 
-            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl mb-10 px-5 md:px-10 underline cursor-pointer capitalize">{postData.title}</h1>
-            <div className="flex gap-5 prose-lg  px-5 md:px-10 ">
+
+            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl mb-10 px-5 md:px-10 cursor-pointer capitalize text-center">{postData.title}</h1>
+            <div className="flex gap-5 prose-lg  px-5 md:px-10 justify-center">
               <span className="flex justify-center align-middle gap-1"> <GiAlarmClock className="slef-center" /> {new Date(postData.publishedAt).toDateString()}</span>
               <Link href={`/article/category/${slugify(postData.categories.title)}`}><a><span className="flex justify-center align-middle gap-1"><GiCheckMark className="slef-center" />Published in {postData.categories.title}</span></a></Link>
               <span className="flex justify-center align-middle gap-1"> <GiOpenBook className="slef-center" />{postData.estimatedReadingTime} Min Read</span>
             </div>
 
+            <div className="rounded my-32 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" /></div>
+
           </div>
-          <div className="border border-colorSix mx-5 dark:border-moroi-gray"></div>
-          <div className="prose-xl prose-headings:bold prose-headings:underline prose-li:list-disc px-5 md:px-10">
+
+          <div className="prose-xl prose-headings:bold  prose-li:list-disc px-5 md:px-10">
             <PortableText
               value={postData.body}
               projectId={sanityClient.projectId}
