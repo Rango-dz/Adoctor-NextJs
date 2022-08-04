@@ -153,10 +153,10 @@ export default function Appointments(props) {
 
 
           <div className="flex gap-5 justify-end mb-5">
-            <a size="md" color="red" onClick={() => props.handleOpen()} className=" flex-1 flex self-center border-2 border-colorRed rounded-lg text-center align-middle justify-center hover:shadow-lg hover:shadow-red-100 py-2 text-colorRed cursor-pointer">Cancel</a>
-            <a size="md" type="submit" value="send"
+            <div size="md" color="red" onClick={() => props.handleOpen()} className=" flex-1 flex self-center border-2 border-colorRed rounded-lg text-center align-middle justify-center hover:shadow-lg hover:shadow-red-100 py-2 text-colorRed cursor-pointer">Cancel</div>
+            <div size="md" type="submit" value="send"
               className={isSubmitting ? "flex-1 flex self-center justify-center align-middle text-center rounded-lg bg-green-700 text-white hover:bg-colorOne dark:hover:bg-moroi-pinkdanger hover:shadow border-2 border-green-700" :
-                "flex-1 rounded-lg bg-colorTwo dark:bg-colorRed text-white hover:bg-colorOne dark:hover:bg-moroi-pinkdanger flex self-center justify-center align-middle text-center py-2 border-2 border-colorTwo cursor-pointer hover:border-colorOne hover:shadow-lg hover:shadow-blue-100"}>Submit</a>
+                "flex-1 rounded-lg bg-colorTwo dark:bg-colorRed text-white hover:bg-colorOne dark:hover:bg-moroi-pinkdanger flex self-center justify-center align-middle text-center py-2 border-2 border-colorTwo cursor-pointer hover:border-colorOne hover:shadow-lg hover:shadow-blue-100"}>Submit</div>
           </div>
         </form>
       </div>
