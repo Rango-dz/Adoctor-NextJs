@@ -62,29 +62,29 @@ export default function Home({ data, settings }) {
 
         <script type="application/ld+json">{`
           {
-          "@context": "https://schema.org",
-          "@type": "MedicalClinic",
-          "name": ${siteSettings.title},
-          "image": ${siteSettings.socialimage.asset.url},
-          "@id": ${siteSettings.Website},
-          "url": ${siteSettings.Website},
-          "telephone": ${siteSettings.phoneNumber},
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": ${doctorSettings.Address},
-            "addressLocality": ${doctorSettings.city},
-            "postalCode": ${doctorSettings.zipcode},
-            "addressCountry": ${doctorSettings.Country}
+          @context: https://schema.org,
+        @type: MedicalClinic,
+          name: ${siteSettings.title},
+          image: ${siteSettings.socialimage.asset.url},
+          @id: ${siteSettings.Website},
+          url: ${siteSettings.Website},
+          telephone: ${siteSettings.phoneNumber},
+          address: {
+            @type: PostalAddress,
+            streetAddress: ${doctorSettings.Address},
+            addressLocality: ${doctorSettings.city},
+            postalCode: ${doctorSettings.zipcode},
+            addressCountry: ${doctorSettings.Country}
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": ${doctorSettings.location.lat},
-            "longitude": ${doctorSettings.location.lng}
+          geo: {
+            @type: GeoCoordinates,
+            latitude: ${doctorSettings.location.lat},
+            longitude: ${doctorSettings.location.lng}
           },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
+          openingHoursSpecification: {
+            @type: OpeningHoursSpecification,
             ${doctorSettings && doctorSettings.openingHours.map((day, index) => {
-          return `"dayOfWeek": ["${day.day}"],  "opens":"${day.opensAt}", "closes":"${day.closesAt}"`
+          return `dayOfWeek: [${day.day}],  opens:${day.opensAt}, closes:${day.closesAt}`
 
         }
         )}
