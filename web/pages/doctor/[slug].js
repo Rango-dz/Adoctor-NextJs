@@ -12,6 +12,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import dynamic from "next/dynamic";
 import { siteSettings } from "../../lib/api";
+import Script from "next/script";
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {})
 const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
@@ -55,8 +56,8 @@ export default function OnePost({ doctor, data }) {
   return (
     <>
       <Head>
-        <meta charSet="utf-8" Lang='en' />
-        <script type="application/ld+json">{`
+        <Script type="application/ld+json"
+          dangerouslySetInnerHTML={`
           {
           "@context": "https://schema.org",
           "@type": "Physician",
@@ -80,14 +81,14 @@ export default function OnePost({ doctor, data }) {
           "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             ${docData && docData.openingHours.map((day, index) => {
-          return `"dayOfWeek": ["${day.day}"],  "opens":"${day.opensAt}", "closes":"${day.closesAt}"`
+            return `"dayOfWeek": ["${day.day}"],  "opens":"${day.opensAt}", "closes":"${day.closesAt}"`
 
-        }
-        )}
+          }
+          )}
           }
         }
           `}
-        </script>
+        />
         <title>{`${slug} ${siteSettings.title} `}</title>
       </Head>
       <header id="header" className="ct-header">

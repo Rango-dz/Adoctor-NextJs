@@ -10,6 +10,7 @@ import Head from 'next/head';
 import { siteSettings } from "../../lib/api";
 import Image from 'next/image'
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
 const HeroBlog = dynamic(() => import('../../src/components/Blog/HeroBlog'), {});
 const Categories = dynamic(() => import('../../src/components/Blog/Sidebar/categories'), {});
@@ -39,8 +40,8 @@ export default function OnePost({ post, Settings }) {
   return (
     <>
       <Head>
-        <meta charSet="utf-8" Lang='en' />
-        <script type="application/ld+json">{`
+        <Script type="application/ld+json"
+          dangerouslySetInnerHTML={`
           {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
@@ -61,7 +62,7 @@ export default function OnePost({ post, Settings }) {
           "datePublished": ${postData.publishedAt},
         }
           `}
-        </script>
+        />
         <title>{postData.name}</title>
       </Head>
       <header id="header" className="ct-header">

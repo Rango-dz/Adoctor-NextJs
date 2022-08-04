@@ -7,12 +7,8 @@ import HeaderBottom from '../src/components/Header/headerBottom'
 import HeaderTop from '../src/components/Header/headerTop';
 import HeaderMiddle from '../src/components/Header/headerMiddle';
 import Appointments from '../src/components/Home/Appointments'
-// import SectionServicesOne from '../src/components/Home/SectionServicesOne';
-// import SectionDoctor from '../src/components/Home/SectionDoctor';
-// import SectionServices from '../src/components/Home/SectionServices';
-// import SectionReview from '../src/components/Home/SectionReview'
-// import SectionArticles from '../src/components/Home/SectionArticles'
 import { getAlldata, siteSettings } from '../lib/api';
+import Script from "next/script";
 
 
 const SectionServicesOne = dynamic(() => import('../src/components/Home/SectionServicesOne'), {});
@@ -20,10 +16,6 @@ const SectionDoctor = dynamic(() => import('../src/components/Home/SectionDoctor
 const SectionServices = dynamic(() => import('../src/components/Home/SectionServices'), {});
 const SectionReview = dynamic(() => import('../src/components/Home/SectionReview'), {});
 const SectionArticles = dynamic(() => import('../src/components/Home/SectionArticles'), {});
-// const Appointments = dynamic(() => import('../src/components/Home/Appointments'), {});
-// const HeaderBottom = dynamic(() => import('../src/components/Header/headerBottom'), {});
-// const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), {})
-// const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), {})
 const Footer = dynamic(() => import('../src/components/Footer/footer'), {})
 const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), {})
 
@@ -58,38 +50,40 @@ export default function Home({ data, settings }) {
   return (
     <>
       <Head>
+
         <title>{`${siteSettings.title} `}</title>
 
-        <script type="application/ld+json">{`
+        <Script type="application/ld+json"
+          dangerouslySetInnerHTML={`
           {
-          @context: https://schema.org,
-        @type: MedicalClinic,
-          name: ${siteSettings.title},
-          image: ${siteSettings.socialimage.asset.url},
-          @id: ${siteSettings.Website},
-          url: ${siteSettings.Website},
-          telephone: ${siteSettings.phoneNumber},
-          address: {
-            @type: PostalAddress,
-            streetAddress: ${doctorSettings.Address},
-            addressLocality: ${doctorSettings.city},
-            postalCode: ${doctorSettings.zipcode},
-            addressCountry: ${doctorSettings.Country}
+          "@context": "https://schema.org",
+          "@type": "MedicalClinic",
+          "name": ${siteSettings.title},
+          "image": ${siteSettings.socialimage.asset.url},
+          "@id": ${siteSettings.Website},
+          "url": ${siteSettings.Website},
+          "telephone": ${siteSettings.phoneNumber},
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": ${doctorSettings.Address},
+            "addressLocality": ${doctorSettings.city},
+            "postalCode": ${doctorSettings.zipcode},
+            "addressCountry": ${doctorSettings.Country}
           },
-          geo: {
-            @type: GeoCoordinates,
-            latitude: ${doctorSettings.location.lat},
-            longitude: ${doctorSettings.location.lng}
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": ${doctorSettings.location.lat},
+            "longitude": ${doctorSettings.location.lng}
           },
-          openingHoursSpecification: {
-            @type: OpeningHoursSpecification,
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
             ${doctorSettings && doctorSettings.openingHours.map((day, index) => {
-          return `dayOfWeek: [${day.day}],  opens:${day.opensAt}, closes:${day.closesAt}`
+            return `"dayOfWeek": ["${day.day}"],  "opens":"${day.opensAt}", "closes":"${day.closesAt}"`
 
-        }
-        )}
+          }
+          )}
           `}
-        </script>
+        />
       </Head>
       <div id="main" className="dark:bg-moroi-back main-container" >
         <header id="header" className="ct-header">
