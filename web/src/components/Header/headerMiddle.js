@@ -76,9 +76,9 @@ export default function HeaderMiddle(props) {
 
               {/* <!-- Mobile menu button --> */}
               <div className="md:hidden flex justify-between">
-                <button onClick={() => mobileMenu()} className=" mobile-menu-button" name='Main Menu'>
+                <button onClick={() => mobileMenu()} className=" mobile-menu-button" aria-label="Main Menu">
                   <div className="space-y-1">
-                    <FaAlignJustify className='hover:text-iconcolor text-iconcolorhover dark:text-colorRed w-6 h-auto' />
+                    <FaAlignJustify className='hover:text-iconcolor text-iconcolorhover dark:text-colorRed w-6 h-auto' aria-hidden="true" />
                   </div>
                 </button>
               </div>

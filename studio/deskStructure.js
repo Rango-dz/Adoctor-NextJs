@@ -5,7 +5,7 @@ export default () =>
   S.list()
     .title("Content")
     .items([
-      ...S.documentTypeListItems().filter(item => !["siteSettings", "TheDoctor", "post", "category", "media.tag", "HeroHeading"].includes(item.getId())),
+      ...S.documentTypeListItems().filter(item => !["siteSettings", "TheDoctor", "post", "category", "media.tag"].includes(item.getId())),
       S.divider(),
       S.listItem()
         .title("Articles")
@@ -30,15 +30,6 @@ export default () =>
                 ),
 
             ])
-        ),
-      S.divider(),
-      S.listItem()
-        .title("Hero Heading")
-        .icon(GiFirstAidKit)
-        .child(
-          S.document("HeroHeading")
-            .schemaType("HeroHeading")
-            .documentId("HeroHeading")
         ),
       S.divider(),
       S.listItem()
