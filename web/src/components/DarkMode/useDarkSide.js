@@ -27,6 +27,7 @@ export default function UseDarkMode(props) {
         type="button"
         onClick={() => { handleThemeSwitch(); props.modeState(theme) }}
         theme={theme}
+        name={`Switch to ${theme} Theme`}
         className=" bg-moroi-greyblue text-lg p-2 ml-10 mt-5 md:mt-0 rounded-md self-center items-center justify-center transition-custom duration-500 ease-in-out dark:bg-moroi-gray dark:text-colorEight dark:shadow-lg">
         {theme === 'dark' ? <FaMoon /> : <FaSun />}
       </button>
