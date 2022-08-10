@@ -86,7 +86,16 @@ export default function Tags({ post, settings }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(
+    `*[_type == "post" && defined(Tags) ][].Tags[].value`
+  )
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: false,
+  }
+}
+export async function getStaticProps(context) {
   const { slug = "" } = context.params
   const post = await sanityClient.fetch(`
     *[_type == "post" && Tags[].value match $slug  ] {

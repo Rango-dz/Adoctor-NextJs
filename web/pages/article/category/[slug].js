@@ -91,7 +91,16 @@ export default function Category({ category, settings }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(
+    `*[_type == "post" && defined(categories) ][].categories[]->slug.current`
+  )
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: false,
+  }
+}
+export async function getStaticProps(context) {
   const { slug = "" } = context.params
   const category = await sanityClient.fetch(`
     *[_type == "post" &&  categories[]->slug.current match $slug ] {
