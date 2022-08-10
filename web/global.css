@@ -351,7 +351,6 @@ textarea {
   border: 1px solid #EBEDF3;
   border-color: #EBEDF3 !important;
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
-  box-shadow: 0 0 5px 1px var(--colorFive);
   outline: transparent;
 }
 

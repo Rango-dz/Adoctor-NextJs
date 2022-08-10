@@ -5,6 +5,7 @@ import { GiClockwork, GiFirstAidKit } from 'react-icons/gi';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
 import Image from 'next/image'
+import Skeleton from 'react-loading-skeleton';
 
 export default function SectionDoctor(props) {
 
@@ -77,12 +78,12 @@ export default function SectionDoctor(props) {
 
 
         <div className='flex justify-center'>
-          <Link href="/about" ><a className='bg-colorEight text-colorOne dark:text-colorRed border-colorSix m-2 p-2 md:p-4 border  rounded-lg md:m-5  dark:shadow-none hover:dark:shadow-md hover:shadow  shadow-md'>About us</a></Link>
-          <Link href="/Contact" ><a className='bg-colorOne dark:bg-colorRed m-1 p-2 md:p-4 md:m-5 hover:dark:shadow-md rounded-lg align-middle self-center hover:shadow shadow-md  dark:hover:bg-colorRed text-white  dark:shadow-none'>Contact us</a></Link>
+          <Link href="/about" ><a className='bg-colorEight text-colorOne dark:text-colorRed border-colorSix m-2 p-2 md:p-4 border  rounded-lg md:m-5  dark:shadow-none hover:dark:shadow-md hover:shadow shadow-md font-bold'>About us</a></Link>
+          <Link href="/Contact" ><a className='bg-colorOne dark:bg-colorRed m-1 p-2 md:p-4 md:m-5 hover:dark:shadow-md rounded-lg align-middle self-center hover:shadow shadow-md  dark:hover:bg-colorRed text-white dark:shadow-none font-bold'>Contact us</a></Link>
         </div>
       </div>
       <div className='relative self-center w-[390px] h-auto mx-auto'>
-        <Image src={doctor.image.asset.url} layout='responsive' width={390} height={500} alt={doctor.name} className="rounded-xl z-0" />
+        <Image src={doctor.image.asset.url} layout='responsive' width={390} height={500} blurDataURL={<Skeleton />} alt={doctor.name} className="rounded-xl z-0" />
         <div
           data-aos="fade-up"
           data-aos-duration="500"

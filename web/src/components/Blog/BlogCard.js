@@ -4,6 +4,7 @@ import { PortableText } from '@portabletext/react'
 import { slugify } from '../../../lib/helpers';
 import Image from 'next/image'
 import sanityClient from "../../../lib/client";
+import Skeleton from 'react-loading-skeleton';
 
 function BlogCard(prop) {
 
@@ -39,7 +40,7 @@ function BlogCard(prop) {
               {/* image */}
               <div className="mt-5 relative w-auto">
                 <div>
-                  <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} priority='true' className="aspect-video h-auto object object-cover w-full relative" placeholder="blur" />
+                  <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} priority='true' className="aspect-video h-auto object object-cover w-full relative" placeholder="blur" blurDataURL={<Skeleton />} />
                 </div>
               </div>
 

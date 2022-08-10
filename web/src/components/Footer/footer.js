@@ -3,6 +3,7 @@ import Link from 'next/link';
 import EmergencyNumber from './emergencyNumber'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Skeleton from 'react-loading-skeleton';
 
 export default function Footer(props) {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function Footer(props) {
           <div className='m-2 p-1'>
             <Link href="/">
               <a className="flex justify-center  flex-col">
-                <Image src={footer.logoimage.asset.url} layout="fixed" width={200} height={29} alt={footer.title} className="text-center mx-auto" priority='true' />
+                <Image src={footer.logoimage.asset.url} layout="fixed" width={200} height={29} blurDataURL={<Skeleton />} alt={footer.title} className="text-center mx-auto" priority='true' />
                 <span className="my-5 text-slate-500 self-center">{footer.subtitle}</span>
               </a>
             </Link></div>

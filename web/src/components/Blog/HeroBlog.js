@@ -55,7 +55,7 @@ mainImage{
 
   if (!postData) return (
     <div className='m-[5%] mx-auto w-1/4'>
-      <Skeleton count={3} circle={true} />
+      <Skeleton />
     </div>
 
   );

@@ -11,16 +11,16 @@ export default function SectionServicesOne(props) {
     return (
       <div className="my-20 mx-[10%] w-1/4">
         <Skeleton circle={true} />
-        <Skeleton count={3} />
+        <Skeleton />
       </div>
     )
   }
 
   return (
     <section className="relative">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center align-middle gap-1 md:gap-10 mx-auto -m-[4%] text-center px-[5%] md:px-[10%]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center align-middle gap-1 md:gap-10 mx-auto m-[4%] text-center px-[5%] md:px-[10%]">
 
-        {allfeaturesData && allfeaturesData.map((item, index) => {
+        {allfeaturesData.map((item, index) => {
           return (
             <div
               description={item.title}
@@ -36,7 +36,7 @@ export default function SectionServicesOne(props) {
             </div>
           )
         })
-        }
+          || <Skeleton />}
       </div>
     </section>
   )
