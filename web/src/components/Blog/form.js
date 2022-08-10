@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useFormik } from 'formik';
-import { CommentSchema } from '../validations/CommentValidation';
+import { CommentSchema } from '../validations/CommentsValidation';
 
 export default function Form({ _id }) {
 
