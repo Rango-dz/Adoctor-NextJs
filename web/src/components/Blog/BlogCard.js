@@ -24,7 +24,7 @@ function BlogCard(prop) {
                     return (
                       <ul key={index} className="p-0 m-0">
                         <li className="list-none">
-                          <Link className="cursor-pointer" key={index} href={`/categories/${cat.slug.current}`}>
+                          <Link className="cursor-pointer" key={index} href={`/categories/${cat.slug.current}`} as={`/categories/${cat.slug.current}`}>
                             <a className="p-2 rounded border mx-1 uppercase text-slate-500 dark:text-colorSix font-semibold text-base hover:bg-colorSix dark:hover:bg-moroi-gray dark:border-moroi-stack"> {cat.title} </a></Link>
                         </li>
                       </ul>

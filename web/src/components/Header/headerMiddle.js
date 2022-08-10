@@ -60,7 +60,7 @@ export default function HeaderMiddle(props) {
                   {
                     logo.MainMenu.map((item, index) => {
                       return (
-                        <Link href={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center  px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 " : "flex self-center  px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1"}>{item.name}</a>
+                        <Link href={item.Url} as={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center  px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 " : "flex self-center  px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1"}>{item.name}</a>
                         </Link>
 
                       )
@@ -91,7 +91,7 @@ export default function HeaderMiddle(props) {
               {
                 logo.MainMenu.map((item, index) => {
                   return (
-                    <Link href={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 text-sm" : "flex self-center px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1"}>{item.name}</a>
+                    <Link href={item.Url} as={item.Url} key={index}><a className={router.pathname.split('/')[1] == item.Url.split('/')[3] ? "flex self-center px-2 py-2 hover:text-colorTwo dark:hover:text-moroi-pinkdanger text-colorTwo dark:text-colorRed transition duration-300 font-semibold leading-5 space-x-1 text-sm" : "flex self-center px-2 py-2 hover:text-colorTwo dark:hover:text-colorRed  transition duration-300 font-semibold leading-5 space-x-1"}>{item.name}</a>
                     </Link>
 
                   )

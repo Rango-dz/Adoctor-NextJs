@@ -248,7 +248,7 @@ footer.ct-footer [data-row=bottom] {
   backdrop-filter: saturate(100%) blur(20px)
 }
 
-@supports {
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   footer.ct-footer [data-row=bottom] {
     background-color: rgba(255, 255, 255, .2);
     backdrop-filter: saturate(100%) blur(10px)
@@ -565,7 +565,7 @@ html.dark footer.ct-footer [data-row=bottom] {
   border-top: 1px solid var(--gray);
 }
 
-@supports {
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   html.dark footer.ct-footer [data-row=bottom] {
     background-color: var(--dark);
   }

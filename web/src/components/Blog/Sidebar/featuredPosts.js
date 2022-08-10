@@ -50,7 +50,7 @@ export default function FeaturedPosts() {
                   <Link
 
                     key={index}
-                    href={`/article/${post.slug.current}`}><a>{post.title}</a></Link>
+                    href={`/article/${post.slug.current}`} as={`/article/${post.slug.current}`}><a>{post.title}</a></Link>
                   <span className="text-sm text-slate-400">{new Date(post.publishedAt).toDateString()}</span>
                 </div>
 

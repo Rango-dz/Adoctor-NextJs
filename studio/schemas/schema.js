@@ -18,6 +18,7 @@ import menu from './menu'
 import HomeFeatures from './HomeFeatures'
 import siteSettings from './siteSettings'
 import TheDoctor from './TheDoctor'
+import comment from './comment'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -40,6 +41,7 @@ export default createSchema({
     HomeFeatures,
     siteSettings,
     TheDoctor,
+    comment,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent

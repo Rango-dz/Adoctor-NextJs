@@ -8,7 +8,6 @@ export default function Footer(props) {
   const router = useRouter();
   // fetching site seettings
   const footer = props.footerSettings;
-  console.log(footer)
 
   return (
     <>

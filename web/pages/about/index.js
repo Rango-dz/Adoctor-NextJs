@@ -82,7 +82,7 @@ export default function AllPosts({ data, settings }) {
                       </div>
                       <div className="p-5 relative mb-10 w-full max-h-36">
 
-                        <Link href={post.slug === undefined ? `/` : `/doctor/${post.slug.current}`} className="gap-2 mt-1 text-lg leading-tight font-medium text-inherit no-underline flex"><a><FaStethoscope className="self-center uppercase tracking-wide text-sm  font-semibold hover:underline text-iconcolor dark:text-white" />{post.name && post.name}</a></Link>
+                        <Link href={post.slug === undefined ? `/` : `/doctor/${post.slug.current}`} as={post.slug === undefined ? `/` : `/doctor/${post.slug.current}`} className="gap-2 mt-1 text-lg leading-tight font-medium text-inherit no-underline flex"><a><FaStethoscope className="self-center uppercase tracking-wide text-sm  font-semibold hover:underline text-iconcolor dark:text-white" />{post.name && post.name}</a></Link>
 
                         <div className="flex text-sm gap-2 mt-2 leading-4"><FaDirections className="self-center text-iconcolor dark:text-white" /> {post.Country && post.Country} </div>
 

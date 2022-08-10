@@ -45,7 +45,7 @@ export default function Categories() {
               <Link
                 className=" "
                 key={index}
-                href={`/article/category/${post.slug.current}`}><a className="flex"><FaBookMedical className="self-center text-iconcolor dark:text-colorFive mr-2" />{post.title}</a></Link>
+                href={`/article/category/${post.slug.current}`} as={`/article/category/${post.slug.current}`}><a className="flex"><FaBookMedical className="self-center text-iconcolor dark:text-colorFive mr-2" />{post.title}</a></Link>
 
             </div>
           )

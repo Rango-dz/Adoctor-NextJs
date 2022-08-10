@@ -11,7 +11,7 @@ const STUDIO_REWRITE = {
 
 module.exports = withPWA({
   images: {
-    domains: ["cdn.sanity.io"],
+    domains: ["cdn.sanity.io", "ui-avatars.com"],
     formats: ['image/avif', 'image/webp'],
   },
   rewrites: () => [STUDIO_REWRITE],
