@@ -86,7 +86,7 @@ export default function OnePost({ post, Settings }) {
               <span className="flex justify-center align-middle gap-1"> <GiOpenBook className="slef-center" />{postData.estimatedReadingTime} Min Read</span>
             </div>
 
-            <div className="rounded my-32 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" /></div>
+            <div className="rounded my-32 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" placeholder="blur" /></div>
 
           </div>
 
