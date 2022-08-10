@@ -39,7 +39,7 @@ function BlogCard(prop) {
               {/* image */}
               <div className="mt-5 relative w-auto">
                 <div>
-                  <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} priority='true' className="aspect-video h-auto object object-cover w-full relative" />
+                  <Image src={post.mainImage.asset.url} alt="" layout="responsive" width={512} height={300} priority='true' className="aspect-video h-auto object object-cover w-full relative" placeholder="blur" />
                 </div>
               </div>
 
