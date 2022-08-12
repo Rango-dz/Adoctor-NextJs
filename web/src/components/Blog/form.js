@@ -40,7 +40,7 @@ export default function Form({ _id }) {
   })
 
   return (
-    <form id='comments' className="md:grid md:grid-cols-1 gap-5 w-2/3 mx-auto" ref={contactForm} onSubmit={handleSubmit}>
+    <form id='comments' className="md:grid md:grid-cols-1 gap-5 w-full md:w-2/3 mx-auto" ref={contactForm} onSubmit={handleSubmit}>
       <input type="hidden" name="_id" value={values._id = _id} />
       <div className='flex flex-col md:flex-row justify-center align-middle gap-5'>
         <div className='flex flex-col w-full'>
@@ -51,7 +51,7 @@ export default function Form({ _id }) {
             onChange={handleChange}
             name="name"
             placeholder="Your Name"
-            className={errors.name && touched.name ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-4 col-span-2 rounded-lg placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none " : "p-4 col-span-2 rounded-lg mb-5 placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none "} />
+            className={errors.name && touched.name ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-4 col-span-2 rounded-lg placeholder:text-sm dark:bg- bg-[#f5f6f7] shadow-none focus-within:shadow-none dark:bg-moroi-gray dark:focus-within:bg-moroi-gray" : "dark:bg-moroi-gray dark:focus-within:bg-moroi-gray p-4 col-span-2 rounded-lg mb-5 placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none "} />
           {errors.name && touched.name && <div className="text-orange-700 text-sm mb-5">{errors.name}</div>}
         </div>
 
@@ -63,7 +63,7 @@ export default function Form({ _id }) {
             onChange={handleChange}
             name="email"
             placeholder="Email"
-            className={errors.email && touched.email ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-4 col-span-2 rounded-lg placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none" : "p-4 col-span-2 rounded-lg mb-5 placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none"} />
+            className={errors.email && touched.email ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-4 col-span-2 rounded-lg placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none dark:bg-moroi-gray dark:focus-within:bg-moroi-gray" : "dark:bg-moroi-gray dark:focus-within:bg-moroi-gray p-4 col-span-2 rounded-lg mb-5 placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none"} />
           {errors.email && touched.email && <div className="text-orange-700 text-sm mb-5">{errors.email}</div>}
         </div>
 
@@ -75,7 +75,7 @@ export default function Form({ _id }) {
           onChange={handleChange}
           name="comment" rows="full" cols="auto"
           placeholder="Additional Information"
-          className={errors.comment && touched.comment ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-3 col-span-2 rounded-lg placeholder:text-sm bg-[#f5f6f7] w-full h-full focus-within:bg-[#f5f6f7] shadow-none focus-within:shadow-none" : "p-3 col-span-2 rounded-lg mb-5 placeholder:tracking-wide bg-[#f5f6f7] w-full h-full focus-within:bg-[#f5f6f7] shadow-none focus-within:shadow-none"} >
+          className={errors.comment && touched.comment ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-3 col-span-2 rounded-lg placeholder:text-sm bg-[#f5f6f7] w-full h-full  shadow-none focus-within:shadow-none dark:bg-moroi-gray dark:focus-within:bg-moroi-gray" : "dark:bg-moroi-gray dark:focus-within:bg-moroi-gray p-3 col-span-2 rounded-lg mb-5 placeholder:tracking-wide bg-[#f5f6f7] w-full h-full  shadow-none focus-within:shadow-none"} >
         </textarea>
         {errors.comment && touched.comment && <div className="text-orange-700 text-sm mb-5">{errors.comment}</div>}
 

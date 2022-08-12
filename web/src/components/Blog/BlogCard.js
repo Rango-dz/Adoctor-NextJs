@@ -16,7 +16,7 @@ function BlogCard(prop) {
           slicedData.map((post, index) => (
 
 
-            <div key={index} className="border dark:border-moroi-stack bg-white dark:bg-moroi-dark shadow-md rounded gap-10 w-full overflow-hidden pt-5 hover:shadow-lg h-fit">
+            <div key={index} className=" dark:border-moroi-stack bg-white dark:bg-moroi-dark shadow-md rounded gap-10 w-full overflow-hidden pt-5 hover:shadow-lg h-fit">
               <div key={index} className="px-5">
 
                 {/* category and read time */}
@@ -26,7 +26,7 @@ function BlogCard(prop) {
                       <ul key={index} className="p-0 m-0">
                         <li className="list-none">
                           <Link className="cursor-pointer" key={index} href={`/categories/${cat.slug.current}`} as={`/categories/${cat.slug.current}`}>
-                            <a className="p-2 rounded border mx-1 uppercase text-slate-500 dark:text-colorSix font-semibold text-base hover:bg-colorSix dark:hover:bg-moroi-gray dark:border-moroi-stack"> {cat.title} </a></Link>
+                            <a className="p-2 mx-1 uppercase text-slate-500 dark:text-colorSix font-semibold text-base bg-colorSix dark:bg-moroi-gray rounded-lg dark:hover:bg-moroi-gray dark:border-moroi-stack"> {cat.title} </a></Link>
                         </li>
                       </ul>
                     )
@@ -75,7 +75,7 @@ function BlogCard(prop) {
               <div className="flex flex-auto gap-5 mx-5 my-2 prose-lg">
                 {post.tag && post.tag.map((tag, index) => {
                   return (
-                    <div key={index} className="  rounded dark:text-colorFive  px-2 py-1 hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray border dark:border-moroi-stack">
+                    <div key={index} className="  rounded dark:text-colorFive  px-2 py-1 hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray dark:border-moroi-stack overflow-hidden line-clamp-1">
                       <Link
                         key={index}
                         href={`/article/tags/${tag.value}`}><a>#{tag.value}</a>

@@ -134,7 +134,7 @@ export default function OnePost({ post, Settings }) {
                 <Link
                   key={index}
                   className=""
-                  href={`/article/tags/${tag.value}`} as={`/article/tags/${tag.value}`}><a className="flex p-2 text-base dark:bg-moroi-stack dark:hover:bg-moroi-gray cursor-pointer gap-1 rounded-lg bg-colorSix w-fit">#{tag.value}</a>
+                  href={`/article/tags/${tag.value}`} as={`/article/tags/${tag.value}`}><a className="flex p-2 text-base dark:hover:bg-moroi-stack dark:bg-moroi-gray cursor-pointer gap-1 rounded-lg bg-colorSix w-fit">#{tag.value}</a>
                 </Link>
 
               ))
@@ -159,9 +159,8 @@ export default function OnePost({ post, Settings }) {
         </div>
 
         {/* comments */}
-        <div className=" w-full grid grid-cols-1 gap-10 col-span-4 justify-center overflow-hidden p-0 md:p-5 lg:p-10 bg-white dark:bg-moroi-dark shadow-md rounded ">
+        <div className=" w-full grid grid-cols-1 gap-10 col-span-4 justify-center overflow-hidden p-5 lg:p-10 bg-white dark:bg-moroi-dark shadow-md rounded ">
           <Form _id={post._id} />
-
           <Comments comment={post.comments} />
         </div>
 
