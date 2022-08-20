@@ -2,7 +2,6 @@ import React from "react";
 import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { slugify } from "../../../../lib/helpers";
 
 export default function Tags(props) {
 
@@ -22,7 +21,7 @@ export default function Tags(props) {
                 <div key={index} className="p-1 text-sm text-slate-600 dark:text-colorFive uppercase bg-colorSix dark:bg-moroi-dark dark:bg-opacity-25 hover:bg-colorFive dark:hover:bg-moroi-gray hover:rounded m-1 w-fit">
                   <Link
                     key={index}
-                    href={`/article/tags/${slugify(tag.value)}`} as={`/article/tags/${slugify(tag.value)}`}><a>#{tag.value}</a>
+                    href={`/article/tags/${tag.value}`} as={`/article/tags/${tag.value}`}><a>#{tag.value}</a>
                   </Link>
                 </div>
               )

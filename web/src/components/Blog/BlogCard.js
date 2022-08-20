@@ -25,7 +25,7 @@ function BlogCard(prop) {
                     return (
                       <ul key={index} className="p-0 m-0">
                         <li className="list-none">
-                          <Link className="cursor-pointer" key={index} href={`/categories/${cat.slug.current}`} as={`/categories/${cat.slug.current}`}>
+                          <Link className="cursor-pointer" key={index} href={`/article/category/${cat.slug.current}`} as={`/article/category/${cat.slug.current}`}>
                             <a className="p-2 mx-1 uppercase text-slate-500 dark:text-colorSix font-semibold text-base bg-colorSix dark:bg-moroi-gray rounded-lg dark:hover:bg-moroi-gray dark:border-moroi-stack"> {cat.title} </a></Link>
                         </li>
                       </ul>
@@ -46,7 +46,7 @@ function BlogCard(prop) {
 
               {/* title */}
               <div className='px-5'>
-                <Link href={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold ">
+                <Link href={"/article/" + post.slug.current} as={"/article/" + post.slug.current} key={post.slug.current} className="text-2xl font-bold ">
                   <h2 className="my-5 capitalize cursor-pointer font-bold text-3xl"><a>{post.title}</a></h2>
                 </Link>
               </div>
@@ -78,7 +78,7 @@ function BlogCard(prop) {
                     <div key={index} className="  rounded dark:text-colorFive  px-2 py-1 hover:bg-colorSix hover:border-colorSix dark:hover:bg-moroi-gray dark:hover:border-moroi-gray dark:border-moroi-stack overflow-hidden line-clamp-1">
                       <Link
                         key={index}
-                        href={`/article/tags/${tag.value}`}><a>#{tag.value}</a>
+                        href={`/article/tags/${tag.value}`} as={`/article/tags/${tag.value}`} ><a>#{tag.value}</a>
                       </Link>
                     </div>
                   )
