@@ -1,4 +1,4 @@
-import sanityClient from '../lib/client';
+import sanityClient from '../../lib/client';
 
 export default async function createComment(req, res) {
   const { _id, name, email, comment } = JSON.parse(req.body)
