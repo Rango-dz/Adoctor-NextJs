@@ -3,12 +3,15 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { FaHome, FaAlignJustify } from 'react-icons/fa'
+import { FaAlignJustify, FaUserAlt } from 'react-icons/fa'
 import UseDarkMode from '../DarkMode/useDarkSide';
 import Skeleton from 'react-loading-skeleton';
-// import { useLocalStorage } from '../../useLocalStorage';
+import { useUser } from '@auth0/nextjs-auth0';
+import retour from 'next/router';
+import UserMenu from './userMenu';
 
 export default function HeaderMiddle(props) {
+  const { user } = useUser();
   const router = useRouter();
 
   // fetching site seettings
@@ -69,6 +72,14 @@ export default function HeaderMiddle(props) {
                     )
                   }
 
+                  {user && <UserMenu user={user} />}
+
+                  {!user && <button className='border-2 border-colorOne dark:border-colorRed dark:hover:text-colorFive dark:hover:border-opacity-75 rounded-md p-2 mx-1 font-semibold'>
+                    <a href="/api/auth/login">Sign in</a>
+                  </button>
+                  }
+
+
                   <UseDarkMode modeState={modeState} />
 
 
@@ -98,6 +109,13 @@ export default function HeaderMiddle(props) {
                   )
                 }
                 )
+              }
+
+              {user && <UserMenu user={user} />}
+
+              {!user && <button className='border-2 border-colorOne dark:border-colorRed dark:hover:text-colorFive dark:hover:border-opacity-75 rounded-md p-2 mx-1 font-semibold'>
+                <a href="/api/auth/login">Sign in</a>
+              </button>
               }
 
               <UseDarkMode modeState={modeState} />

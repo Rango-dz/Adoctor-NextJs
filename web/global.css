@@ -758,3 +758,7 @@ html.dark li[role="tab"] div[data-projection-id] {
   background-color: transparent;
   cursor: default;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

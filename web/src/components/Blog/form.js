@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { useFormik } from 'formik';
 import { CommentSchema } from '../validations/CommentsValidation';
+import { useUser } from '@auth0/nextjs-auth0';
+import retour from 'next/router';
 
 export default function Form({ _id }) {
-
+  const { user, error, isLoading } = useUser();
   // refrencing the form for emailjs
   const contactForm = useRef();
 
@@ -12,7 +14,6 @@ export default function Form({ _id }) {
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
-    console.log(values)
     let response
     try {
       response = await fetch('/api/createComment', {
@@ -20,7 +21,6 @@ export default function Form({ _id }) {
         body: JSON.stringify(values),
         type: 'application/json'
       })
-      console.log(response)
     } catch (err) {
       console.log(err)
     }
@@ -39,6 +39,16 @@ export default function Form({ _id }) {
     onSubmit,
   })
 
+  if (!user) {
+    return (
+      <div className='flex flex-col justify-center mx-auto gap-5'>
+        <h3>You need to be logged in to comment</h3>
+        <button onClick={() => retour.push('/api/auth/login')} className="p-2 bg-colorOne font-bold text-white rounded-md w-full
+        ">Login</button>
+      </div>
+    )
+  }
+
   return (
     <form id='comments' className="md:grid md:grid-cols-1 gap-5 w-full md:w-2/3 mx-auto" ref={contactForm} onSubmit={handleSubmit}>
       <input type="hidden" name="_id" value={values._id = _id} />
@@ -46,11 +56,11 @@ export default function Form({ _id }) {
         <div className='flex flex-col w-full'>
           <input
             type="text"
-            value={values.name}
+            value={values.name = user && user.name}
             onBlur={handleBlur}
             onChange={handleChange}
             name="name"
-            placeholder="Your Name"
+            placeholder={user && user.name}
             className={errors.name && touched.name ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-4 col-span-2 rounded-lg placeholder:text-sm dark:bg- bg-[#f5f6f7] shadow-none focus-within:shadow-none dark:bg-moroi-gray dark:focus-within:bg-moroi-gray" : "dark:bg-moroi-gray dark:focus-within:bg-moroi-gray p-4 col-span-2 rounded-lg mb-5 placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none "} />
           {errors.name && touched.name && <div className="text-orange-700 text-sm mb-5">{errors.name}</div>}
         </div>
@@ -58,11 +68,11 @@ export default function Form({ _id }) {
         <div className="flex flex-col w-full">
           <input
             type="text"
-            value={values.email}
+            value={values.email = user && user.email}
             onBlur={handleBlur}
             onChange={handleChange}
             name="email"
-            placeholder="Email"
+            placeholder={user && user.email}
             className={errors.email && touched.email ? "outline outline-1 outline-orange-600 ring-outline-orange-600 border-outline-orange-600 shadow-outline-orange-600 focus:outline focus:outline-1 focus:outline-orange-600 focus:ring-outline-orange-600 focus:border-outline-orange-600 focus:shadow-outline-orange-600 text-outline-orange-600 p-4 col-span-2 rounded-lg placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none dark:bg-moroi-gray dark:focus-within:bg-moroi-gray" : "dark:bg-moroi-gray dark:focus-within:bg-moroi-gray p-4 col-span-2 rounded-lg mb-5 placeholder:text-sm bg-[#f5f6f7] shadow-none focus-within:shadow-none"} />
           {errors.email && touched.email && <div className="text-orange-700 text-sm mb-5">{errors.email}</div>}
         </div>

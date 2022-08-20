@@ -5,6 +5,7 @@
   "dependencies": {
     "@algolia/autocomplete-js": "^1.7.1",
     "@algolia/autocomplete-theme-classic": "^1.7.1",
+    "@auth0/nextjs-auth0": "^1.9.1",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@material-tailwind/react": "^1.0.4",

@@ -8,7 +8,7 @@ export default function Comments(comments) {
       <div>
         {comments.comment?.map(({ _id, _createdAt, name, email, comment }) => (
 
-          <div key={_id} className="w-full flex gap-5 overflow-hidden justify-center">
+          <div key={_id} className="w-full flex gap-5 overflow-hidden justify-start">
             <div className='flex justify-center align-middle p-10 pr-0'>
               <div className='block self-center w-auto min-w-max'><Image src={`https://ui-avatars.com/api/?name=${name}&?background=random`} width={50} height={50} className="rounded" /></div>
             </div>
