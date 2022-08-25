@@ -1,6 +1,14 @@
 const withPWA = require('next-pwa');
 const prod = process.env.NODE_ENV === 'production'
 
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self';
+  child-src ${process.env.NEXT_PUBLIC_BASE_URL};
+  style-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL};
+  font-src 'self';  
+`
+
 const STUDIO_REWRITE = {
   source: "/studio/:path*",
   destination:
@@ -19,5 +27,23 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     disable: prod ? false : true
+  },
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes in your application.
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim()
+          }
+        ],
+      },
+    ]
   },
 });
