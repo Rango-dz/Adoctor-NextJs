@@ -27,7 +27,7 @@ export default function SectionServices(props) {
           <h1 className='text-4xl font-bold tracking-tight text-heading lg:text-5xl flex mb-5'> Our Departments</h1>
         </div>
         <div>
-          <h3 className='lead-tight text-lg tracking-tight text-heading lg:text-xl text-colorOne dark:text-colorRed'>We provide Best Doctor</h3>
+          <h2 className='lead-tight text-lg tracking-tight text-heading lg:text-xl text-colorOne dark:text-colorRed'>We provide Best Doctor</h2>
           <p className='text-heading lg:text-base xl:text-lg leading-tight text-slate-500 text-start'>Consult Our Doctors For Any Health Concern</p>
         </div>
       </div>
