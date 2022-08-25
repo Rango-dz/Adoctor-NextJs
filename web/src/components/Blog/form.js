@@ -22,7 +22,7 @@ export default function Form({ _id }) {
         type: 'application/json'
       })
     } catch (err) {
-      console.log(err)
+
     }
   }
 
