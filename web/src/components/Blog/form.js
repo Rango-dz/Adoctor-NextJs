@@ -43,7 +43,7 @@ export default function Form({ _id }) {
     return (
       <div className='flex flex-col justify-center mx-auto gap-5'>
         <h3>You need to be logged in to comment</h3>
-        <button onClick={() => retour.push('/api/auth/login')} className="p-2 bg-colorOne font-bold text-white rounded-md w-full
+        <button onClick={() => retour.push('/api/auth/login')} className="p-2 bg-colorOne dark:bg-colorRed font-bold text-white rounded-md w-full
         ">Login</button>
       </div>
     )
