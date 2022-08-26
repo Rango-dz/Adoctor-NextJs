@@ -2,12 +2,12 @@ const withPWA = require('next-pwa');
 const prod = process.env.NODE_ENV === 'production'
 
 const ContentSecurityPolicy = `
-  default-src 'self' https://cdn.sanity.io data:;
+  default-src 'self' https://cdn.sanity.io data: https://maps.googleapis.com https://vitals.vercel-insights.com;
   script-src 'self' https://vitals.vercel-insights.com https://cdn.sanity.io data: https://maps.googleapis.com;
   child-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data:;
-  style-src 'self' https://fonts.googleapis.com 'unsafe-inline' ${process.env.NEXT_PUBLIC_BASE_URL} data:;
-  font-src 'self' https://fonts.gstatic.com data:; 
-  img-src 'self' https://cdn.sanity.io data:;
+  style-src 'self' https://fonts.googleapis.com 'unsafe-inline' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://maps.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com data: https://maps.googleapis.com; 
+  img-src 'self' https://cdn.sanity.io data: https://maps.googleapis.com;
   manifest-src 'self',
 `
 
