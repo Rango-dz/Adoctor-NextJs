@@ -2,7 +2,7 @@ const withPWA = require('next-pwa');
 const prod = process.env.NODE_ENV === 'production'
 
 const ContentSecurityPolicy = `
-  default-src 'self' https://*.sanity.io data: https://*.googleapis.com https://*.vercel-insights.com;
+  default-src 'none';
   script-src 'self' https://*.vercel-insights.com https://*.sanity.io data: https://*.googleapis.com;
   child-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data:;
   style-src 'self' https://*.googleapis.com 'unsafe-inline' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.googleapis.com;
