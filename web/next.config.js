@@ -2,9 +2,9 @@ const withPWA = require('next-pwa');
 const prod = process.env.NODE_ENV === 'production'
 
 const ContentSecurityPolicy = `
-  default-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io  https://*.googleapis.com https://*.vercel-insights.com https://*.algolia.net https://*.algolianet.com https://*.algolia.io https://*.vercel.app https://*.googleapis.com;
-  script-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io  https://*.googleapis.com https://*.vercel-insights.com https://*.algolia.net https://*.algolianet.com https://*.algolia.io https://*.vercel.app/* https://*.googleapis.com 'sha256-XXX' unsafe-eval;
-  child-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io  https://*.googleapis.com https://*.vercel-insights.com https://*.algolia.net https://*.algolianet.com https://*.algolia.io https://*.vercel.app https://*.googleapis.com;
+  default-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io  https://*.googleapis.com https://*.vercel-insights.com https://*.algolia.net https://*.algolianet.com https://*.algolia.io https://*.vercel.app https://*.googleapis.com https://*.emailjs.com;
+  script-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io  https://*.googleapis.com https://*.vercel-insights.com https://*.algolia.net https://*.algolianet.com https://*.algolia.io https://*.vercel.app/* https://*.googleapis.com 'sha256-XXX' https://*.emailjs.com 'unsafe-eval';
+  child-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io  https://*.googleapis.com https://*.vercel-insights.com https://*.algolia.net https://*.algolianet.com https://*.algolia.io https://*.vercel.app https://*.googleapis.com https://*.emailjs.com;
   style-src 'self' https://*.googleapis.com 'unsafe-inline' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.googleapis.com https://*.sanity.io  https://*.googleapis.com https://*.vercel-insights.com https://*.algolia.net https://*.algolianet.com https://*.algolia.io https://*.vercel.app https://*.googleapis.com;
   font-src 'self' https://*.gstatic.com data: https://*.googleapis.com; 
   img-src 'self' https://*.sanity.io data: https://*.googleapis.com blob:;
