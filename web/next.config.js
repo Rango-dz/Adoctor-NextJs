@@ -2,12 +2,12 @@ const withPWA = require('next-pwa');
 const prod = process.env.NODE_ENV === 'production'
 
 const ContentSecurityPolicy = `
-  default-src 'self';
+  default-src 'self' https://cdn.sanity.io data: data:application;
   script-src 'self';
-  child-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data:;
-  style-src 'self' https://fonts.googleapis.com 'unsafe-inline' ${process.env.NEXT_PUBLIC_BASE_URL} data:;
-  font-src 'self' https://fonts.gstatic.com; 
-  img-src 'self' https://cdn.sanity.io data:;
+  child-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: data:application;
+  style-src 'self' https://fonts.googleapis.com 'unsafe-inline' ${process.env.NEXT_PUBLIC_BASE_URL} data: data:application;
+  font-src 'self' https://fonts.gstatic.com data:application data:; 
+  img-src 'self' https://cdn.sanity.io data: data:application;
   manifest-src 'self',
 `
 
