@@ -113,7 +113,7 @@ export default function HeaderMiddle(props) {
 
               {user && <UserMenu user={user} />}
 
-              {!user && <button className='border-2 border-colorOne dark:border-colorRed dark:hover:text-colorFive dark:hover:border-opacity-75 rounded-md p-2 mx-1 font-semibold'>
+              {!user && <button className='mx-auto px-5 border-2 border-colorOne dark:border-colorRed dark:hover:text-colorFive dark:hover:border-opacity-75 rounded-md p-2 font-semibold'>
                 <a href="/api/auth/login">Sign in</a>
               </button>
               }

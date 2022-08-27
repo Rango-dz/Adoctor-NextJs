@@ -76,8 +76,8 @@ export default function OnePost({ post, Settings }) {
           <div className="relative rouned">
 
 
-            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl mb-10 px-5 md:px-10 cursor-pointer capitalize text-center">{postData.title}</h1>
-            <div className="flex gap-5 prose-lg  px-5 md:px-10 justify-center">
+            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl mb-10 px-5 md:px-10 cursor-pointer capitalize text-center mt-5">{postData.title}</h1>
+            <div className="flex gap-5 prose-lg  px-5 md:px-10 justify-center flex-col md:flex-row">
               <span >
                 <Link href={`/doctor/${postData.authorslug.current}`} as={`/doctor/${postData.authorslug.current}`}><a className="flex justify-center align-middle gap-1"><GiPencil className="slef-center" /> Writer: {postData.name}</a></Link>
               </span>
@@ -86,7 +86,7 @@ export default function OnePost({ post, Settings }) {
               <span className="flex justify-center align-middle gap-1"> <GiOpenBook className="slef-center" />{postData.estimatedReadingTime} Min Read</span>
             </div>
 
-            <div className="rounded my-32 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" placeholder="blur" blurDataURL={<Skeleton />} /></div>
+            <div className="rounded my-10 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" placeholder="blur" blurDataURL={<Skeleton />} /></div>
 
           </div>
 

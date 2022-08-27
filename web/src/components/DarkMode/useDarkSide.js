@@ -29,7 +29,7 @@ export default function UseDarkMode(props) {
         theme={theme}
         name={`Switch to ${theme} Theme`}
         aria-label="Switch theme color"
-        className=" bg-moroi-greyblue text-lg p-2 ml-10 mt-5 md:mt-0 rounded-md self-center items-center justify-center transition-custom duration-500 ease-in-out dark:bg-moroi-gray dark:text-colorEight dark:shadow-lg">
+        className=" bg-moroi-greyblue text-lg p-2 mt-5 md:ml-10 md:mt-0 rounded-md self-center items-center justify-center transition-custom duration-500 ease-in-out dark:bg-moroi-gray dark:text-colorEight dark:shadow-lg mx-auto">
         {theme === 'dark' ? <FaMoon /> : <FaSun />}
       </button>
     </>
