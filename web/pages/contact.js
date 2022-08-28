@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import emailjs from 'emailjs-com';
 import { useFormik } from 'formik';
-import { Button, Typography } from '@material-tailwind/react'
 import { ContactSchema } from '../src/components/validations/ContactValidation';
 import { useLoadScript } from "@react-google-maps/api";
 import { GiRotaryPhone, GiMailbox, GiPostOffice } from 'react-icons/gi';
@@ -86,7 +85,7 @@ export default function Contact({ settings, doctor }) {
         <div className='flex flex-col gap-20 items-center mx-auto'>
           <div className='flex flex-col justify-center align-middle self-center w-full '>
             <h1 className="font-bold text-3xl lg:text-4xl my-4">Questions, Comments, Or Concerns?</h1>
-            <Typography variant="lead" className="mb-4 font-light">One of Our Support Team Will Reach Out To You Soon.</Typography>
+            <p variant="lead" className="mb-4 font-light prose-lg">One of Our Support Team Will Reach Out To You Soon.</p>
 
           </div>
 
@@ -141,9 +140,9 @@ export default function Contact({ settings, doctor }) {
 
               <p variant="font-light">By clicking the button below you agree to our tearms of Service and have read and understood our Privacy Policy.</p>
 
-              <Button
+              <button
                 type="submit"
-                className={isSubmitting ? 'rounded bg-green-600 text-white hover:bg-green-500 hover:shadow mx-auto py-4 px-20 mt-4 text-lg font-medium my-5 md:my-0' : "rounded bg-colorTwo dark:bg-colorRed dark:hover:bg-moroi-pinkdanger text-white hover:bg-colorOne hover:dark:shadow-md dark:shadow-md hover:shadow mx-auto py-4 px-20 text-lg font-medium my-5 md:my-0"}>Submit</Button>
+                className={isSubmitting ? 'rounded bg-green-600 text-white hover:bg-green-500 hover:shadow mx-auto py-4 px-20 mt-4 text-lg font-medium my-5 md:my-0' : "rounded bg-colorTwo dark:bg-colorRed dark:hover:bg-moroi-pinkdanger text-white hover:bg-colorOne hover:dark:shadow-md dark:shadow-md hover:shadow mx-auto py-4 px-20 text-lg font-medium my-5 md:my-0"}>Submit</button>
 
 
             </form>
