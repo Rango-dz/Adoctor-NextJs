@@ -5,7 +5,7 @@ import { PortableText } from '@portabletext/react';
 import Skeleton from 'react-loading-skeleton';
 import { slugify } from '../../lib/helpers';
 import TableOfContents, { parseOutline } from '../../src/components/Blog/Sidebar/TableOfContent';
-import { GiAlarmClock, GiCheckboxTree, GiCheckMark, GiOpenBook, GiPencil } from "react-icons/gi";
+import { GiAlarmClock, GiCheckMark, GiOpenBook, GiPencil } from "react-icons/gi";
 import Head from 'next/head';
 import { siteSettings } from "../../lib/api";
 import Image from 'next/image'
@@ -86,7 +86,7 @@ export default function OnePost({ post, Settings }) {
               <span className="flex justify-center align-middle gap-1"> <GiOpenBook className="slef-center" />{postData.estimatedReadingTime} Min Read</span>
             </div>
 
-            <div className="rounded my-10 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" placeholder="blur" blurDataURL={<Skeleton />} /></div>
+            <div className="rounded my-10 object-cover relative "><Image src={postData.mainImage.asset.url} alt="" layout="responsive" width={800} height={400} className="rounded" priority="true" placeholder="blur" blurDataURL={postData.mainImage.asset.url} /></div>
 
           </div>
 

@@ -3,11 +3,10 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { FaAlignJustify, FaUserAlt } from 'react-icons/fa'
+import { FaAlignJustify } from 'react-icons/fa'
 import UseDarkMode from '../DarkMode/useDarkSide';
 import Skeleton from 'react-loading-skeleton';
 import { useUser } from '@auth0/nextjs-auth0';
-import retour from 'next/router';
 import UserMenu from './userMenu';
 
 export default function HeaderMiddle(props) {
