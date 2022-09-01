@@ -66,8 +66,8 @@ export default function AllPosts({ data, settings }) {
         <div>
           <div className="prose-slate grid grid-cols-1 mx-[5%] md:mx-[10%] mb-[15%] mt-[5%]">
             <div className="mt-12 max-w-2xl flex flex-col justify-start mb-[5%]">
-              <h5 className="text-colorOne dark:text-colorRed">The Team</h5>
-              <h1 className="text-3xl md:text-5xl uppercase font-bold text-start leading-9">Meet our team of experts</h1>
+              <h1 className="text-colorOne dark:text-colorRed">The Team</h1>
+              <h2 className="text-3xl md:text-5xl uppercase font-bold text-start leading-9">Meet our team of experts</h2>
               <h3 className="text-slate-500">include highly qualified male and female practitioners</h3>
 
             </div>

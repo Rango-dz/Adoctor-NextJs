@@ -11,14 +11,12 @@ import { useRouter } from 'next/router'
 import sanityClient from '../lib/client';
 import { siteSettings } from '../lib/api';
 import dynamic from 'next/dynamic'
-// import HeaderTop from '../src/components/Header/headerTop';
-// import HeaderMiddle from '../src/components/Header/headerMiddle';
 
-const Googlemap = dynamic(() => import('../src/components/Contact/GoogleMap'), {
-  suspense: true,
-})
+
+
 const HeaderTop = dynamic(() => import('../src/components/Header/headerTop'), {})
 const HeaderMiddle = dynamic(() => import('../src/components/Header/headerMiddle'), {})
+const Googlemap = dynamic(() => import('../src/components/Contact/GoogleMap'), {})
 const Footer = dynamic(() => import('../src/components/Footer/footer'), {})
 const ScrollToTop = dynamic(() => import('../src/components/ScrollToTop'), {})
 
