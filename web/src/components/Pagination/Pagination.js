@@ -61,26 +61,26 @@ const Pagination = props => {
           <FaArrowLeft className='arrow left' />
         </button>
       </li>
-      <li>
-        {paginationRange.map(pageNumber => {
-          if (pageNumber === DOTS) {
-            return <li className="p-2">&#8230;</li>;
-          }
 
-          return (
-            <li
-              className={classnames('p-2 px-3  shadow rounded hover:bg-colorSix dark:hover:bg-moroi-pinkdanger cursor-pointer self-center active:bg-slate-100 dark:active:bg-colorRed  dark:bg-moroi-dark text-stone-400 dark:text-colorFive font-semibold', {
-                selected: pageNumber === currentPage
-              })}
-              onClick={() => onPageChange(pageNumber)}
-              key={currentPage + Math.random() * 100}
-              aria-label={`Pagenumber ${pageNumber}`}
-            >
-              {pageNumber}
-            </li>
-          );
-        })}
-      </li>
+      {paginationRange.map(pageNumber => {
+        if (pageNumber === DOTS) {
+          return <li className="p-2">&#8230;</li>;
+        }
+
+        return (
+          <li
+            className={classnames('p-2 px-3  shadow rounded hover:bg-colorSix dark:hover:bg-moroi-pinkdanger cursor-pointer self-center active:bg-slate-100 dark:active:bg-colorRed  dark:bg-moroi-dark text-stone-400 dark:text-colorFive font-semibold', {
+              selected: pageNumber === currentPage
+            })}
+            onClick={() => onPageChange(pageNumber)}
+            key={currentPage + Math.random() * 100}
+            aria-label={`Pagenumber ${pageNumber}`}
+          >
+            {pageNumber}
+          </li>
+        );
+      })}
+
       <li>
         <button
           className={classnames('p-3  shadow rounded hover:bg-colorSix dark:hover:bg-moroi-pinkdanger cursor-pointer self-center disabled:cursor-default disabled:bg-stone-300 dark:bg-moroi-dark text-stone-400 dark:text-colorFive', {
