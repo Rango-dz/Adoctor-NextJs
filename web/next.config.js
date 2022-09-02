@@ -10,6 +10,7 @@ const ContentSecurityPolicy = `
   img-src 'self' https://*.sanity.io data: https://*.googleapis.com blob: https://*.gstatic.com;
   object-src 'none';
   require-trusted-types-for 'script';
+  base-uri 'self'
   manifest-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io https://*.vercel.app,
 `
 
