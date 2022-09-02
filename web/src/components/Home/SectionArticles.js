@@ -19,8 +19,8 @@ export default function SectionArticles(props) {
     <section className='mx-[5%] md:mx-[10%] md:my-[15%] my-[45%]'>
       <div className="flex justify-between">
         <h1 className='text-start text-lg font-bold hover:underline'>
-          <Link href="/Articles" alt="Doctors articles" aria-label="Doctors articles" ><a className='flex flex-row'>Popular Articles <GiFiles /></a></Link></h1>
-        <Link href="/Articles" alt="Doctors articles" aria-label="Doctors articles" className='border border-slate-200 rounded-full p-2 bg-slate-200 cursor-pointer shadow hover:shadow-md text-slate-500 text-center self-center hover:bg-slate-300'><a><BsChevronRight /></a></Link>
+          <Link href="/Articles" alt="Doctors articles" aria-label="Doctors articles" passHref><a className='flex flex-row'>Popular Articles <GiFiles /></a></Link></h1>
+        <Link href="/Articles" alt="Doctors articles" aria-label="Doctors articles" className='border border-slate-200 rounded-full p-2 bg-slate-200 cursor-pointer shadow hover:shadow-md text-slate-500 text-center self-center hover:bg-slate-300' passHref><a><BsChevronRight /> More</a></Link>
       </div>
       <Swiper
         breakpoints={{
