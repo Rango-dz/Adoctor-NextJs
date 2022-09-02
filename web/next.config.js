@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
   font-src 'self' https://*.gstatic.com data: https://*.googleapis.com; 
   img-src 'self' https://*.sanity.io data: https://*.googleapis.com blob: https://*.gstatic.com;
   object-src 'self';
-  base-uri 'self'
+  base-uri 'self';
   manifest-src 'self' ${process.env.NEXT_PUBLIC_BASE_URL} data: https://*.sanity.io https://*.vercel.app,
 `
 
