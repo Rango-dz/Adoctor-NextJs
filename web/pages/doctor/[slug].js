@@ -13,6 +13,7 @@ import Image from 'next/image'
 import dynamic from "next/dynamic";
 import { siteSettings } from "../../lib/api";
 import Script from "next/script";
+import { useRouter } from 'next/router'
 
 const HeaderTop = dynamic(() => import('../../src/components/Header/headerTop'), {})
 const HeaderMiddle = dynamic(() => import('../../src/components/Header/headerMiddle'), {})
@@ -27,6 +28,9 @@ export default function OnePost({ doctor, data }) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY // Add your API key
   });
+
+  const router = useRouter()
+  const { slug } = router.query
 
   const siteSettings = data[0];
 
@@ -253,9 +257,20 @@ export default function OnePost({ doctor, data }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(
+    `*[_type == "doctor" && defined(slug.current)][].slug.current`
+  )
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: false,
+  }
+}
+
+
+export async function getStaticProps(context) {
   // It's important to default the slug so that it doesn't return "undefined"
-  const { slug = "" } = context.params
+  const { slug = " " } = context.params
   const doctor = await sanityClient.fetch(`
     *[_type == "doctor" && slug.current == $slug]{
   "image":mainImage{
